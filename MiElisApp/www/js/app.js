@@ -5,8 +5,8 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'ionic-datepicker', 'ionic-timepicker', 'formlyIonic', 'nvd3', 'i4mi', 'jsonFormatter'])
-.constant('APPNAME', 'faebu.zwahlen@outlook.com')
-.constant('APPSECRET', '19a28b93c8')
+.constant('APPNAME', 'MiElisApp')
+.constant('APPSECRET', 'MEA2016HSCA4T')
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -34,22 +34,22 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-datepicker', '
     controller: 'AppCtrl'
   })
 
-  .state('app.login', {
-    url: '/login',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/login.html',
-        controller: 'LoginCtrl'
-      }
-    }
-  })
-
   .state('app.Home', {
     url: '/Home',
     views: {
       'menuContent': {
         templateUrl: 'templates/Home.html',
         controller: 'HomeCtrl'
+      }
+    }
+  })
+
+  .state('app.login', {
+    url: '/login',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/login.html',
+        controller: 'LoginCtrl'
       }
     }
   })
@@ -84,5 +84,5 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-datepicker', '
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/login');
+  $urlRouterProvider.otherwise('/app/Home');
 });
