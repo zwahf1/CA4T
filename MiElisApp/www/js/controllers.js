@@ -4,7 +4,11 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('HomeCtrl', function($scope, $stateParams) {
+.controller('HomeCtrl', function($scope, $stateParams, $state, I4MIMidataService) {
+  console.log('state',I4MIMidataService.loggedIn());
+  if(I4MIMidataService.loggedIn() == true) {
+  } else {
+  }
 })
 
 .controller('WeightCtrl', function($scope, $stateParams) {
@@ -16,6 +20,15 @@ angular.module('starter.controllers', [])
 .controller('PulseCtrl', function($scope, $stateParams) {
 })
 
+.controller('MeCtrl', function($scope, $stateParams) {
+})
+
+.controller('LoggedOutCtrl', function($scope, $stateParams) {
+})
+
+.controller('SettingsCtrl', function($scope, $stateParams) {
+})
+
 .controller('LoginCtrl', function($scope, $window, I4MIMidataService) {
   // Perform the login action when the user submits the login form
     // Use for testing the development environment
@@ -25,6 +38,6 @@ angular.module('starter.controllers', [])
     }
 
     if(I4MIMidataService.loggedIn() == true) {
-      
+
     }
 });

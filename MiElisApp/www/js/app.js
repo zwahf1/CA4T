@@ -34,6 +34,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-datepicker', '
     controller: 'AppCtrl'
   })
 
+  .state('app.LoggedOut', {
+    url: '/LoggedOut',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/LoggedOut.html',
+        controller: 'LoggedOutCtrl'
+      }
+    }
+  })
+
   .state('app.Home', {
     url: '/Home',
     views: {
@@ -80,6 +90,26 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-datepicker', '
       'menuContent': {
         templateUrl: 'templates/Pulse.html',
         controller: 'PulseCtrl'
+      }
+    }
+  })
+
+  .state('app.Me', {
+    url: '/Me',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/Me.html',
+        controller: 'MeCtrl'
+      }
+    }
+  })
+
+  .state('app.Settings', {
+    url: '/Settings',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/Settings.html',
+        controller: 'SettingsCtrl'
       }
     }
   });

@@ -1,1 +1,102 @@
-/* Empty. Add your own CSS if you like */
+.Home-Button {
+  display: inline-block;
+-webkit-box-sizing: content-box;
+-moz-box-sizing: content-box;
+box-sizing: content-box;
+float: none;
+z-index: auto;
+width: 256px;
+height: 256px;
+position: relative;
+cursor: pointer;
+opacity: 1;
+margin: 20px;
+padding: 0;
+overflow: visible;
+border: 3px solid rgba(158,158,158,0.9);
+-webkit-border-radius: 13px;
+border-radius: 13px;
+font: normal normal bold 26px/normal "Times New Roman", Times, serif;
+color: rgba(0,0,0,0.9);
+-o-text-overflow: clip;
+text-overflow: clip;
+-webkit-box-shadow: 4px 4px 2px 1px rgba(0,0,0,0.2) ;
+box-shadow: 4px 4px 2px 1px rgba(0,0,0,0.2) ;
+text-shadow: -1px -1px 0 rgba(15,73,168,0.66) ;
+-webkit-transition: none;
+-moz-transition: none;
+-o-transition: none;
+transition: none;
+-webkit-transform: none;
+transform: none;
+-webkit-transform-origin: 50% 50% 0;
+transform-origin: 50% 50% 0;
+}
+
+#11 {
+  width: 20%;
+}
+#2 {
+  width: 60%;
+}
+#3 {
+  width: 20%;
+}
+
+#firstColumn {
+  display: inline-block;
+  float: left;
+  vertical-align: middle;
+  align-self: center;
+}
+
+#secondColumn {
+  display: inline-block;
+  float: left;
+  vertical-align: middle;
+  align-self: center;
+}
+
+#bGew {
+  background: url("http://enjoycss.com/bg-img/custom/46200-1v571qn.png");
+  background-position: 50% 50%;
+  -webkit-background-origin: padding-box;
+  background-origin: padding-box;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  -webkit-background-size: cover;
+  background-size: cover;
+}
+
+#bPuls {
+  background: url("http://enjoycss.com/bg-img/custom/46599-1kveel0.png");
+  background-position: 50% 50%;
+  -webkit-background-origin: padding-box;
+  background-origin: padding-box;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  -webkit-background-size: cover;
+  background-size: cover;
+}
+
+#bDia {
+  background: url("http://enjoycss.com/bg-img/custom/64785-jpak2s.png");
+  background-position: 50% 50%;
+  -webkit-background-origin: padding-box;
+  background-origin: padding-box;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  -webkit-background-size: cover;
+  background-size: cover;
+}
+
+#bMe {
+  background: url("http://enjoycss.com/bg-img/custom/64785-u8n2q8.jpg");
+  background-position: 50% 50%;
+  -webkit-background-origin: padding-box;
+  background-origin: padding-box;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  -webkit-background-size: cover;
+  background-size: cover;
+}
