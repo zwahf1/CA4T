@@ -1,14 +1,13 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', function($scope, $ionicModal) {
+
+  
 
 })
 
-.controller('HomeCtrl', function($scope, $stateParams, $state, I4MIMidataService) {
-  console.log('state',I4MIMidataService.loggedIn());
-  if(I4MIMidataService.loggedIn() == true) {
-  } else {
-  }
+.controller('HomeCtrl', function($scope, $ionicModal, $state, I4MIMidataService) {
+
 })
 
 .controller('WeightCtrl', function($scope, $stateParams) {

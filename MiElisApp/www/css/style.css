@@ -1,16 +1,16 @@
 .Home-Button {
-  display: inline-block;
+  display: block;
 -webkit-box-sizing: content-box;
 -moz-box-sizing: content-box;
 box-sizing: content-box;
-float: none;
 z-index: auto;
+float: left;
 width: 256px;
 height: 256px;
 position: relative;
 cursor: pointer;
 opacity: 1;
-margin: 20px;
+margin: 25px;
 padding: 0;
 overflow: visible;
 border: 3px solid rgba(158,158,158,0.9);
@@ -31,30 +31,11 @@ transition: none;
 transform: none;
 -webkit-transform-origin: 50% 50% 0;
 transform-origin: 50% 50% 0;
+text-align: justify;
 }
 
-#11 {
-  width: 20%;
-}
-#2 {
-  width: 60%;
-}
-#3 {
-  width: 20%;
-}
-
-#firstColumn {
-  display: inline-block;
-  float: left;
-  vertical-align: middle;
-  align-self: center;
-}
-
-#secondColumn {
-  display: inline-block;
-  float: left;
-  vertical-align: middle;
-  align-self: center;
+.placeHolder {
+  height: 20%;
 }
 
 #bGew {
