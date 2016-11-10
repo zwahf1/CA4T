@@ -1,34 +1,40 @@
+/*************************************************
+All controllers from the views in the app.
+
+10.11.2016 zwahf1
+*************************************************/
 angular.module('starter.controllers', [])
 
 .controller('AppCtrl', function($scope, $ionicModal) {
 
-  
-
 })
 
-.controller('HomeCtrl', function($scope, $ionicModal, $state, I4MIMidataService) {
+.controller('HomeCtrl', function($scope, $state, I4MIMidataService) {
 
+  if(I4MIMidataService.loggedIn() != true) {
+      $state.go("app.LoggedOut");
+  }
 })
 
-.controller('WeightCtrl', function($scope, $stateParams) {
+.controller('WeightCtrl', function($scope) {
 })
 
-.controller('SugarCtrl', function($scope, $stateParams) {
+.controller('SugarCtrl', function($scope) {
 })
 
-.controller('PulseCtrl', function($scope, $stateParams) {
+.controller('PulseCtrl', function($scope) {
 })
 
-.controller('MeCtrl', function($scope, $stateParams) {
+.controller('MeCtrl', function($scope) {
 })
 
-.controller('LoggedOutCtrl', function($scope, $stateParams) {
+.controller('LoggedOutCtrl', function($scope) {
 })
 
-.controller('SettingsCtrl', function($scope, $stateParams) {
+.controller('SettingsCtrl', function($scope) {
 })
 
-.controller('LoginCtrl', function($scope, $window, I4MIMidataService) {
+.controller('LoginCtrl', function($scope, $state, I4MIMidataService) {
   // Perform the login action when the user submits the login form
     // Use for testing the development environment
     $scope.user = {
@@ -37,6 +43,7 @@ angular.module('starter.controllers', [])
     }
 
     if(I4MIMidataService.loggedIn() == true) {
-
+        $state.go("app.Home");
     }
+
 });

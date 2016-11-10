@@ -1,4 +1,10 @@
-// Ionic Starter App
+/*************************************************
+Ionic starter app
+
+Statehandling for the diffrent views and loading the html files and controllers
+
+10.11.2016 zwahf1
+*************************************************/
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)

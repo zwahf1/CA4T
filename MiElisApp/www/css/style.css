@@ -1,16 +1,23 @@
+/*************************************************
+Stylesheet for the Home view
+<Home.html>
+
+10.11.2016 zwahf1
+*************************************************/
+
+/*for all buttons in the home-view*/
 .Home-Button {
-  display: block;
 -webkit-box-sizing: content-box;
 -moz-box-sizing: content-box;
 box-sizing: content-box;
 z-index: auto;
-float: left;
 width: 256px;
 height: 256px;
-position: relative;
 cursor: pointer;
 opacity: 1;
-margin: 25px;
+margin-left: auto;
+margin-right: auto;
+display: block;
 padding: 0;
 overflow: visible;
 border: 3px solid rgba(158,158,158,0.9);
@@ -34,12 +41,15 @@ transform-origin: 50% 50% 0;
 text-align: justify;
 }
 
-.placeHolder {
-  height: 20%;
+/*for all labels in the home-view*/
+.Home-Label {
+  font: normal normal bold 35px/normal "Times New Roman", Times, serif;
+  text-align: center;
 }
 
-#bGew {
-  background: url("http://enjoycss.com/bg-img/custom/46200-1v571qn.png");
+/*weight-button*/
+#bWeight {
+  background: url("../img/balance-icon.png");
   background-position: 50% 50%;
   -webkit-background-origin: padding-box;
   background-origin: padding-box;
@@ -49,8 +59,9 @@ text-align: justify;
   background-size: cover;
 }
 
-#bPuls {
-  background: url("http://enjoycss.com/bg-img/custom/46599-1kveel0.png");
+/*pulse-button*/
+#bPulse {
+  background: url("../img/heart-icon.png");
   background-position: 50% 50%;
   -webkit-background-origin: padding-box;
   background-origin: padding-box;
@@ -60,8 +71,9 @@ text-align: justify;
   background-size: cover;
 }
 
-#bDia {
-  background: url("http://enjoycss.com/bg-img/custom/64785-jpak2s.png");
+/*sugar-button*/
+#bSugar {
+  background: url("../img/Diabetes-icon.png");
   background-position: 50% 50%;
   -webkit-background-origin: padding-box;
   background-origin: padding-box;
@@ -71,8 +83,9 @@ text-align: justify;
   background-size: cover;
 }
 
+/*about me-button*/
 #bMe {
-  background: url("http://enjoycss.com/bg-img/custom/64785-u8n2q8.jpg");
+  background: url("../img/Elisabeth.jpg"); /*should be loaded by DB*/
   background-position: 50% 50%;
   -webkit-background-origin: padding-box;
   background-origin: padding-box;

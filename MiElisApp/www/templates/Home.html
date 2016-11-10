@@ -1,20 +1,47 @@
+<!
+html file for the home view
+contains four buttons for the diffrent functions
+- Weight
+- Pulse
+- Sugar
+- About me
+The buttons are in a grid with the labels for the description of the buttons
+10.11.2016 zwahf1>
 <ion-view view-title="Home">
     <ion-content class="padding">
-      <div class="placeHolder"></div>
-      <div class="row">
-        <div class="col">
-          <a class="Home-Button" id="bGew" href="#/app/Weight">Gewicht</a>
+      <div class="row row-center">
+        <div class="col col-center">
+          <a class="Home-Button" id="bWeight" href="#/app/Weight"></a>
         </div>
-        <div class="col">
-          <a class="button icon Home-Button" id="bPuls" href="#/app/Pulse">Puls</a>
+        <div class="col col-center">
+          <a class="button icon Home-Button" id="bPulse" href="#/app/Pulse"></a>
+        </div>
+      </div>
+      <div class="row row-center">
+        <div class="col col-center Home-Label">
+          Gewicht
+        </div>
+        <div class="col col-center Home-Label">
+          Puls
         </div>
       </div>
       <div class="row">
-        <div class="col">
-          <a class="button icon Home-Button" id="bDia" href="#/app/Sugar">Diabetes</a>
+        <div class="col col-center" style="height: 50px;"></div>
+      </div>
+      <div class="row row-center">
+        <div class="col col-center">
+          <a class="button icon Home-Button" id="bSugar" href="#/app/Sugar"></a>
         </div>
-        <div class="col">
-          <a class="button icon Home-Button" id="bMe" href="#/app/Me">About Me</a>
+        <div class="col col-center">
+          <a class="button icon Home-Button" id="bMe" href="#/app/Me"></a>
+        </div>
+      </div>
+      <div class="row row-top">
+        <div class="col col-center Home-Label">
+          Blutzucker
+        </div>
+        <div class="col col-center Home-Label">
+          Über Mich
         </div>
       </div>
     </ion-content>
