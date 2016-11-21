@@ -1,0 +1,12 @@
+1) new file in folder js (fileName.js)
+2) first line: angular.module('xy.service',[])
+3)
+.factory('Xy', function () {
+	var f1 = function () {...}
+	var f2 = function () {...}
+	[code...]
+	return { f1, f2};
+});
+
+4) in index.html after app.js and controller.js add fileName.js
+5) in app.js add 'xy.service' to angular.module
