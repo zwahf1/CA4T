@@ -51,7 +51,7 @@ angular.module('starter.controllers', [])
   // Perform the login action when the user submits the login form
     // Use for testing the development environment
     $scope.user = {
-      username: 'schmk3@bfh.ch',
+      username: 'gruppe4@bfh.ch',
       password: 'PW4clapps@midata',
       server: 'https://test.midata.coop:9000'
     }
