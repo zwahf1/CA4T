@@ -1,0 +1,62 @@
+/*for all buttons in the home-view*/
+.Home-Button {
+  -webkit-border-radius: 13px;
+  border-radius: 13px;
+  font: normal normal bold 26px/normal "Times New Roman", Times, serif;
+  width: 256px;
+  height: 256px;
+}
+
+/*for all labels in the home-view*/
+.Home-Label {
+  font: normal normal bold 35px/normal "Times New Roman", Times, serif;
+  text-align: center;
+}
+
+/*weight-button*/
+#bWeight {
+  background: url("../img/balance-icon.png");
+  background-position: 50% 50%;
+  -webkit-background-origin: padding-box;
+  background-origin: padding-box;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  -webkit-background-size: cover;
+  background-size: cover;
+}
+
+/*pulse-button*/
+#bPulse {
+  background: url("../img/heart-icon.png");
+  background-position: 50% 50%;
+  -webkit-background-origin: padding-box;
+  background-origin: padding-box;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  -webkit-background-size: cover;
+  background-size: cover;
+}
+
+/*sugar-button*/
+#bSugar {
+  background: url("../img/Diabetes-icon.png");
+  background-position: 50% 50%;
+  -webkit-background-origin: padding-box;
+  background-origin: padding-box;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  -webkit-background-size: cover;
+  background-size: cover;
+}
+
+/*about me-button*/
+#bMe {
+  background: url("../img/Elisabeth.jpg"); /*should be loaded by DB*/
+  background-position: 50% 50%;
+  -webkit-background-origin: padding-box;
+  background-origin: padding-box;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  -webkit-background-size: cover;
+  background-size: cover;
+}

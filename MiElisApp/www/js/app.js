@@ -40,14 +40,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-datepicker', '
     controller: 'AppCtrl'
   })
 
-  .state('app.LoggedOut', {
+  .state('LoggedOut', {
     url: '/LoggedOut',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/LoggedOut.html',
-        controller: 'LoggedOutCtrl'
-      }
-    }
+    templateUrl: 'templates/LoggedOut.html',
+    controller: 'LoggedOutCtrl'
   })
 
   .state('app.Home', {

@@ -5,7 +5,7 @@ Stylesheet for the Home view
 10.11.2016 zwahf1
 *************************************************/
 
-/*for all buttons in the home-view*/
+/*for all buttons in whole app*/
 .Button {
 -webkit-box-sizing: content-box;
 -moz-box-sizing: content-box;
@@ -19,9 +19,9 @@ display: block;
 padding: 0;
 overflow: visible;
 border: 3px solid rgba(158,158,158,0.9);
--webkit-border-radius: 13px;
-border-radius: 13px;
-font: normal normal bold 26px/normal "Times New Roman", Times, serif;
+-webkit-border-radius: 3px;
+border-radius: 3px;
+font: normal normal bold 12px/normal "Times New Roman", Times, serif;
 color: rgba(0,0,0,0.9);
 -o-text-overflow: clip;
 text-overflow: clip;
@@ -37,63 +37,4 @@ transform: none;
 -webkit-transform-origin: 50% 50% 0;
 transform-origin: 50% 50% 0;
 text-align: justify;
-}
-
-.Home-Button {
-  width: 256px;
-  height: 256px;
-}
-
-/*for all labels in the home-view*/
-.Home-Label {
-  font: normal normal bold 35px/normal "Times New Roman", Times, serif;
-  text-align: center;
-}
-
-/*weight-button*/
-#bWeight {
-  background: url("../img/balance-icon.png");
-  background-position: 50% 50%;
-  -webkit-background-origin: padding-box;
-  background-origin: padding-box;
-  -webkit-background-clip: border-box;
-  background-clip: border-box;
-  -webkit-background-size: cover;
-  background-size: cover;
-}
-
-/*pulse-button*/
-#bPulse {
-  background: url("../img/heart-icon.png");
-  background-position: 50% 50%;
-  -webkit-background-origin: padding-box;
-  background-origin: padding-box;
-  -webkit-background-clip: border-box;
-  background-clip: border-box;
-  -webkit-background-size: cover;
-  background-size: cover;
-}
-
-/*sugar-button*/
-#bSugar {
-  background: url("../img/Diabetes-icon.png");
-  background-position: 50% 50%;
-  -webkit-background-origin: padding-box;
-  background-origin: padding-box;
-  -webkit-background-clip: border-box;
-  background-clip: border-box;
-  -webkit-background-size: cover;
-  background-size: cover;
-}
-
-/*about me-button*/
-#bMe {
-  background: url("../img/Elisabeth.jpg"); /*should be loaded by DB*/
-  background-position: 50% 50%;
-  -webkit-background-origin: padding-box;
-  background-origin: padding-box;
-  -webkit-background-clip: border-box;
-  background-clip: border-box;
-  -webkit-background-size: cover;
-  background-size: cover;
 }
