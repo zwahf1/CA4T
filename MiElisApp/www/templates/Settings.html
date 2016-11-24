@@ -1,5 +1,52 @@
+<!--
+HTML File of the settings page
+Page contains basic information about the user and a toggle that prevents changes in the settings
+- Name/Firstname
+- Address/ZIP/City
+- Birthdate
+- enable settings toggle
+-->
 <ion-view view-title="Settings">
-    <ion-content>
+  <div id="wrapper">
+    <ion-content class="padding">
       <h1>Einstellungen</h1>
+
+        <div class="row">
+          <ion-item>
+            <ion-label color="primary">Vorname</ion-label>
+            <input type="text" value="Vorname"></input>
+          </ion-item>
+        </div>
+        <div class="row">
+          <ion-item>
+            <ion-label color="primary">Nachname</ion-label>
+            <input type="text" value="Nachname"></input>
+          </ion-item>
+        </div>
+        <div class="row">
+
+        </div>
+        <div class="row">
+          <ion-item>
+            <ion-label>Geburtsdatum</ion-label>
+            <ion-datetime displayFormat="DD MM YYYY" [(ngModel)]="event.month"></ion-datetime>
+          </ion-item>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="toggleLabel">
+              <ion-label>Persönliche Daten bearbeiten</ion-label>
+            </div>
+          </div>
+          <div class="col">
+            <ion-item class="settingsToggle">
+              <ion-toggle disabled checked="false"></ion-toggle>
+            </ion-item>
+          </div>
+        </div>
+        <button ion-button>Speichern</button>
+
     </ion-content>
+
+  </div>
 </ion-view>
