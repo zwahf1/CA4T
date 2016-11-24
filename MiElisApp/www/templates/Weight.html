@@ -1,19 +1,21 @@
 <ion-view view-title="Weight">
   <ion-content class="padding">
+<!--Weight-view with a chart o the current week-->
 
     <h1>Weight</h1>
-
+    <!--Chart with a filled area-->
     <div class="ct-chartLine ct-perfect-fourth"></div>
-
-<p id="testArrayPan"></p>
-
+    <!--Form with a text input for the measured value and a submit
+    button to refresh add the value into the chart.
+    If the value isn't a numeric value, it won't add-->
       <div>
         <form ng-submit="addValue(form.value)">
-          <input class="textInput" type="text" ng-model="form.value">
+          <input class="textInput" type="text" ng-model="form.value" placeholder="weight in kg">
           <input type="submit" value="add">
         </form>
       </div>
 
+<!-- list to show all values of the array-->
 <!--
       <ion-list>
         <ion-item ng-repeat="item in items" item="item" href="" class="item-remove-animate">

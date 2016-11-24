@@ -17,23 +17,28 @@ angular.module('starter.controllers', [])
 })
 
 .controller('WeightCtrl', function($scope) {
-
+//***********************//
+//all functions by schmk3//
+//***********************//
+//test itmes, used by development
+/*
   $scope.items=[
     {date: getDateStringI(7), value: 57.2},
     {date: getDateStringI(6), value: 56.4},
     {date: getDateStringI(5), value: 58.2},
     {date: getDateStringI(4), value: 57.7},
   ];
+*/
+  //Array with the dates to the values
   var aDate = new Array();
   aDate= [
-    getDateStringI(7),
-    getDateStringI(6),
-    getDateStringI(5),
     getDateStringI(4),
     getDateStringI(3),
     getDateStringI(2),
     getDateStringI(1),
   ];
+
+  //example array with the weight-values
   var aValue = new Array();
   aValue = [
     57.2,
@@ -42,23 +47,21 @@ angular.module('starter.controllers', [])
     57.7
   ]
 
-
+//instruction from readMe
   var $configLine = {
     name: '.ct-chartLine',
-    labels: 'Week',
-    series: "[12, 9, 7, 8, 5, 9, 10]",
+    labels: aDate,
+    series: aValue,
+//    series2: [67.2, 66.4, 68.2, 67.7],
     fullWidth: "true",
     showArea: "false",
+
   };
   var chartLine = new ChartJS($configLine);
   chartLine.line();
 
-var a = new Array();
-a= [12, 9, 7, 8, 5, 9, 10];
 
-var valuesToArray = function() {
-    a.push($scope.items.pop());
-  }
+//function to generate the chart. is called after input verification
   var showChart = function(){
     new Chartist.Line($config['name'], {
       labels: $config['labels'],
@@ -74,10 +77,15 @@ var valuesToArray = function() {
     });
   }
 
+/*function to add a value.
+after verification, that it's a numeric value, the value is added to value array
+
+*/
   $scope.addValue = function(val){
     if(!isNaN(val)){
-      $scope.items.push({date: getDateStringI(0),value: val});
+//      $scope.items.push({date: getDateStringI(0),value: val});
       aValue.push(val);
+      aDate.push(getDateStringI(0));
     }
     this.form = {
       value: ''
@@ -85,16 +93,14 @@ var valuesToArray = function() {
       showChart();
     };
 
-    var chartLine = new ChartJS($configLine);
-    chartLine.line();
 
 
-
+//returns the current date (TT.mm.YYYY)
   function getDateStringI(i){
   var d = new Date();
   d.setDate(d.getDate() - i);
   var t = d.getDate();
-  var m = d.getMonth();
+  var m = d.getMonth()+1;
   var y = d.getFullYear();
   return t+"."+m+"."+y;
   }
