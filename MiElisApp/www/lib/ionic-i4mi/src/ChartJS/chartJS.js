@@ -30,7 +30,7 @@ ChartJS.prototype.line = function() {
   new Chartist.Line($config['name'], {
     labels: $config['labels'],
     series: [
-        [12, 9, 7, 8, 5, 9, 9],
+        [57.2, 56.4, 58.2, 57.7],
       ]
     },
     {
@@ -42,6 +42,8 @@ ChartJS.prototype.line = function() {
     }
   });
 };
+
+
 
 
 
