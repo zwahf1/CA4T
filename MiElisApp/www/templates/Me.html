@@ -1,7 +1,87 @@
+<!--
+html file for the "Me" view
+contains information about the owner of the app.
+
+The content is in a grid with a cell for each item.
+The grid is built as
+-two rows
+-each containing 3 columns
+-their size and further division is individual.
+
+15.11.2016 nosec1
+-->
+
 <ion-view view-title="Me">
   <div id="wrapper">
     <ion-content>
-      <h1>About me</h1>
+
+<!--The upper row-->
+      <div class="row row-center">
+        <!--Cell for the picture, smaller than the other 2 in the row.-->
+          <div class="col col-20 col-center">Bild kommt hier</div>
+          <div class="col">
+            <div class="row row-center">
+              <h3>Anamnese</h3>
+            </div>
+            <div class="row">ScrollableField</div>
+          </div>
+          <div class="col">
+            <div class="row">
+              <h3>Diagnose</h3>
+            </div>
+            <div class="row">Scrollable Field</div>
+          </div>
+      </div>
+<!--The lower row-->
+      <div class="row">
+        <div class="col">
+          <div class="row">
+            <h3>Adresse</h3>
+          </div>
+          <div class="row">
+            <p>
+              Elisabeth Brönnimann<br>
+              Kreuzweg 11<br>
+              2500 Biel
+            </p>
+          </div>
+          <div class="row">
+            <div class="col">Geburtsdatum:</div>
+            <div class="col">Textfield</div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="row">
+            <h3>Notfallkontakte</h3>
+          </div>
+          <div class="row">
+            <h4>Hausarzt:</h4>
+          </div>
+          <div class="row">
+            <a class="Button btn_full">Dr. Hanspeter Wenger</a>
+          </div>
+          <div class="row">
+            <h4>Kontaktperson:</h4>
+          </div>
+          <div class="row">
+            <a class="Button btn_full">Kurt Brönnimann</a>
+          </div>
+        </div>
+        <div class="col">
+          <div class="row">
+            <h3>Weitere Kontakte</h3>
+          </div>
+          <div class="row">
+            <a class="Button btn_full">Markus Brönnimann</a>
+          </div>
+          <div class="row">
+            <a class="Button btn_full">Margrith Brönnimann</a>
+          </div>
+          <div class="row">
+            <a class="Button btn_full">Miriam Brönnimann</a>
+          </div>
+      </div>
+
     </ion-content>
   </div>
 </ion-view>

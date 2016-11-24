@@ -1,0 +1,12 @@
+/*************************************************
+Stylesheet for the Me view
+<Me.html>
+
+21.11.2016 nosec1
+*************************************************/
+
+.Button.btn_full{
+  display: block;
+  text-align: center;
+  width: 100%;
+}
