@@ -1,6 +1,25 @@
 <ion-view view-title="Weight">
   <ion-content class="padding">
+
     <h1>Weight</h1>
+
     <div class="ct-chartLine ct-perfect-fourth"></div>
-  </ion-content>
+
+<p id="testArrayPan"></p>
+
+      <div>
+        <form ng-submit="addValue(form.value)">
+          <input class="textInput" type="text" ng-model="form.value">
+          <input type="submit" value="add">
+        </form>
+      </div>
+
+<!--
+      <ion-list>
+        <ion-item ng-repeat="item in items" item="item" href="" class="item-remove-animate">
+        {{item.date}} - {{ item.value }}
+        </ion-item>
+        <ion-list>
+-->
+        </ion-content>
 </ion-view>
