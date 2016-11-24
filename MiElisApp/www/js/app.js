@@ -114,6 +114,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-datepicker', '
         controller: 'SettingsCtrl'
       }
     }
+  })
+
+  .state('app.DetailContact', {
+    url: '/DetailContact',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/DetailContact.html',
+      }
+    }
   });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/Home');

@@ -1,12 +1,7 @@
-<!--
-html file for the menu view
-contains the header-bar and the buttons to navigate between the views or open the menu
-
-10.11.2016 zwahf1-->
 <ion-side-menus enable-menu-with-back-views="false">
   <ion-side-menu-content>
-    <ion-nav-bar class="bar-stable  ">
-      <ion-nav-back-button>Zurück
+    <ion-nav-bar class="bar-stable">
+      <ion-nav-back-button>
       </ion-nav-back-button>
 
       <ion-nav-buttons side="left">
@@ -19,19 +14,26 @@ contains the header-bar and the buttons to navigate between the views or open th
 
   <ion-side-menu side="left">
     <ion-header-bar class="bar-stable">
-      <h1 class="title">Menü</h1>
+      <h1 class="title">Left</h1>
     </ion-header-bar>
     <ion-content>
       <ion-list>
-        <ion-item menu-close href="#/app/Home">
-          Home
-        </ion-item>
         <ion-item menu-close href="#/app/login">
           Login
         </ion-item>
-        <ion-item menu-close href="#/app/Settings">
-          Einstellungen
+        <ion-item menu-close href="#/app/Home">
+          Home
         </ion-item>
+        <ion-item menu-close href="#/app/Pulse">
+          Puls
+        </ion-item>
+        <ion-item menu-close href="#/app/Weight">
+          Weight
+        </ion-item>
+        <ion-item menu-close href="#/app/Sugar">
+          Sugar
+        </ion-item>
+
       </ion-list>
     </ion-content>
   </ion-side-menu>
