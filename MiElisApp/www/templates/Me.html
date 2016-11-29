@@ -13,41 +13,73 @@ The grid is built as
 
 <ion-view view-title="Me">
   <div id="wrapper">
-    <ion-content>
+    <ion-content scroll="false">
 
 <!--The upper row-->
-      <div class="row row-center">
+      <div class="row" id="content-container">
         <!--Cell for the picture, smaller than the other 2 in the row.-->
-          <div class="col col-20 col-center">Bild kommt hier</div>
-          <div class="col">
-            <div class="row row-center">
+          <div class="col col-20 col-left" id="bild">
+            <img src="../img/Elisabeth.jpg" id="pPicture">
+          </div>
+          <div class="col col-40">
+            <div class="row">
               <h3>Anamnese</h3>
             </div>
-            <div class="row">ScrollableField</div>
+        <!--    <div class="row"> -->
+        <ion-list id="lList">
+          <ion-item>St. n. Pneumonie 1942</ion-item>
+          <ion-item>St n. Appendektomie 1946</ion-item>
+          <ion-item>St n. Cholezystektomie 1986</ion-item>
+          <ion-item>St n. Nephrolithiasis links mit ESWL im Inselspital Bern 1998 oooooooooooooooooooooooooooooooooooooooooooooooooooooooo</ion-item>
+        </ion-list>
+
+      <!--      </div> -->
           </div>
-          <div class="col">
+          <div class="col col-40">
             <div class="row">
               <h3>Diagnose</h3>
             </div>
-            <div class="row">Scrollable Field</div>
+<!--              <ul class="list" id="lList">
+                <li class="item">Diabetes mellitus Typ I</li>
+                <li class="item">Diabetes mellitus Typ I</li>
+                <li class="item">Diabetes mellitus Typ I</li>
+                <li class="item">Diabetes mellitus Typ I</li>
+                <li class="item">Diabetes mellitus Typ I</li>
+              </ul> -->
+
+              <ion-scroll direction="xy" id="lList">
+                <ion-item>Diabetes mellitus</ion-item>
+                <ion-item>Diabetes mellitus</ion-item>
+                <ion-item>Diabetes mellitus oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo</ion-item>
+                <ion-item>Diabetes mellitus</ion-item>
+                <ion-item>Diabetes mellitus</ion-item>
+                <ion-item>Diabetes mellitus</ion-item>
+                <ion-item>Diabetes mellitus</ion-item>
+              </ion-scroll>
+
           </div>
       </div>
 <!--The lower row-->
-      <div class="row">
+      <div class="row" id="content-container">
         <div class="col">
           <div class="row">
             <h3>Adresse</h3>
           </div>
           <div class="row">
-            <p>
+            <p id="pAddress">
+              Frau<br>
               Elisabeth Brönnimann<br>
               Kreuzweg 11<br>
               2500 Biel
             </p>
           </div>
           <div class="row">
-            <div class="col">Geburtsdatum:</div>
-            <div class="col">Textfield</div>
+            <div class="col">
+              <p>Geburtsdatum:</p>
+            </div>
+            <div class="col">
+              <p id="pBirthdate">03. Mai 1937</p>
+            </div>
           </div>
         </div>
         <div class="col">
@@ -58,13 +90,13 @@ The grid is built as
             <h4>Hausarzt:</h4>
           </div>
           <div class="row">
-            <a class="Button btn_full">Dr. Hanspeter Wenger</a>
+            <a class="Button btn_full" id="bHausarzt">Dr. Hanspeter Wenger</a>
           </div>
           <div class="row">
             <h4>Kontaktperson:</h4>
           </div>
           <div class="row">
-            <a class="Button btn_full">Kurt Brönnimann</a>
+            <a class="Button btn_full" id="bKontaktperson">Kurt Brönnimann</a>
           </div>
         </div>
         <div class="col">
@@ -72,13 +104,13 @@ The grid is built as
             <h3>Weitere Kontakte</h3>
           </div>
           <div class="row">
-            <a class="Button btn_full">Markus Brönnimann</a>
+            <a class="Button btn_full" id="bWeitereKontakte1">Markus Brönnimann</a>
           </div>
           <div class="row">
-            <a class="Button btn_full">Margrith Brönnimann</a>
+            <a class="Button btn_full" id="bWeitereKontakte2">Margrith Brönnimann</a>
           </div>
           <div class="row">
-            <a class="Button btn_full">Miriam Brönnimann</a>
+            <a class="Button btn_full" id="bWeitereKontakte3">Miriam Brönnimann</a>
           </div>
       </div>
 
