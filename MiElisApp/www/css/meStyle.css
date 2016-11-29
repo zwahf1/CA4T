@@ -11,9 +11,18 @@ Stylesheet for the Me view
   width: 100%;
 }
 
-.ul.fill{
+
+
+/*
+.row, .scroll {
   height: 100%;
 }
+*/
+
+.col {
+  height: 100%;
+}
+
 
 #pPicture{
   height: 100%
@@ -27,32 +36,8 @@ Stylesheet for the Me view
 }
 
 #lList {
+  display: flex;
+  flex-flow: row;
   width: 100%;
   height: 100%;
 }
-
-
-
-/*
-.row{
-  height: 50%;
-}
-*/
-/*
-
-
-div.container {
-    height: 50%; }
-
-    /*picture in "Me"*/
-/*   #pPicture {
-      background: url("../img/Elisabeth.jpg");
-      background-position: 50% 50%;
-      -webkit-background-origin: padding-box;
-      background-origin: padding-box;
-      -webkit-background-clip: border-box;
-      background-clip: border-box;
-      -webkit-background-size: cover;
-      background-size: cover;
-    }
-*/
