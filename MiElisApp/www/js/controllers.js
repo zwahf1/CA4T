@@ -11,17 +11,17 @@ angular.module('starter.controllers', [])
 
 .controller('HomeCtrl', function($scope, $state, I4MIMidataService) {
 
-  $scope.dumiData = {
+  var dumiData = {
     firstName : 'Elisabeth',
     lastName : 'Brönnimann'
   };
 
-  localStorage.setItem("data", JSON.stringify($scope.dumiData));
+  localStorage.setItem("data", JSON.stringify(dumiData));
 
-  $scope.data = JSON.parse(localStorage.getItem("data"));
+  var data = JSON.parse(localStorage.getItem("data"));
 
-  $scope.firstName =   $scope.data.firstName;
-  $scope.lastName = $scope.data.lastName;
+  $scope.firstName =   data.firstName;
+  $scope.lastName = data.lastName;
 
 
   if(I4MIMidataService.loggedIn() != true) {
@@ -34,14 +34,14 @@ angular.module('starter.controllers', [])
 //all functions by schmk3//
 //***********************//
 //test itmes, used by development
-/*
+
   $scope.items=[
     {date: getDateStringI(7), value: 57.2},
     {date: getDateStringI(6), value: 56.4},
     {date: getDateStringI(5), value: 58.2},
     {date: getDateStringI(4), value: 57.7},
   ];
-*/
+
   //Array with the dates to the values
   var aDate = new Array();
   aDate= [
@@ -122,126 +122,69 @@ after verification, that it's a numeric value, the value is added to value array
 })
 
 .controller('SugarCtrl', function($scope, Chart) {
+var sugarChart = {};
+var sugarData =   [
+  ['Datum', "Blutzucker"],
+  [getDateStringI(3), 4.2],
+  [getDateStringI(2), 8.3],
+  [getDateStringI(1), 5.1],
+];
 
+sugarChart.type = "LineChart";
+sugarChart.data = sugarData;
+sugarChart.options = {
+    displayExactValues: true,
+//    width: 400,
+//    height: 200,
+    is3D: true,
+//    chartArea: {left:10,top:10,bottom:0,height:"100%"},
+    pointSize: 50,
+    lineWidth: 0,
+};
+//sugarChart.formatters = {};
+$scope.mySugrChart = sugarChart;
+$scope.addGlucoValue = function(val){
+  sugarData.push(
+    [getDateStringI(0), val]
+  );
+  $scope.value = sugarData;
+};
+
+  function getDateStringI(i){
+    var d = new Date();
+    d.setDate(d.getDate() - i);
+    return d;
+  }
 })
 
 .controller('PulseCtrl', function($scope) {
-  $scope.myChartObject = {
-    "type": "AreaChart",
-    "displayed": false,
-    "data": {
-      "cols": [
-        {
-          "id": "month",
-          "label": "Month",
-          "type": "string",
-          "p": {}
-        },
-        {
-          "id": "laptop-id",
-          "label": "Laptop",
-          "type": "number",
-          "p": {}
-        },
-        {
-          "id": "desktop-id",
-          "label": "Desktop",
-          "type": "number",
-          "p": {}
-        },
-        {
-          "id": "server-id",
-          "label": "Server",
-          "type": "number",
-          "p": {}
-        },
-        {
-          "id": "cost-id",
-          "label": "Shipping",
-          "type": "number"
-        }
-      ],
-      "rows": [
-        {
-          "c": [
-            {
-              "v": "January"
-            },
-            {
-              "v": 19,
-              "f": "42 items"
-            },
-            {
-              "v": 12,
-              "f": "Ony 12 items"
-            },
-            {
-              "v": 7,
-              "f": "7 servers"
-            },
-            {
-              "v": 4
-            }
-          ]
-        },
-        {
-          "c": [
-            {
-              "v": "February"
-            },
-            {
-              "v": 13
-            },
-            {
-              "v": 1,
-              "f": "1 unit (Out of stock this month)"
-            },
-            {
-              "v": 12
-            },
-            {
-              "v": 2
-            }
-          ]
-        },
-        {
-          "c": [
-            {
-              "v": "March"
-            },
-            {
-              "v": 24
-            },
-            {
-              "v": 5
-            },
-            {
-              "v": 11
-            },
-            {
-              "v": 6
-            }
-          ]
-        }
-      ]
+/*  var chart1 = {};
+  chart1.type = "AreaChart";
+  chart1.data = [
+  //  ['date', 'Systolischer BD', 'Diastolischer BD'],
+    [getDateStringI(-1), 132, 132, 65, 65],
+    [getDateStringI(1), 160, 160, 110, 110],
+    [getDateStringI(2), 122, 122, 85, 85],
+
+  ];
+  chart1.options = {
+    isStacked: 'absolute',
+    series: [{color: 'white',  lineWidth: 0}, {color: 'purple', lineWidth: 0}],
+    hAxis: {
+      format: 'EE, d.MMM y'
     },
-    "options": {
-      "title": "Sales per month",
-      "isStacked": "true",
-      "fill": 20,
-      "displayExactValues": true,
-      "vAxis": {
-        "title": "Sales unit",
-        "gridlines": {
-          "count": 10
-        }
-      },
-      "hAxis": {
-        "title": "Date"
-      }
-    },
-    "formatters": {}
+    vAxis: {minValue: 0},
+    pointSize: 50,
+  };
+
+  $scope.myChartObject = chart1;
+  */
+  function getDateStringI(i){
+    var d = new Date();
+    d.setDate(d.getDate() - i);
+    return d;
   }
+
 })
 
 .controller('MeCtrl', function($scope) {
