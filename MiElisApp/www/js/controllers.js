@@ -11,6 +11,19 @@ angular.module('starter.controllers', [])
 
 .controller('HomeCtrl', function($scope, $state, I4MIMidataService) {
 
+  $scope.dumiData = {
+    firstName : 'Elisabeth',
+    lastName : 'Brönnimann'
+  };
+
+  localStorage.setItem("data", JSON.stringify($scope.dumiData));
+
+  $scope.data = JSON.parse(localStorage.getItem("data"));
+
+  $scope.firstName =   $scope.data.firstName;
+  $scope.lastName = $scope.data.lastName;
+
+
   if(I4MIMidataService.loggedIn() != true) {
       $state.go("LoggedOut");
   }
