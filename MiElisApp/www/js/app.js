@@ -11,9 +11,7 @@ Statehandling for the diffrent views and loading the html files and controllers
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'ionic-datepicker', 'ionic-timepicker', 'formlyIonic', 'nvd3', 'i4mi', 'jsonFormatter', 'chart.service', 'googlechart', 'ngStorage'])
-<<<<<<< .mineangular.module('starter', ['ionic', 'starter.controllers', 'ionic-datepicker', 'ionic-timepicker', 'formlyIonic', 'nvd3', 'i4mi', 'jsonFormatter', 'chart.service', 'ngStorage'])
-=======angular.module('starter', ['ionic', 'starter.controllers', 'ionic-datepicker', 'ionic-timepicker', 'formlyIonic', 'nvd3', 'i4mi', 'jsonFormatter', 'chart.service', 'googlechart'])
->>>>>>> .theirs.constant('APPNAME', 'MiElisApp')
+.constant('APPNAME', 'MiElisApp')
 .constant('APPSECRET', 'MEA2016HSCA4T')
 
 .run(function($ionicPlatform) {
