@@ -11,40 +11,72 @@ Page contains basic information about the user and a toggle that prevents change
     <ion-content class="padding">
       <h1>Einstellungen</h1>
 
-        <div class="row">
+      <div class="row">
+        <div class="col col-50">
           <ion-item>
             <ion-label color="primary">Vorname</ion-label>
             <input type="text" value="Vorname"></input>
           </ion-item>
         </div>
-        <div class="row">
+
+        <div class="col col-50">
           <ion-item>
             <ion-label color="primary">Nachname</ion-label>
             <input type="text" value="Nachname"></input>
           </ion-item>
         </div>
-        <div class="row">
+      </div>
 
+      <div class="row">
+        <div class="col col-50">
+          <ion-item>
+            <ion-label color="primary">Adresse</ion-label>
+            <input type="text" value="Adresse"></input>
+          </ion-item>
         </div>
-        <div class="row">
+
+        <div class="col col-50">
+          <ion-item>
+            <ion-label color="primary">PLZ Ort</ion-label>
+            <input type="text" value="PLZ Ort"></input>
+          </ion-item>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
           <ion-item>
             <ion-label>Geburtsdatum</ion-label>
             <ion-datetime displayFormat="DD MM YYYY" [(ngModel)]="event.month"></ion-datetime>
           </ion-item>
         </div>
-        <div class="row">
-          <div class="col">
-            <div class="toggleLabel">
-              <ion-label>Persönliche Daten bearbeiten</ion-label>
-            </div>
-          </div>
-          <div class="col">
-            <ion-item class="settingsToggle">
-              <ion-toggle disabled checked="false"></ion-toggle>
-            </ion-item>
+        <!--
+        <label class="item item-input">
+          <span class="input-label">Date</span>
+          <input type="date">
+        </label>
+        -->
+      </div>
+
+      <div class="row">
+        <div class="col col-20">
+          <div class="toggleLabel">
+            <ion-label>Persönliche Daten bearbeiten</ion-label>
           </div>
         </div>
-        <button ion-button>Speichern</button>
+        <!--
+          No changes can be made in the settings if the toggle is turned off
+          -->
+        <div class="col">
+          <ion-item class="settingsToggle">
+            <ion-toggle disabled checked="false"></ion-toggle>
+          </ion-item>
+        </div>
+      </div>
+      <!--
+        Changes in the settings need to be saved to prevent unintentional changes
+        -->
+      <button ion-button>Speichern</button>
 
     </ion-content>
 

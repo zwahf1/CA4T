@@ -18,15 +18,13 @@
   max-width: 100%;
 }
 
-/*some dumb ass paddings and margins to change the position of the toggle
-WIP because it's broken beyond repair*/
+/*Changes of the basic toggle border*/
 .settingsToggle {
-  padding-bottom: 5px;
   border: none;
   width: 15%;
 }
 
-/*this code here changes the position of the toggle because whoever messed that up in the ionic css is a little cunt*/
+/*Correction of toggle positions*/
 .settingsToggle .toggle {
   left: 15px;
   top: auto !important;
