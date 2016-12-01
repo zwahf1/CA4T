@@ -96,7 +96,6 @@ after verification, that it's a numeric value, the value is added to value array
 */
   $scope.addValue = function(val){
     if(!isNaN(val)){
-//      $scope.items.push({date: getDateStringI(0),value: val});
       aValue.push(val);
       aDate.push(getDateStringI(0));
     }
@@ -121,7 +120,13 @@ after verification, that it's a numeric value, the value is added to value array
 
 })
 
-.controller('SugarCtrl', function($scope, Chart) {
+.controller('SugarCtrl', function($scope) {
+  //***********************//
+  //all functions by schmk3//
+  //***********************//
+  //the chart for the sugar curve is from the google
+  //sugarData are the example data to fill the sugarChart
+
 var sugarChart = {};
 var sugarData =   [
   ['Datum', "Blutzucker"],
@@ -129,25 +134,33 @@ var sugarData =   [
   [getDateStringI(2), 8.3],
   [getDateStringI(1), 5.1],
 ];
+// the array with the value sugar is stored in the localStorage
+localStorage.setItem("sugarData", JSON.stringify(sugarData));
 
+// type of the chart is a linechart
 sugarChart.type = "LineChart";
-sugarChart.data = sugarData;
+//load the data from the localStorage
+
+sugarChart.data = JSON.parse(localStorage.getItem("sugarData"));
+
+//set options like point size and hide the line
 sugarChart.options = {
-    displayExactValues: true,
-//    width: 400,
-//    height: 200,
+
     is3D: true,
 //    chartArea: {left:10,top:10,bottom:0,height:"100%"},
-    pointSize: 50,
+    pointSize: 40,
     lineWidth: 0,
 };
+//commented line to format numbers etc.
 //sugarChart.formatters = {};
+//generate Chart
 $scope.mySugrChart = sugarChart;
+//function to add a inputed value
 $scope.addGlucoValue = function(val){
   sugarData.push(
     [getDateStringI(0), val]
   );
-  $scope.value = sugarData;
+
 };
 
   function getDateStringI(i){

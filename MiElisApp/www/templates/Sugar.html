@@ -1,11 +1,12 @@
 <ion-view view-title="Sugar">
     <ion-content>
       <h1>Sugar</h1>
+      <!-- google chart,  -->
       <div class="ChartSugar" google-chart chart="mySugrChart"> </div>
+      <!-- input fields for adding a value -->
       <form novalidate>
         <input type="number" ng-model="glucoseValue">
         <button ng-click="addGlucoValue(glucoseValue)">add</button>
-      </button>
-      <p>value =  {{value}}</p>
+      </form>
     </ion-content>
 </ion-view>
