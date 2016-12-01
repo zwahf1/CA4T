@@ -126,46 +126,75 @@ after verification, that it's a numeric value, the value is added to value array
   //all functions by schmk3//
   //***********************//
   //the chart for the sugar curve is from the google
-  //sugarData are the example data to fill the sugarChart
+  //firstData are the example data to fill the sugarChart
 
 var sugarChart = {};
-var sugarData =   [
+var firstData =   [
   ['Datum', "Blutzucker"],
-  [getDateStringI(3), 4.2],
+  [getDateStringI(4), 4.2],
   [getDateStringI(2), 8.3],
   [getDateStringI(1), 5.1],
 ];
 // the array with the value sugar is stored in the localStorage
-localStorage.setItem("sugarData", JSON.stringify(sugarData));
+localStorage.setItem("sugarData", JSON.stringify(firstData));
 
 // type of the chart is a linechart
 sugarChart.type = "LineChart";
-//load the data from the localStorage
+//loads the data stored in the localStorage to an array
+aData = localStorageToArray();
+//
+sugarChart.data = aData;
 
-sugarChart.data = JSON.parse(localStorage.getItem("sugarData"));
+//$scope.value = aParsedData;
+$scope.value2 = aData;
 
 //set options like point size and hide the line
 sugarChart.options = {
 
     is3D: true,
-//    chartArea: {left:10,top:10,bottom:0,height:"100%"},
-    pointSize: 40,
+  //  chartArea: {left:'auto',top:'auto',bottom:'auto',height:"100%"},
+    pointSize: 10,
     lineWidth: 0,
+    hAxis: {
+      format: "d.MMM - H:mm"
+    }
 };
-//commented line to format numbers etc.
-//sugarChart.formatters = {};
+
+
 //generate Chart
 $scope.mySugrChart = sugarChart;
 //function to add a inputed value
 $scope.addGlucoValue = function(val){
-  sugarData.push(
+  aData.push(
     [getDateStringI(0), val]
   );
+  sugarChart.data = aData;
+  $scope.mySugrChart = sugarChart;
+  arrayToLocalStorage(aData);
 
 };
-
-  function getDateStringI(i){
-    var d = new Date();
+function arrayToLocalStorage(a){
+  localStorage.setItem("sugarData", JSON.stringify(a));
+}
+function localStorageToArray(){
+  //load the data from the localStorage
+  aData = JSON.parse(localStorage.getItem("sugarData"));
+  for(var i=1; i < aData.length; i++){
+    aData[i][0] = parseJsonDate(aData[i][0]);
+    aData[i][1] = aData[i][1];
+  }
+  return aData;
+}
+function parseJsonDate(jsonDateString){
+    var y = jsonDateString.substr(0, 4);
+    var m = jsonDateString.substr(5, 2)-1;
+    var d = jsonDateString.substr(8, 2);
+    var h = jsonDateString.substr(11,2);
+    var min = jsonDateString.substr(14,2);
+    return new Date(y, m, d, h, min);
+}
+function getDateStringI(i){
+  var d = new Date();
     d.setDate(d.getDate() - i);
     return d;
   }
