@@ -10,7 +10,10 @@ Stylesheet for the Me view
   text-align: center;
   width: 100%;
 }
-
+.detailContactContainer {
+  width: auto;
+  height: 100%;
+}
 
 
 /*
@@ -25,16 +28,16 @@ Stylesheet for the Me view
 
 
 #pPicture{
-  height: 100%
-  width: 100%
+  height: 100%;
+  width: 100%;
 }
-
+/*
 #content-container {
   display: flex;
   flex-flow: row;
   height: 50%;
 }
-
+*/
 #lList {
   display: flex;
   flex-flow: row;

@@ -11,10 +11,11 @@ The grid is built as
 15.11.2016 nosec1
 -->
 
+
 <ion-view view-title="Me">
   <div id="wrapper">
     <ion-content class="padding" scroll="false">
-
+      <div class="meContainer">
 <!--The upper row-->
       <div class="row" id="content-container">
         <!--Cell for the picture, smaller than the other 2 in the row.-->
@@ -88,7 +89,7 @@ The grid is built as
             <h4>Hausarzt:</h4>
           </div>
           <div class="row">
-            <a class="Button btn_full" id="bHausarzt">Dr. Hanspeter Wenger</a>
+            <a class="Button btn_full" id="bHausarzt" href="#/app/DetailContact">Dr. Hanspeter Wenger</a>
           </div>
           <div class="row">
             <h4>Kontaktperson:</h4>
@@ -112,7 +113,8 @@ The grid is built as
             <a class="Button btn_full" id="bWeitereKontakte3">Miriam Brönnimann</a>
           </div>
       </div>
-
+    </div>
+    </div>
     </ion-content>
   </div>
 </ion-view>
