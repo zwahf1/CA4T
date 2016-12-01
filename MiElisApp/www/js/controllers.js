@@ -18,10 +18,11 @@ angular.module('starter.controllers', [])
 
   localStorage.setItem("data", JSON.stringify(dumiData));
 
+
   var data = JSON.parse(localStorage.getItem("data"));
 
-  $scope.firstName =   data.firstName;
-  $scope.lastName = data.lastName;
+  firstName =   data.firstName;
+  lastName = data.lastName;
 
 
   if(I4MIMidataService.loggedIn() != true) {
