@@ -40,7 +40,9 @@ text-align: justify;
 }
 <<<<<<< .mine
 
-
+ion-content {
+  height: 95%;
+}
 
 .Home-Button {
   width: 256px;

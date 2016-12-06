@@ -1,16 +1,21 @@
 <ion-view view-title="Pulse">
-  <ion-content  scroll="false">
+  <ion-content  scroll="true">
     <h1>Puls</h1>
-    <div google-chart chart="myChartObject" style="{{cssStyle}}"></div>
+<!--
+    <div id="chartContainer" style="height: 400px; width: 100%;"></div>
+-->
+    <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
     <div class="row">
       <div class="col col-50">
         <label class="item item-input">
-        <input type="number" placeholder="Puls">
+        <input type="number" ng-model="BPSysValue" placeholder="Systolischer">
+        <input type="number" ng-model="BPDiaValue" placeholder="Diastolischer">
         </label>
       </div>
       <div class="col col-50">
-        <button class="button">
-        eintragen
+        <button class="button" ng-click="addBPValue(BPSysValue, BPDiaValue)">
+          eintragen
         </button>
       </div>
     </div>

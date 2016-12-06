@@ -1,4 +1,3 @@
-
 <ion-view view-title="Weight">
   <ion-content class="padding">
 <!--Weight-view with a chart o the current week-->
@@ -9,12 +8,11 @@
     <!--Form with a text input for the measured value and a submit
     button to refresh add the value into the chart.
     If the value isn't a numeric value, it won't add-->
-      <div>
-        <form ng-submit="addValue(form.value)">
-          <input class="textInput" type="text" ng-model="form.value" placeholder="weight in kg">
-          <input type="submit" value="add">
-        </form>
-      </div>
-
-        </ion-content>
+    <div>
+      <form ng-submit="addValue(form.value)">
+        <input class="textInput" type="text" ng-model="form.value" placeholder="weight in kg">
+        <input type="submit" value="add">
+      </form>
+    </div>
+  </ion-content>
 </ion-view>
