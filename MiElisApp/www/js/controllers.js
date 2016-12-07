@@ -5,9 +5,129 @@ All controllers from the views in the app.
  *************************************************/
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function ($scope, $ionicModal) {})
+.controller('AppCtrl', function($scope, $ionicModal, I4MIMidataService) {
+  $scope.entry = {};
 
-.controller('HomeCtrl', function ($scope, $state, I4MIMidataService) {
+  $scope.entryFields = [{
+    key: 'weight',
+    type: 'input',
+    templateOptions: {
+      type: 'number',
+      label: 'Weight [kg]',
+      placeholder: 200
+    }
+  }, {
+    key: 'steps',
+    type: 'input',
+    templateOptions: {
+      type: 'number',
+      label: 'Steps',
+      placeholder: 10000
+    }
+  }]
+
+  $scope.fhirGroup = {
+    name: "Gruppe",
+    format: "fhir/Observation",
+    subformat: "String",
+    content: "http://loinc.org 61150-9",
+    data: {
+      "resourceType": "Observation",
+      "status": "preliminary",
+      "category": {
+        "coding": [{
+          "system": "http://hl7.org/fhir/ValueSet/observation-category",
+          "code": "survey",
+          "display": "Survey"
+        }]
+      },
+      "code": {
+        "coding": [{
+          "system": "http://loinc.org",
+          "code": "61150-9",
+          "display": "Subjective Narrative"
+        }]
+      },
+      $set: "valueString"
+    }
+  }
+
+  $scope.fhir = {
+    weight: {
+      name: "Gewicht",
+      format: "fhir/Observation",
+      subformat: "Quantity",
+      content: "http://loinc.org 3141-9",
+      data: {
+        "resourceType": "Observation",
+        "status": "preliminary",
+        "category": {
+          "coding": [{
+            "system": "http://hl7.org/fhir/ValueSet/observation-category",
+            "code": "vital-signs",
+            "display": "Vital Signs"
+          }]
+        },
+        "code": {
+          "coding": [{
+            "system": "http://loinc.org",
+            "code": "3141-9",
+            "display": "Body weight Measured"
+          }]
+        },
+        "valueQuantity": {
+          "unit": "kg",
+          "system": "http://unitsofmeasure.org",
+          "code": "kg"
+
+        },
+        $set: "data.valueQuantity.value"
+      }
+    }
+    ,
+
+    steps: {
+      name: "Schritte",
+      format: "fhir/Observation",
+      subformat: "Quantity",
+      content: "http://loing.org 55423-8",
+      data: {
+        "resourceType": "Observation",
+        "status": "preliminary",
+        "category": {
+          "coding": [{
+            "system": "http://hl7.org/fhir/ValueSet/observation-category",
+            "code": "vital-signs",
+            "display": "Vital Signs"
+          }]
+        },
+        "code": {
+          "coding": [{
+            "system": "http://loinc.org",
+            "code": "55423-8",
+            "display": "Number of steps in unspecified time Pedometer"
+          }]
+        },
+        "valueQuantity": {
+          "unit": "steps",
+          "system": "http://midata.coop",
+          "code": "steps"
+        },
+        $set: "data.valueQuantity.value"
+      }
+    }
+  }
+
+  $scope.saveMIDATA = function() {
+    I4MIMidataService.newEntry($scope.entry, $scope.entryFields, $scope.fhir, { /* options */ });
+  }
+
+  $scope.getMIDATA = function() {
+    var i = I4MIMidataService.search(["data","weight"],{}).then(function(response) {
+      console.log(response.data);
+    });
+  }
+})
 
 	var dumiData = {
 		firstName: 'Elisabeth',
@@ -21,15 +141,56 @@ angular.module('starter.controllers', [])
 	firstName = data.firstName;
 	lastName = data.lastName;
 
-	if (I4MIMidataService.loggedIn() != true) {
-		$state.go("LoggedOut");
-	}
+  var data = JSON.parse(localStorage.getItem("data"));
+
+  firstName =   data.firstName;
+  lastName = data.lastName;
+
+  var user = {
+    username: 'gruppe4@bfh.ch',
+    password: 'PW4clapps@midata',
+    server: 'https://test.midata.coop:9000'
+  }
+  localStorage.setItem("userData", JSON.stringify(user));
+
+  if(I4MIMidataService.loggedIn() != true) {
+    if(localStorage.userData.username == undefined || localStorage.userData.username == null || localStorage.userData.username == '') {
+      $state.go("LoggedOut");
+    } else {
+      var user = {
+        username: localStorage.userData.username,
+        password: localStorage.userData.password,
+        server: localStorage.userData.server
+      }
+      I4MIMidataService.login(user);
+    }
+  }
 })
 
-.controller('WeightCtrl', function ($scope) {
-	//***********************//
-	//all functions by schmk3//
-	//***********************//
+.controller('LoginCtrl', function($scope, $state, I4MIMidataService) {
+  // Perform the login action when the user submits the login form
+    // Use for testing the development environment
+    $scope.user = {
+      username: 'gruppe4@bfh.ch',
+      password: 'PW4clapps@midata',
+      server: 'https://test.midata.coop:9000'
+    }
+
+    if(I4MIMidataService.loggedIn() != true) {
+      var user = {
+        username: $scope.user.username,
+        password: $scope.user.password,
+        server: $scope.user.server
+      }
+      localStorage.setItem("userData", JSON.stringify(user));
+    }
+})
+
+.controller('WeightCtrl', function($scope) {
+//***********************//
+//all functions by schmk3//
+//***********************//
+//test itmes, used by development
 
 
 	//Array with the dates to the values
@@ -272,23 +433,11 @@ var BPChart = Highcharts.chart('container', {
 
 })
 
-.controller('LoggedOutCtrl', function ($scope) {
+.controller('LoggedOutCtrl', function($scope, I4MIMidataService) {
+
+
 
 })
 
-.controller('SettingsCtrl', function ($scope) {
-
-})
-
-.controller('LoginCtrl', function ($scope, $state, I4MIMidataService) {
-	// Perform the login action when the user submits the login form
-	// Use for testing the development environment
-	$scope.user = {
-		username: 'gruppe4@bfh.ch',
-		password: 'PW4clapps@midata',
-		server: 'https://test.midata.coop:9000'
-	}
-
-	if (I4MIMidataService.loggedIn() == true) {}
-
+.controller('SettingsCtrl', function($scope) {
 });
