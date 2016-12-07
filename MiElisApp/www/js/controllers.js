@@ -129,6 +129,7 @@ angular.module('starter.controllers', [])
   }
 })
 
+.controller('HomeCtrl', function($scope, $state, I4MIMidataService) {
 	var dumiData = {
 		firstName: 'Elisabeth',
 		lastName: 'Brönnimann'
