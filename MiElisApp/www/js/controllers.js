@@ -89,77 +89,76 @@ angular.module('starter.controllers', [])
 //***********************//
 //test itmes, used by development
 
+var aData = null;
+var weightChart = {};
+if(localStorage.weightData == undefined || localStorage.weightData == null || localStorage.weightData == ''){
+  var firstData = [
+    [getDateStringI(7), 56.5],
+    [getDateStringI(6), 55.9],
+    [getDateStringI(4), 56.8],
+    [getDateStringI(3), 57.4],
+    [getDateStringI(2), 57.1],
+    [getDateStringI(1), 56.7],
+  ];
+  localStorage.setItem("weightData", JSON.stringify(firstData));
+}
 
-	//Array with the dates to the values
-	var aDate = new Array();
-	aDate = [
-		getDateStringI(4),
-		getDateStringI(3),
-		getDateStringI(2),
-		getDateStringI(1),
-	];
+aData = JSON.parse(localStorage.getItem("weightData"));
 
-	//example array with the weight-values
-	var aValue = new Array();
-	aValue = [
-		57.2,
-		56.4,
-		58.2,
-		57.7
-	]
+var weightChart = Highcharts.chart('container', {
+  chart:{
+    type: 'spline'
+  },
+  title: {
+    text: 'Gewicht',
+  },
+  xAxis: {
+    type: 'datetime',
+  },
+  yAxis: {
 
-	//instruction from readMe
-	var $configLine = {
-		name: '.ct-chartLine',
-		labels: aDate,
-		series: aValue,
-		//    series2: [67.2, 66.4, 68.2, 67.7],
-		fullWidth: "true",
-		showArea: "false",
-
-	};
-	var chartLine = new ChartJS($configLine);
-	chartLine.line();
-
-	//function to generate the chart. is called after input verification
-	var showChart = function () {
-		new Chartist.Line($config['name'], {
-			labels: $config['labels'],
-			series: [aValue]
-		}, {
-			fullWidth: $config["fullWidth"],
-			low: 0,
-			showArea: $config["showArea"],
-			chartPadding: {
-				right: 40
-			}
-		});
-	}
+  },
+  exporting: {
+    enabled: false,
+  },
+  plotOptions: {
+      series: {
+         point: {
+              events: {
+                  click: function () {
+                      alert('Category: ' + this.category + ', value: ' + this.y);
+                  }
+              }
+          }
+      }
+  },
+  series: [{
+    name: 'Gewicht',
+    data: aData,
+    marker: {
+      radius: 10
+    },
+  }]
+});
 
 /*function to add a value.
 after verification, that it's a numeric value, the value is added to value array
 */
-	$scope.addValue = function (val) {
-		if (!isNaN(val)) {
-			aValue.push(val);
-			aDate.push(getDateStringI(0));
-		}
-		this.form = {
-			value: ''
-		};
-		showChart();
-	};
+$scope.addWValue = function (val) {
+  if(val){
+    aData.push([getDateStringI(0), val]);
+    weightChart.series[0].setData(aData);
+    localStorage.setItem("weightData", JSON.stringify(aData));
+    this.weightValue = '';
+  }
+};
 
 	//returns the current date (TT.mm.YYYY)
-	function getDateStringI(i) {
+  function getDateStringI(i) {
 		var d = new Date();
-		d.setDate(d.getDate() - i);
-		var t = d.getDate();
-		var m = d.getMonth() + 1;
-		var y = d.getFullYear();
-		return t + "." + m + "." + y;
+		d.setTime(d.getTime()-(i*3600000*6));
+		return d.getTime();
 	}
-
 })
 
 .controller('SugarCtrl', function ($scope) {
@@ -168,61 +167,111 @@ after verification, that it's a numeric value, the value is added to value array
 	//***********************//
 	//the chart for the sugar curve is from the google
 	//firstData are the example data to fill the sugarChart
-
+  var aData;
 	var sugarChart = {};
-	var firstData = [
-		['Datum', "Blutzucker"],
-		[getDateStringI(4), 4.2],
-		[getDateStringI(2), 8.3],
-		[getDateStringI(1), 5.1],
-	];
+  if(localStorage.sugarData == undefined || localStorage.sugarData == null || localStorage.sugarData == ''){
+  	var firstData = [
+  		[getDateStringI(5), 6.4],
+  		[getDateStringI(4), 4.2],
+  		[getDateStringI(2), 8.3],
+  		[getDateStringI(1), 5.1],
+  	];
+    localStorage.setItem("sugarData", JSON.stringify(firstData));
+  }
+  if(localStorage.limitLow == undefined || localStorage.limitLow == null || localStorage.limitLow == ''){
+    var limitLower = 4.5;
+    localStorage.setItem("limitLow", JSON.stringify(limitLower));
+  }
+  if(localStorage.limitUp == undefined || localStorage.limitUp == null || localStorage.limitUp == ''){
+    var limitUpper = 7.2;
+    localStorage.setItem("limitUp", JSON.stringify(limitUpper));
+  }
+  limitLower = JSON.parse(localStorage.getItem("limitLow"));
+  limitUpper = JSON.parse(localStorage.getItem("limitUp"));
 	// the array with the value sugar is stored in the localStorage
-	localStorage.setItem("sugarData", JSON.stringify(firstData));
 
-	// type of the chart is a linechart
-	sugarChart.type = "LineChart";
-	//loads the data stored in the localStorage to an array
-	aData = localStorageToArray();
-	//loads the data into the chart
-	sugarChart.data = aData;
 
-	//$scope.value = aParsedData;
-	$scope.value2 = aData;
+  aData = JSON.parse(localStorage.getItem("sugarData"));
+//  var limitLower = JSON.parse(localStorage.getItem("limitLow"));
+//  var limitUpper = JSON.parse(localStorage.getItem("limitUp"));
 
-	//set options like point size and hide the line
-	sugarChart.options = {
+  var sugarChart = Highcharts.chart('container', {
+    chart:{
+      type: 'spline'
+    },
+    title: {
+      text: 'Blutzucker',
+    },
+    xAxis: {
+      type: 'datetime',
+    },
+    yAxis: {
+      plotBands: [
+        {
+          from: limitLower,
+          to: limitUpper,
+          color: '#90ff90'
+        }
+      ]
+    },
+    exporting: {
+      enabled: false,
+    },
+    series: [{
+      name: 'Blutzucker',
+      data: aData,
+      marker: {
+        radius: 10
+      },
+      lineWidth: 0,
+      states: {
+        hover: {
+          lineWidthPlus: 0
+        }
+      }
+    }]
+  });
 
-		is3D: true,
-		//  chartArea: {left:'auto',top:'auto',bottom:'auto',height:"100%"},
-		pointSize: 10,
-		lineWidth: 0,
-		hAxis: {
-			type: 'date',
-			format: "d.MMM - H:mm"
-		}
-	};
-
-	//generate Chart
-	$scope.mySugrChart = sugarChart;
+$scope.Lower = limitLower;
+$scope.Upper = limitUpper;
 	//function to add a inputed value
 	$scope.addGlucoValue = function (val) {
 		if(val){
 			aData.push([getDateStringI(0), val]);
-			sugarChart.data = aData;
-			$scope.mySugrChart = sugarChart;
+      sugarChart.series[0].setData(aData);
 			localStorage.setItem("sugarData", JSON.stringify(aData));
 			this.glucoseValue = '';
 		}
 	};
-	//load the data from the localStorage to an array
-	function localStorageToArray() {
-		aData = JSON.parse(localStorage.getItem("sugarData"));
-		for (var i = 1; i < aData.length; i++) {
-			aData[i][0] = parseJsonDate(aData[i][0]);
-			aData[i][1] = aData[i][1];
-		}
-		return aData;
-	}
+  $scope.changeLowerGlucoLevel = function(){
+    if(this.LowerGlucoValue){
+      limitLower = this.LowerGlucoValue;
+      localStorage.setItem("limitLow", JSON.stringify(limitLower));
+      sugarChart.yAxis[0].removePlotBand();
+      sugarChart.yAxis[0].addPlotBand({
+        color: '#90ff90',
+        from: limitLower,
+        to: limitUpper
+      });
+    }else{
+      this.Lower = limitLower;
+    }
+  }
+  $scope.changeUpperGlucoLevel = function(){
+    if(this.UpperGlucoValue){
+    limitUpper = this.UpperGlucoValue;
+    localStorage.setItem("limitUp", JSON.stringify(limitUpper));
+    sugarChart.yAxis[0].removePlotBand();
+    sugarChart.yAxis[0].addPlotBand({
+        color: '#90ff90',
+        from: limitLower,
+        to: limitUpper
+      });
+    }else{
+      this.Upper = limitUpper;
+    }
+  }
+
 	//parses a new date from a string
 	function parseJsonDate(jsonDateString) {
 		var y = jsonDateString.substr(0, 4);
@@ -232,10 +281,10 @@ after verification, that it's a numeric value, the value is added to value array
 		var min = jsonDateString.substr(14, 2);
 		return new Date(y, m, d, h, min);
 	}
-	function getDateStringI(i) {
+  function getDateStringI(i) {
 		var d = new Date();
-		d.setDate(d.getDate() - i);
-		return d;
+		d.setTime(d.getTime()-(i*3600000*6));
+		return d.getTime();
 	}
 })
 
@@ -243,22 +292,22 @@ after verification, that it's a numeric value, the value is added to value array
 	//***********************//
 	//all functions by schmk3//
 	//***********************//
+  if(localStorage.BPData == undefined || localStorage.BPData == null || localStorage.BPData == ''){
+    //Sample data for blood pressure
+  var firstData = [
+    	[getDateStringI(6), 125, 85],
+    	[getDateStringI(5),135, 90],
+    	[getDateStringI(4),132, 88],
+    	[getDateStringI(3),128, 82],
+    	[getDateStringI(2),138, 93],
+    	[getDateStringI(1),136, 92]
+    ];
+    //store in localStorage with tag "BPData"
+    localStorage.setItem("BPData", JSON.stringify(firstData));
+  }
 
-//Sample data for blood pressure
-var firstData = [
-	[getDateStringI(6), 110, 65],
-	[getDateStringI(5),90, 60],
-	[getDateStringI(4),85, 55],
-	[getDateStringI(3),118, 69],
-	[getDateStringI(2),134, 81],
-	[getDateStringI(1),126, 73]
-];
-//store in localStorage with tag "BPData"
-localStorage.setItem("BPData", JSON.stringify(firstData));
-
-//load the data from the localStorage to an array
-aData = localStorageToArray();
-
+//load the data from the localStorage
+aData = JSON.parse(localStorage.getItem("BPData"));
 //Generate chart with blood pressure values
 var BPChart = Highcharts.chart('container', {
 		chart: {
@@ -313,11 +362,7 @@ var BPChart = Highcharts.chart('container', {
 			localStorage.setItem("BPData", JSON.stringify(aData));
 		}
 	};
-	//load the data from the localStorage
-	function localStorageToArray() {
-		aData = JSON.parse(localStorage.getItem("BPData"));
-		return aData;
-	}
+
 //returns a date (now subtract i * 6h)
 	function getDateStringI(i) {
 		var d = new Date();

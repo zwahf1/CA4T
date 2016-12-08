@@ -7,15 +7,15 @@
     <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 
     <div class="row">
-      <div class="col col-50">
-        <label class="item item-input">
+      <div class="col col-25">
         <input type="number" ng-model="BPSysValue" placeholder="Systolischer">
+      </div>
+      <div class="col col-25">
         <input type="number" ng-model="BPDiaValue" placeholder="Diastolischer">
-        </label>
       </div>
       <div class="col col-50">
         <button class="button" ng-click="addBPValue(BPSysValue, BPDiaValue)">
-          eintragen
+          <br>eintragen<br><br>
         </button>
       </div>
     </div>
