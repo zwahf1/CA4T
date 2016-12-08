@@ -17,52 +17,59 @@ The grid is built as
     <ion-content class="padding" scroll="false">
       <div class="meContainer">
 <!--The upper row-->
-      <div class="row" id="content-container">
+      <div class="row rowMe">
         <!--Cell for the picture, smaller than the other 2 in the row.-->
-          <div class="col col-20 col-center" id="bild">
+          <div class="col col-20 col-top" id="bild">
             <img src="../img/Elisabeth.jpg" id="pPicture">
           </div>
         <!--second column of the top row, for the anamnesis, divided into two rows-->
           <div class="col col-40">
             <div class="row">
-              <h3>Anamnese</h3>
+              <h2>Anamnese</h2>
             </div>
             <!--second row, cell for the list of anamneses.-->
-            <div class="row">
-              <ion-scroll direction="xy" id="lList">
+            <div class="row rowMeInner">
+              <ion-scroll class="meFont" direction="xy" id="anamnesisList">
                 <ion-item>St. n. Pneumonie 1942</ion-item>
                 <ion-item>St n. Appendektomie 1946</ion-item>
                 <ion-item>St n. Cholezystektomie 1986</ion-item>
                 <ion-item>St n. Nephrolithiasis links mit ESWL im Inselspital Bern 1998 oooooooooooooooooooooooooooooooooooooooooooooooooooooooo</ion-item>
+                <ion-item>St n. Cholezystektomie 1986</ion-item>
+                <ion-item>St n. Cholezystektomie 1986</ion-item>
+                <ion-item>St n. Cholezystektomie 1986</ion-item>
+                <ion-item>St n. Cholezystektomie 1986</ion-item>
+                <ion-item>St n. Cholezystektomie 1986</ion-item>
               </ion-scroll>
             </div>
           </div>
           <!--third column of the top row, for the diagnosis, divided into two rows.-->
           <div class="col col-40">
             <div class="row">
-              <h3>Diagnose</h3>
+              <h2>Diagnose</h2>
             </div>
             <!--second row, cell for the list of diagnoses.-->
-            <ion-scroll direction="xy" id="lList">
-              <ion-item>Diabetes mellitus</ion-item>
-              <ion-item>Diabetes mellitus</ion-item>
-              <ion-item>Diabetes mellitus oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo</ion-item>
-              <ion-item>Diabetes mellitus</ion-item>
-              <ion-item>Diabetes mellitus</ion-item>
-              <ion-item>Diabetes mellitus</ion-item>
-              <ion-item>Diabetes mellitus</ion-item>
-            </ion-scroll>
+            <div class="row rowMeInner">
+              <ion-scroll class="iSContainer" direction="xy" id="diagnosisList">
+                <ion-item>Diabetes mellitus</ion-item>
+                <ion-item>Diabetes mellitus</ion-item>
+                <ion-item>Diabetes mellitus oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo</ion-item>
+                <ion-item>Diabetes mellitus</ion-item>
+                <ion-item>Diabetes mellitus</ion-item>
+                <ion-item>Diabetes mellitus</ion-item>
+                <ion-item>Diabetes mellitus</ion-item>
+              </ion-scroll>
+            </div>
           </div>
       </div>
-<!--The lower row-->
-      <div class="row" id="content-container">
+      <!--The lower row-->
+      <div class="row rowMe">
         <!--The first column of the lower row, for the address, divided into 3 rows.-->
         <div class="col">
           <div class="row">
-            <h3>Adresse</h3>
+            <h2>Adresse</h2>
           </div>
           <!--Middle row-->
-          <div class="row">
+          <div class="row meFont">
             <p id="pAddress">
               Frau<br>
               Elisabeth Brönnimann<br>
@@ -71,9 +78,9 @@ The grid is built as
             </p>
           </div>
           <!--bottom row-->
-          <div class="row">
+          <div class="col meFont">
             <div class="col">
-              <p>Geburtsdatum:</p>
+              <h2>Geburtsdatum:</h2>
             </div>
             <div class="col">
               <p id="pBirthdate">03. Mai 1937</p>
@@ -83,7 +90,7 @@ The grid is built as
         <!--The second column of the lower row, for emergency contacts.-->
         <div class="col">
           <div class="row">
-            <h3>Notfallkontakte</h3>
+            <h2>Notfallkontakte</h2>
           </div>
           <div class="row">
             <h4>Hausarzt:</h4>
@@ -101,7 +108,7 @@ The grid is built as
         <!--The third column of the lower row, for more contacts.-->
         <div class="col">
           <div class="row">
-            <h3>Weitere Kontakte</h3>
+            <h2>Weitere Kontakte</h2>
           </div>
           <div class="row">
             <a class="Button btn_full" id="bWeitereKontakte1">Markus Brönnimann</a>

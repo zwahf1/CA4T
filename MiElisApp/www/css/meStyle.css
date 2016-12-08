@@ -9,12 +9,18 @@ Stylesheet for the Me view
   display: block;
   text-align: center;
   width: 100%;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  margin-bottom: 10%;
+  font-size:25px
 }
-.detailContactContainer {
+.meContainer {
   width: auto;
   height: 100%;
 }
-
+.meFont{
+  font-size:25px;
+}
 
 /*
 .row, .scroll {
@@ -22,11 +28,26 @@ Stylesheet for the Me view
 }
 */
 
-.col {
-  height: 100%;
+.rowMe {
+    width:auto;
+    height:50%;
+    margin: 0;
+    padding: 0;
 }
-
-
+.rowMeInner {
+    width:auto;
+    height:80%;
+    margin: 0;
+    padding: 0;
+}
+/*
+.iSContainer {
+    width:auto;
+    height:100%;
+    margin: 0;
+    padding: 0;
+}
+*/
 #pPicture{
   height: 100%;
   width: 100%;
@@ -37,10 +58,11 @@ Stylesheet for the Me view
   flex-flow: row;
   height: 50%;
 }
-*/
+
 #lList {
   display: flex;
   flex-flow: row;
   width: 100%;
   height: 100%;
 }
+*/
