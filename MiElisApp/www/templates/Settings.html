@@ -9,17 +9,36 @@ Page contains basic information about the user and a toggle that prevents change
 <ion-view view-title="Settings">
   <div id="wrapper">
     <ion-content class="padding">
-      <h1>Einstellungen</h1>
 
       <div class="row">
-        <div class="col col-50">
+
+
+
+          <ion-item>
+            <ion-label>Herr</ion-label>
+            <ion-radio value="Herr" checked="true"></ion-radio>
+          </ion-item>
+
+
+          <ion-item>
+            <ion-label>Frau</ion-label>
+            <ion-radio value="Frau"></ion-radio>
+          </ion-item>
+
+
+
+      </div>
+
+
+      <div class="row">
+        <div class="col">
           <ion-item>
             <ion-label color="primary">Vorname</ion-label>
             <input type="text" value="Vorname"></input>
           </ion-item>
         </div>
 
-        <div class="col col-50">
+        <div class="col">
           <ion-item>
             <ion-label color="primary">Nachname</ion-label>
             <input type="text" value="Nachname"></input>
@@ -28,26 +47,36 @@ Page contains basic information about the user and a toggle that prevents change
       </div>
 
       <div class="row">
-        <div class="col col-50">
+        <div class="col">
           <ion-item>
             <ion-label color="primary">Adresse</ion-label>
             <input type="text" value="Adresse"></input>
           </ion-item>
         </div>
 
-        <div class="col col-50">
+        <div class="col">
           <ion-item>
-            <ion-label color="primary">PLZ Ort</ion-label>
-            <input type="text" value="PLZ Ort"></input>
+            <ion-label color="primary">PLZ</ion-label>
+            <input type="text" value="PLZ"></input>
           </ion-item>
         </div>
+
+        <div class="col">
+          <ion-item>
+            <ion-label color="primary">Ort</ion-label>
+            <input type="text" value="Ort"></input>
+          </ion-item>
+        </div>
+
       </div>
 
       <div class="row">
         <div class="col">
           <ion-item>
             <ion-label>Geburtsdatum</ion-label>
-            <ion-datetime displayFormat="DD MM YYYY" [(ngModel)]="event.month"></ion-datetime>
+            <!--
+        <ion-datetime displayFormat="DD MM YYYY" [(ngModel)]="event.month"></ion-datetime>
+      -->
           </ion-item>
         </div>
         <!--
@@ -56,6 +85,12 @@ Page contains basic information about the user and a toggle that prevents change
           <input type="date">
         </label>
         -->
+      </div>
+
+      <div class="row">
+        <button class="button button-light ng-binding" ng-click="openDatePicker()">
+          01. December 2016
+        </button>
       </div>
 
       <div class="row">
@@ -76,7 +111,7 @@ Page contains basic information about the user and a toggle that prevents change
       <!--
         Changes in the settings need to be saved to prevent unintentional changes
         -->
-      <button ion-button>Speichern</button>
+      <button ion-button>Änderungen speichern</button>
 
     </ion-content>
 

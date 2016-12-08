@@ -24,9 +24,26 @@
   width: 15%;
 }
 
+/*Changes in the font of the address form for the specified gender*/
+.genderLabel {
+  font-size: 16px;
+}
+
+
+
 /*Correction of toggle positions*/
 .settingsToggle .toggle {
   left: 15px;
   top: auto !important;
   position: relative;
+}
+
+.item {
+  border: none;
+}
+
+.item-radio .item-content {
+  height: 63px;
+  border: solid 1px;
+  border-radius: 30px;
 }
