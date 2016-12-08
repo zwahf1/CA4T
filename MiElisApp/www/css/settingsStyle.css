@@ -42,8 +42,13 @@
   border: none;
 }
 
+/*Style changes of the radio buttons for the gender selection*/
 .item-radio .item-content {
   height: 63px;
   border: solid 1px;
   border-radius: 30px;
+}
+
+.item-radio .radio-icon{
+  right: 14px;
 }
