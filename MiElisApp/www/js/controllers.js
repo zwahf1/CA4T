@@ -5,7 +5,23 @@ All controllers from the views in the app.
  *************************************************/
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, I4MIMidataService, json) {
+.controller('AppCtrl', function($scope, $ionicModal, json, midataService) {
+
+
+
+  //localStorage.setItem("userData", JSON.stringify(user));
+
+
+
+  // Login
+  $scope.loginMIDATA = function() {
+    midataService.login();
+  }
+
+  $scope.logoutMIDATA = function() {
+    midataService.logout();
+  }
+
   $scope.entry = {};
 
   $scope.entryFields = json.getEntryFields();
@@ -15,28 +31,73 @@ angular.module('starter.controllers', [])
   $scope.fhir = json.getFHIR();
 
   $scope.saveMIDATA = function() {
-    I4MIMidataService.newEntry($scope.entry, $scope.entryFields, $scope.fhir, { /* options */ });
+    midataService.saveWeight(210, new Date(2016,11,12));
   }
 
-  $scope.getMIDATA = function() {
-    I4MIMidataService.search(["data","valueQuantity", "value"],$scope.fhir).then(function(response) {
-      console.log(response);
+// Function to get all observations from midata
+// parameter: resource -> define for specific observations
+// w: all Weights
+// p: all Pulses
+// bp: all Blood Pressures
+//empty: all observations
+  $scope.getObservation = function(resource) {
+    res = "Observation";
+    params = {};
+    midataService.search(res,params).then(function(observations) {
+      result = [];
+      //--> only pulses
+      if(resource == "p") {
+        for (var i = 0; i < observations.length; i++) {
+          if(observations[i]._fhir == null) {
+            if(observations[i].code.coding["0"].display == "Herzschlag" ||
+                observations[i].code.coding["0"].display == "Herzfrequenz")
+            {
+              result.push({time: observations[i].effectiveDateTime,
+                          value: observations[i].valueQuantity.value});
+            }
+          }
+        }
+        console.log(result); //return
+      //--> only weights
+      } else if (resource == "w") {
+        for (var i = 0; i < observations.length; i++) {
+          if(observations[i]._fhir != null) {
+            if(observations[i]._fhir.code.coding["0"].display == "Weight Measured" ||
+                observations[i]._fhir.code.coding["0"].display == "Body weight Measured" ||
+                observations[i]._fhir.code.coding["0"].display == "Gewicht")
+            {
+              result.push({time: observations[i]._fhir.effectiveDateTime,
+                          value: observations[i]._fhir.valueQuantity.value});
+            }
+          }
+        }
+        console.log(result); //return
+      //--> only blood pressures
+      } else if (resource == "bp") {
+        for (var i = 0; i < observations.length; i++) {
+          if(observations[i]._fhir == null) {
+            if(observations[i].code.coding["0"].display == "Blood Pressure") {
+              result.push({time: observations[i].effectiveDateTime,
+                          valueSys: observations[i].component["0"].valueQuantity.value,
+                          valueDia: observations[i].component["1"].valueQuantity.value});
+            }
+          }
+        }
+        console.log(result); //return
+      } else {
+        //return all obs
+      }
     });
   }
 })
 
-.controller('HomeCtrl', function($scope, $state, I4MIMidataService) {
+.controller('HomeCtrl', function($scope, $state, midataService) {
 	var dumiData = {
 		firstName: 'Elisabeth',
 		lastName: 'Brönnimann'
 	};
 
 	localStorage.setItem("data", JSON.stringify(dumiData));
-
-	var data = JSON.parse(localStorage.getItem("data"));
-
-	firstName = data.firstName;
-	lastName = data.lastName;
 
   var data = JSON.parse(localStorage.getItem("data"));
 
@@ -50,21 +111,9 @@ angular.module('starter.controllers', [])
   }
   localStorage.setItem("userData", JSON.stringify(user));
 
-  if(I4MIMidataService.loggedIn() != true) {
-    if(localStorage.userData.username == undefined || localStorage.userData.username == null || localStorage.userData.username == '') {
-      $state.go("LoggedOut");
-    } else {
-      var user = {
-        username: localStorage.userData.username,
-        password: localStorage.userData.password,
-        server: localStorage.userData.server
-      }
-      I4MIMidataService.login(user);
-    }
-  }
 })
 
-.controller('LoginCtrl', function($scope, $state, I4MIMidataService) {
+.controller('LoginCtrl', function($scope, $state, midataService) {
   // Perform the login action when the user submits the login form
     // Use for testing the development environment
     $scope.user = {
@@ -73,7 +122,8 @@ angular.module('starter.controllers', [])
       server: 'https://test.midata.coop:9000'
     }
 
-    if(I4MIMidataService.loggedIn() != true) {
+    if(midataService.loggedIn != true) {
+      console.log("LoginCtrl not logged in");
       var user = {
         username: $scope.user.username,
         password: $scope.user.password,

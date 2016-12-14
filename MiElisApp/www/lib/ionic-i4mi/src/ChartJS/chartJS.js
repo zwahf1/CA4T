@@ -30,11 +30,11 @@ ChartJS.prototype.line = function() {
   new Chartist.Line($config['name'], {
     labels: $config['labels'],
     series: [
-      $config['series'],
-//      $config['series2']
-    ]
-    },
-    {
+        [12, 9, 7, 8, 5, 9, 9],
+        [2, 1, 3.5, 7, 3, 9, 9],
+        [1, 3, 4, 5, 6, 9, 9]
+      ]
+    }, {
     fullWidth: $config["fullWidth"],
     low: 0,
     showArea: $config["showArea"],
@@ -43,8 +43,6 @@ ChartJS.prototype.line = function() {
     }
   });
 };
-
-
 
 
 

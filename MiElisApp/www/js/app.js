@@ -12,8 +12,8 @@ Statehandling for the diffrent views and loading the html files and controllers
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'ionic-datepicker', 'ionic-timepicker', 'formlyIonic', 'nvd3', 'i4mi', 'jsonFormatter', 'googlechart', 'ngStorage', 'services'])
 // 'chart.service',
-.constant('APPNAME', 'MiElisApp')
-.constant('APPSECRET', 'MEA2016HSCA4T')
+.constant('APPNAME','MiElisApp')
+.constant('APPSECRET','MEA2016HSCA4T')
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {

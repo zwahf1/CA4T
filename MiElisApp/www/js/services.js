@@ -1,5 +1,49 @@
 angular.module('services', [])
 
+.service('midataService',function() {
+
+  var user = {
+    username: 'gruppe4@bfh.ch',
+    password: 'PW4clapps@midata',
+    server: 'https://test.midata.coop:9000'
+  }
+
+  var app = {
+    appname: 'MiElisApp',
+    appsecret: 'MEA2016HSCA4T'
+  }
+
+  var md = new midata.Midata(user.server, app.appname, app.appsecret);
+
+  this.login = function() {
+    md.login(user.username, user.password)
+    .then(function() {
+        console.log('Logged in!');
+    });
+  }
+
+  this.logout = function() {
+    md.logout();
+    console.log("logged out");
+  }
+
+  this.loggedIn = function() {
+    return md.loggedIn;
+  }
+
+  this.saveWeight = function(w, d) {
+    var weight = new midata.BodyWeight(w, d);
+    md.save(weight)
+      .then(function() {
+        console.log('Resource created!');
+    });
+  }
+
+  this.search = function(res,params) {
+    return md.search(res,{});
+  }
+})
+
 .service('json',function() {
 
   this.getEntryFields = function() {

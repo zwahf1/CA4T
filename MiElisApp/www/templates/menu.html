@@ -34,11 +34,17 @@ contains the header-bar and the buttons to navigate between the views or open th
         </ion-item>
 
         <ion-item menu-close ng-click="saveMIDATA()">
-          save test
+          save weight
         </ion-item>
 
-        <ion-item menu-close ng-click="getMIDATA()">
-          get test
+        <ion-item menu-close ng-click="getObservation('w')">
+          get weight
+        </ion-item>
+        <ion-item menu-close ng-click="getObservation('p')">
+          get pulse
+        </ion-item>
+        <ion-item menu-close ng-click="getObservation('bp')">
+          get blood pressure
         </ion-item>
 
       </ion-list>
