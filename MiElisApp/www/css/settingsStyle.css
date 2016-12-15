@@ -44,11 +44,13 @@
 
 /*Style changes of the radio buttons for the gender selection*/
 .item-radio .item-content {
-  height: 63px;
+  height: 40px;
   border: solid 1px;
   border-radius: 30px;
+  padding-right: 30px;
 }
 
-.item-radio .radio-icon{
-  right: 14px;
+.item-radio .radio-icon {
+  font-size: 20px;
+  top: -7px;
 }
