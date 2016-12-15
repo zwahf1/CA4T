@@ -2,7 +2,10 @@
   <div id="wrapper">
     <ion-content class="padding">
       <div>
-        <a class="button button-full" id="bLogin" ng-click="loginMIDATA()">Login to MIDATA</a>
+        <input style="width: 100%" type="email" ng-modal="login.User" placeholder="Username"></input>
+        <input style="width: 100%" type="password" ng-modal="login.Password" placeholder="Password"></input>
+      <div>
+        <a class="button button-full" id="bLogin" ng-click="saveUserdata(); loginMIDATA()">Login to MIDATA</a>
       </div>
       <div>
         <a class="button button-full" id="bLogout" ng-click="logoutMIDATA()">Logout</a>

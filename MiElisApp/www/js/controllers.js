@@ -15,23 +15,17 @@ angular.module('starter.controllers', [])
 
   // Login
   $scope.loginMIDATA = function() {
-    midataService.login();
+    var user = JSON.parse(localStorage.getItem("user"));
+
+    midataService.login(user);
   }
 
   $scope.logoutMIDATA = function() {
     midataService.logout();
   }
 
-  $scope.entry = {};
-
-  $scope.entryFields = json.getEntryFields();
-
-  $scope.fhirGroup = json.getFHIRGroup();
-
-  $scope.fhir = json.getFHIR();
-
   $scope.saveMIDATA = function() {
-    midataService.saveWeight(210, new Date(2016,11,12));
+    midataService.saveWeight(210, new Date());
   }
 
 // Function to get all observations from midata
@@ -40,53 +34,51 @@ angular.module('starter.controllers', [])
 // p: all Pulses
 // bp: all Blood Pressures
 //empty: all observations
-  $scope.getObservation = function(resource) {
+  $scope.getObservation = function() {
     res = "Observation";
     params = {};
     midataService.search(res,params).then(function(observations) {
       result = [];
       //--> only pulses
-      if(resource == "p") {
-        for (var i = 0; i < observations.length; i++) {
-          if(observations[i]._fhir == null) {
-            if(observations[i].code.coding["0"].display == "Herzschlag" ||
-                observations[i].code.coding["0"].display == "Herzfrequenz")
-            {
-              result.push({time: observations[i].effectiveDateTime,
-                          value: observations[i].valueQuantity.value});
-            }
+      for (var i = 0; i < observations.length; i++) {
+        if(observations[i]._fhir == null) {
+          if(observations[i].code.coding["0"].display == "Herzschlag" ||
+              observations[i].code.coding["0"].display == "Herzfrequenz")
+          {
+            result.push({time: observations[i].effectiveDateTime,
+                        value: observations[i].valueQuantity.value});
           }
         }
-        console.log(result); //return
-      //--> only weights
-      } else if (resource == "w") {
-        for (var i = 0; i < observations.length; i++) {
-          if(observations[i]._fhir != null) {
-            if(observations[i]._fhir.code.coding["0"].display == "Weight Measured" ||
-                observations[i]._fhir.code.coding["0"].display == "Body weight Measured" ||
-                observations[i]._fhir.code.coding["0"].display == "Gewicht")
-            {
-              result.push({time: observations[i]._fhir.effectiveDateTime,
-                          value: observations[i]._fhir.valueQuantity.value});
-            }
-          }
-        }
-        console.log(result); //return
-      //--> only blood pressures
-      } else if (resource == "bp") {
-        for (var i = 0; i < observations.length; i++) {
-          if(observations[i]._fhir == null) {
-            if(observations[i].code.coding["0"].display == "Blood Pressure") {
-              result.push({time: observations[i].effectiveDateTime,
-                          valueSys: observations[i].component["0"].valueQuantity.value,
-                          valueDia: observations[i].component["1"].valueQuantity.value});
-            }
-          }
-        }
-        console.log(result); //return
-      } else {
-        //return all obs
       }
+      localStorage.setItem("pulse",JSON.stringify(result));
+    //--> only weights
+      for (var i = 0; i < observations.length; i++) {
+        if(observations[i]._fhir != null) {
+          if(observations[i]._fhir.code.coding["0"].display == "Weight Measured" ||
+              observations[i]._fhir.code.coding["0"].display == "Body weight Measured" ||
+              observations[i]._fhir.code.coding["0"].display == "Gewicht")
+          {
+            result.push({time: observations[i]._fhir.effectiveDateTime,
+                        value: observations[i]._fhir.valueQuantity.value});
+          }
+        }
+      }
+      localStorage.setItem("weight",JSON.stringify(result));
+    //--> only blood pressures
+      for (var i = 0; i < observations.length; i++) {
+        if(observations[i]._fhir == null) {
+          if(observations[i].code.coding["0"].display == "Blood Pressure") {
+            result.push({time: observations[i].effectiveDateTime,
+                        valueSys: observations[i].component["0"].valueQuantity.value,
+                        valueDia: observations[i].component["1"].valueQuantity.value});
+          }
+        }
+      }
+      localStorage.setItem("bloodPressure",JSON.stringify(result));
+      localStorage.setItem("observations",JSON.stringify(observations));
+      console.log(JSON.parse(localStorage.getItem("weight")));
+      console.log(JSON.parse(localStorage.getItem("pulse")));
+      console.log(JSON.parse(localStorage.getItem("bloodPressure")));
     });
   }
 })
@@ -106,30 +98,36 @@ angular.module('starter.controllers', [])
 
   var user = {
     username: 'gruppe4@bfh.ch',
-    password: 'PW4clapps@midata',
-    server: 'https://test.midata.coop:9000'
+    password: 'PW4clapps@midata'
   }
-  localStorage.setItem("userData", JSON.stringify(user));
+
+  if(midataService.loggedIn != true) {
+    if(localStorage.user == undefined || localStorage.user == null || localStorage.user == ''){
+      $state.go("LoggedOut");
+    } else {
+      midataService.login(user);
+    }
+
+  }
 
 })
 
 .controller('LoginCtrl', function($scope, $state, midataService) {
   // Perform the login action when the user submits the login form
     // Use for testing the development environment
-    $scope.user = {
-      username: 'gruppe4@bfh.ch',
-      password: 'PW4clapps@midata',
-      server: 'https://test.midata.coop:9000'
-    }
+    $scope.login = {};
+    $scope.login.User = 'gruppe4@bfh.ch';
+    $scope.login.Password = 'PW4clapps@midata';
 
-    if(midataService.loggedIn != true) {
-      console.log("LoginCtrl not logged in");
-      var user = {
-        username: $scope.user.username,
-        password: $scope.user.password,
-        server: $scope.user.server
-      }
-      localStorage.setItem("userData", JSON.stringify(user));
+
+    localStorage.setItem("user", JSON.stringify($scope.login));
+
+    $scope.saveUserdata = function() {
+      var user = JSON.parse(localStorage.getItem("user"));
+      user.username = $scope.login.User;
+      user.password = $scope.login.Password;
+      console.log(user);
+      localStorage.setItem("user",JSON.stringify(user));
     }
 })
 

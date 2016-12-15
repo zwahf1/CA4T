@@ -2,20 +2,15 @@ angular.module('services', [])
 
 .service('midataService',function() {
 
-  var user = {
-    username: 'gruppe4@bfh.ch',
-    password: 'PW4clapps@midata',
-    server: 'https://test.midata.coop:9000'
-  }
-
   var app = {
+    server: 'https://test.midata.coop:9000',
     appname: 'MiElisApp',
     appsecret: 'MEA2016HSCA4T'
   }
 
-  var md = new midata.Midata(user.server, app.appname, app.appsecret);
+  var md = new midata.Midata(app.server, app.appname, app.appsecret);
 
-  this.login = function() {
+  this.login = function(user) {
     md.login(user.username, user.password)
     .then(function() {
         console.log('Logged in!');
@@ -35,12 +30,12 @@ angular.module('services', [])
     var weight = new midata.BodyWeight(w, d);
     md.save(weight)
       .then(function() {
-        console.log('Resource created!');
+        console.log(weight);
     });
   }
 
   this.search = function(res,params) {
-    return md.search(res,{});
+    return md.search(res,params);
   }
 })
 
