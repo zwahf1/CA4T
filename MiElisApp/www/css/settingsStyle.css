@@ -24,6 +24,10 @@
   width: 15%;
 }
 
+.contactWrapper {
+  border: solid 1px;
+}
+
 /*Changes in the font of the address form for the specified gender*/
 .genderLabel {
   font-size: 16px;

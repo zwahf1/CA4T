@@ -10,23 +10,16 @@ Page contains basic information about the user and a toggle that prevents change
   <div id="wrapper">
     <ion-content class="padding">
 
+<div class="contactWrapper">
       <div class="row">
-
-
-
           <ion-item>
-            <ion-label>Herr</ion-label>
-            <ion-radio value="Herr" checked="true"></ion-radio>
+            <ion-label>Mann</ion-label>
+            <ion-radio value="Mann" checked="true"></ion-radio>
           </ion-item>
-
-
           <ion-item>
             <ion-label>Frau</ion-label>
             <ion-radio value="Frau"></ion-radio>
           </ion-item>
-
-
-
       </div>
 
 
@@ -36,17 +29,13 @@ Page contains basic information about the user and a toggle that prevents change
             <ion-label color="primary">Vorname</ion-label>
             <input type="text" value="Vorname"></input>
           </ion-item>
-        </div>
 
-        <div class="col">
           <ion-item>
             <ion-label color="primary">Nachname</ion-label>
             <input type="text" value="Nachname"></input>
           </ion-item>
         </div>
-      </div>
 
-      <div class="row">
         <div class="col">
           <ion-item>
             <ion-label color="primary">Adresse</ion-label>
@@ -69,6 +58,7 @@ Page contains basic information about the user and a toggle that prevents change
         </div>
 
       </div>
+    </div>
 
       <div class="row">
         <div class="col">
@@ -94,6 +84,18 @@ Page contains basic information about the user and a toggle that prevents change
       </div>
 
       <div class="row">
+        <div class="col">
+          <ion-item>
+            <ion-label color="primary">Blutzucker</ion-label>
+            <ion-label color="primary">Obergrenze</ion-label>
+            <input type="text" value="8"></input>
+            <ion-label color="primary">Untergrenze</ion-label>
+            <input type="text" value="4"></input>
+          </ion-item>
+        </div>
+      </div>
+
+      <div class="row">
         <div class="col col-20">
           <div class="toggleLabel">
             <ion-label>Persönliche Daten bearbeiten</ion-label>
@@ -105,18 +107,6 @@ Page contains basic information about the user and a toggle that prevents change
         <div class="col">
           <ion-item class="settingsToggle">
             <ion-toggle disabled checked="false"></ion-toggle>
-          </ion-item>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col">
-          <ion-item>
-            <ion-label color="primary">Blutzucker</ion-label>
-            <ion-label color="primary">Obergrenze</ion-label>
-            <input type="text" value="8"></input>
-            <ion-label color="primary">Untergrenze</ion-label>
-            <input type="text" value="4"></input>
           </ion-item>
         </div>
       </div>
