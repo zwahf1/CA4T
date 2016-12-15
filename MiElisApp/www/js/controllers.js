@@ -137,8 +137,26 @@ angular.module('starter.controllers', [])
 //***********************//
 //test itmes, used by development
 
-var aData = null;
+var weightDataFromJSON = JSON.parse(localStorage.getItem("weight"));
+weightDataFromJSON.sort();
+$scope.wDataJSON = weightDataFromJSON;
+var aData = [];
+
+for(i = 0; i < weightDataFromJSON.length; i++){
+  var time = weightDataFromJSON[i].time;
+  var value = weightDataFromJSON[i].value;
+  var tempArray = [Date.parse(time), value];
+  aData.push(tempArray);
+//  aData.push(weightDataFromJSON[i].time, weightDataFromJSON[i].value);
+  $scope.aDataLocal = aData;
+  $scope.timeData = weightDataFromJSON[0].time;
+  $scope.valueData = weightDataFromJSON[0].value;
+}
+aData.sort();
+
 var weightChart = {};
+
+/*
 if(localStorage.weightData == undefined || localStorage.weightData == null || localStorage.weightData == ''){
   var firstData = [
     [getDateStringI(7), 56.5],
@@ -150,8 +168,9 @@ if(localStorage.weightData == undefined || localStorage.weightData == null || lo
   ];
   localStorage.setItem("weightData", JSON.stringify(firstData));
 }
+*/
 
-aData = JSON.parse(localStorage.getItem("weightData"));
+//aData = JSON.parse(localStorage.getItem("weightData"));
 
 var weightChart = Highcharts.chart('container', {
   chart:{
@@ -166,6 +185,13 @@ var weightChart = Highcharts.chart('container', {
   yAxis: {
 
   },
+/*
+  tooltip: {
+    formatter: function() {
+      return '<button on-click="removeWeightValue()">löschen</button>';
+    }
+  },
+  */
   exporting: {
     enabled: false,
   },
@@ -173,9 +199,11 @@ var weightChart = Highcharts.chart('container', {
       series: {
          point: {
               events: {
+                /*
                   click: function () {
                       alert('Category: ' + this.category + ', value: ' + this.y);
                   }
+                */
               }
           }
       }
@@ -184,7 +212,7 @@ var weightChart = Highcharts.chart('container', {
     name: 'Gewicht',
     data: aData,
     marker: {
-      radius: 10
+      //radius: 10
     },
   }]
 });
@@ -192,6 +220,9 @@ var weightChart = Highcharts.chart('container', {
 /*function to add a value.
 after verification, that it's a numeric value, the value is added to value array
 */
+$scope.removeWeightValue = function(){
+  alert('Category: ' + this.category + ', value: ' + this.y);
+}
 $scope.addWValue = function (val) {
   if(val){
     aData.push([getDateStringI(0), val]);
