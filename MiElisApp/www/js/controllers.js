@@ -25,8 +25,9 @@ angular.module('starter.controllers', [])
 
   //Save a given value to the given observation resource in MIDATA
   $scope.saveObservation = function(val, res) {
+    var datetime = new Date();
     if(res == "w") {
-      midataService.saveWeight(val, new Date());
+      midataService.saveWeight(val, datetime);
     } else if(res == "p") {
       midataService.savePulse(val, new Date());
     } else if(res == "bp") {
@@ -34,7 +35,6 @@ angular.module('starter.controllers', [])
     } else if(res == "g") {
       midataService.saveGlucose(json, val);
     }
-    console.log("add "+val+" to "+res);
   }
 
 // Function to get all observations from midata
@@ -83,6 +83,20 @@ angular.module('starter.controllers', [])
                         valueSys: observations[i].component["0"].valueQuantity.value,
                         valueDia: observations[i].component["1"].valueQuantity.value});
           }
+          else if (observations[i].code.coding["0"].display == "Diastolischer Blutdruck") {
+            for (var j = 0; j < observations.length; j++) {
+              if(observations[j]._fhir == null) {
+                if (observations[j].code.coding["0"].display == "Systolischer Blutdruck") {
+                  if (observations[i].effectiveDateTime == observations[j].effectiveDateTime) {
+                    result.push({time: observations[i].effectiveDateTime,
+                                valueSys: observations[j].valueQuantity.value,
+                                valueDia: observations[i].valueQuantity.value});
+
+                  }
+                }
+              }
+            }
+          }
         }
       }
       localStorage.setItem("bloodPressure",JSON.stringify(result));
@@ -90,7 +104,18 @@ angular.module('starter.controllers', [])
       console.log(JSON.parse(localStorage.getItem("weight")));
       console.log(JSON.parse(localStorage.getItem("pulse")));
       console.log(JSON.parse(localStorage.getItem("bloodPressure")));
+      console.log(JSON.parse(localStorage.getItem("observations")));
     });
+  }
+
+  $scope.getPerson = function() {
+    res = "Person";
+    params = {};
+    result = [];
+    midataService.search(res,params).then(function(persons) {
+      console.log(persons);
+    });
+
   }
 })
 
@@ -395,7 +420,7 @@ $scope.Upper = limitUpper;
     [getDateStringI(2),138, 93],
     [getDateStringI(1),136, 92]
   ];
-  aData = firstData;
+//  aData = firstData;
   aData.sort();
   bData.sort();
 
