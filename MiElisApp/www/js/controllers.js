@@ -7,25 +7,34 @@ angular.module('starter.controllers', [])
 
 .controller('AppCtrl', function($scope, $ionicModal, json, midataService) {
 
-
-
-  //localStorage.setItem("userData", JSON.stringify(user));
-
-
-
-  // Login
+  // Login to MIDATA with username and password from localstorage
   $scope.loginMIDATA = function() {
-    var user = JSON.parse(localStorage.getItem("user"));
-
-    midataService.login(user);
+    var user = JSON.parse(localStorage.getItem("login"));
+    try {
+      midataService.login(user);
+      return "Successful"
+    } catch (err){
+      return err
+    }
   }
 
+  //Logout from MIDATA
   $scope.logoutMIDATA = function() {
     midataService.logout();
   }
 
-  $scope.saveMIDATA = function() {
-    midataService.saveWeight(210, new Date());
+  //Save a given value to the given observation resource in MIDATA
+  $scope.saveObservation = function(val, res) {
+    if(res == "w") {
+      midataService.saveWeight(val, new Date());
+    } else if(res == "p") {
+      midataService.savePulse(val, new Date());
+    } else if(res == "bp") {
+      midataService.saveBloodPressure(val[0], val[1], new Date());
+    } else if(res == "g") {
+      midataService.saveGlucose(json, val);
+    }
+    console.log("add "+val+" to "+res);
   }
 
 // Function to get all observations from midata
@@ -51,6 +60,7 @@ angular.module('starter.controllers', [])
         }
       }
       localStorage.setItem("pulse",JSON.stringify(result));
+      result = [];
     //--> only weights
       for (var i = 0; i < observations.length; i++) {
         if(observations[i]._fhir != null) {
@@ -64,6 +74,7 @@ angular.module('starter.controllers', [])
         }
       }
       localStorage.setItem("weight",JSON.stringify(result));
+      result = [];
     //--> only blood pressures
       for (var i = 0; i < observations.length; i++) {
         if(observations[i]._fhir == null) {
@@ -84,51 +95,54 @@ angular.module('starter.controllers', [])
 })
 
 .controller('HomeCtrl', function($scope, $state, midataService) {
-	var dumiData = {
+
+  var dumiData = {
 		firstName: 'Elisabeth',
 		lastName: 'Brönnimann'
 	};
-
 	localStorage.setItem("data", JSON.stringify(dumiData));
-
   var data = JSON.parse(localStorage.getItem("data"));
-
   firstName =   data.firstName;
   lastName = data.lastName;
 
-  var user = {
-    username: 'gruppe4@bfh.ch',
-    password: 'PW4clapps@midata'
-  }
-
+  // Check if already logged in
+  // if not and no login is defined  --> change to view LoggedOut
+  // if not but login data is in the localstorage (not the first usage) --> autologin
   if(midataService.loggedIn != true) {
-    if(localStorage.user == undefined || localStorage.user == null || localStorage.user == ''){
+    if(localStorage.login == undefined || localStorage.login == null || localStorage.login == ''){
+      // create localStorage variable login (empty)
+      localStorage.setItem("login", "{}");
+      // change to view LoggedOut
       $state.go("LoggedOut");
     } else {
-      midataService.login(user);
+      // login to MIDATA with the login data from localStorage (as JSON)
+      midataService.login(JSON.parse(localStorage.getItem("login")));
     }
-
   }
-
 })
 
 .controller('LoginCtrl', function($scope, $state, midataService) {
+  $scope.login = {};
   // Perform the login action when the user submits the login form
-    // Use for testing the development environment
-    $scope.login = {};
-    $scope.login.User = 'gruppe4@bfh.ch';
-    $scope.login.Password = 'PW4clapps@midata';
+  // Use for testing the development environment
 
+  $scope.login.User = 'gruppe4@bfh.ch';
+  $scope.login.Password = 'PW4clapps@midata';
 
-    localStorage.setItem("user", JSON.stringify($scope.login));
+  // save the username and password from input fields
+  $scope.saveUserdata = function() {
+    var user = JSON.parse(localStorage.getItem("login"));
+    user.User = $scope.login.User;
+    user.Password = $scope.login.Password;
+    localStorage.setItem("login",JSON.stringify(user));
+  }
 
-    $scope.saveUserdata = function() {
-      var user = JSON.parse(localStorage.getItem("user"));
-      user.username = $scope.login.User;
-      user.password = $scope.login.Password;
-      console.log(user);
-      localStorage.setItem("user",JSON.stringify(user));
-    }
+  //return a message to the textfield
+  // - logged in
+  // - failed
+  $scope.setLoginMessage = function(err) {
+    $scope.msgHead = err;
+  }
 })
 
 .controller('WeightCtrl', function($scope) {

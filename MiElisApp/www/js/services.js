@@ -11,7 +11,7 @@ angular.module('services', [])
   var md = new midata.Midata(app.server, app.appname, app.appsecret);
 
   this.login = function(user) {
-    md.login(user.username, user.password)
+    md.login(user.User, user.Password)
     .then(function() {
         console.log('Logged in!');
     });
@@ -28,10 +28,22 @@ angular.module('services', [])
 
   this.saveWeight = function(w, d) {
     var weight = new midata.BodyWeight(w, d);
-    md.save(weight)
-      .then(function() {
-        console.log(weight);
-    });
+    return md.save(weight);
+  }
+
+  this.saveBloodPressure = function(sys, dia, d) {
+    var bloodPressure = new midata.BloodPressure(sys, dia, d);
+    return md.save(bloodPressure);
+  }
+
+  this.savePulse = function(p, d) {
+    var pulse = new midata.HeartRate(p, d);
+    return md.save(pulse);
+  }
+
+  this.saveGlucose = function(s, val) {
+    var obs = new midata.Observation(s.getValueSt(val),new Date(),s.getCodeSt());
+    return md.save(obs);
   }
 
   this.search = function(res,params) {
@@ -40,6 +52,58 @@ angular.module('services', [])
 })
 
 .service('json',function() {
+
+  this.getValueSt = function(val) {
+    var vQ = {
+      valueQuantity: {
+        value: val,
+        unit: "[mmol/L]"
+      }
+    }
+    return vQ;
+  }
+
+  this.getCodeSt = function() {
+    var code = { category: [ {
+      coding: [ {
+        system: "http://hl7.org/fhir/observation-category",
+        code: "laboratory",
+        display: "Laboratory"
+      } ] } ],
+      code: {
+      coding: [ {
+        system: "http://loinc.org",
+        code: "15074-8",
+        display: "Glucose in blood"
+      } ] },
+    }
+    return code;
+  }
+  this.getGlucoseStandard = function(val) {
+    var dateTime = new Date();
+    var glucose = {
+      resourceType: "Observation",
+      status: "preliminary",
+      category: [ {
+        coding: [ {
+          system: "http://hl7.org/fhir/observation-category",
+          code: "laboratory",
+          display: "Laboratory"
+        } ] } ],
+      code: {
+        coding: [ {
+          system: "http://loinc.org",
+          code: "15074-8",
+          display: "Glucose in blood"
+        } ] },
+        effectiveDateTime: "[2016-12-20T20:20:20.000Z]",
+        valueQuantity: {
+          value: val,
+          unit: "[mmol/L]"
+        }
+      }
+      return glucose;
+  }
 
   this.getEntryFields = function() {
     var entryFields = [{
