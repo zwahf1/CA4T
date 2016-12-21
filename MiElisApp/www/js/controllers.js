@@ -171,6 +171,7 @@ angular.module('starter.controllers', [])
 })
 
 .controller('WeightCtrl', function($scope, midataService) {
+
 //***********************//
 //all functions by schmk3//
 //***********************//
@@ -243,8 +244,8 @@ $scope.removeWeightValue = function(){
 }
 $scope.addWValue = function (val) {
   if(val){
-    var date = new Date();
-    midataService.saveWeight(val, date);
+
+    midataService.saveWeight(val, new Date());
     aData.push([getDateStringI(0), val]);
     weightChart.series[0].setData(aData);
     this.weightValue = '';
@@ -304,6 +305,7 @@ $scope.addWValue = function (val) {
       type: 'datetime',
     },
     yAxis: {
+      min: 0,
       plotBands: [
         {
           from: limitLower,
@@ -386,7 +388,7 @@ $scope.Upper = limitUpper;
 	}
 })
 
-.controller('PulseCtrl', function ($scope, I4MIMidataService) {
+.controller('PulseCtrl', function ($scope, I4MIMidataService, midataService) {
 	//***********************//
 	//all functions by schmk3//
 	//***********************//
@@ -412,15 +414,7 @@ $scope.Upper = limitUpper;
     var tempArray = [Date.parse(time), valuePulse];
     bData.push(tempArray);
   }
-  var firstData = [
-    [getDateStringI(6), 125, 85],
-    [getDateStringI(5),135, 90],
-    [getDateStringI(4),132, 88],
-    [getDateStringI(3),128, 82],
-    [getDateStringI(2),138, 93],
-    [getDateStringI(1),136, 92]
-  ];
-//  aData = firstData;
+
   aData.sort();
   bData.sort();
 
@@ -474,6 +468,7 @@ $scope.Upper = limitUpper;
         type: 'spline',
         name: 'Puls',
         data: bData,
+        lineWidth: 0,
       }
     ]
 
@@ -483,11 +478,11 @@ $scope.Upper = limitUpper;
 //add a systolic and diastolic value to the chart
 	$scope.addBPValue = function (sysVal, diaVal) {
 		if(sysVal & diaVal){
+      midataService.saveBloodPressure(sysVal, diaVal, new Date());
 			this.BPSysValue = '';
 			this.BPDiaValue = '';
 			aData.push([getDateStringI(0), sysVal, diaVal]);
 			BPChart.series[0].setData(aData);
-			localStorage.setItem("BPData", JSON.stringify(aData));
 		}
 	};
 
