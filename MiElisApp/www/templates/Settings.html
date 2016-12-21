@@ -27,33 +27,34 @@ Page contains basic information about the user and a toggle that prevents change
         <div class="col">
           <ion-item>
             <ion-label color="primary">Vorname</ion-label>
-            <input type="text" value="Vorname"></input>
+            <input type="text" placeholder="Vorname"></input>
           </ion-item>
-
+        </div>
+        <div class="col">
           <ion-item>
             <ion-label color="primary">Nachname</ion-label>
-            <input type="text" value="Nachname"></input>
+            <input type="text" placeholder="Nachname"></input>
           </ion-item>
         </div>
 
         <div class="col">
           <ion-item>
             <ion-label color="primary">Adresse</ion-label>
-            <input type="text" value="Adresse"></input>
+            <input type="text" placeholder="Adresse"></input>
           </ion-item>
         </div>
 
         <div class="col">
           <ion-item>
             <ion-label color="primary">PLZ</ion-label>
-            <input type="text" value="PLZ"></input>
+            <input type="text" placeholder="PLZ"></input>
           </ion-item>
         </div>
 
         <div class="col">
           <ion-item>
             <ion-label color="primary">Ort</ion-label>
-            <input type="text" value="Ort"></input>
+            <input type="text" placeholder="Ort"></input>
           </ion-item>
         </div>
 
@@ -88,9 +89,9 @@ Page contains basic information about the user and a toggle that prevents change
           <ion-item>
             <ion-label color="primary">Blutzucker</ion-label>
             <ion-label color="primary">Obergrenze</ion-label>
-            <input type="text" value="8"></input>
+            <input type="number" ng-change="changeUpperGlucoLevel()" ng-model="UpperGlucoValue" value="7.2" placeholder="{{Upper}}"/>
             <ion-label color="primary">Untergrenze</ion-label>
-            <input type="text" value="4"></input>
+            <input type="number" ng-change="changeLowerGlucoLevel()" ng-model="LowerGlucoValue" value="4.5" placeholder="{{Lower}}"/>
           </ion-item>
         </div>
       </div>

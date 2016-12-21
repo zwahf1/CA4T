@@ -145,7 +145,7 @@ angular.module('starter.controllers', [])
   }
 })
 
-.controller('WeightCtrl', function($scope) {
+.controller('WeightCtrl', function($scope, midataService) {
 //***********************//
 //all functions by schmk3//
 //***********************//
@@ -161,32 +161,12 @@ for(i = 0; i < weightDataFromJSON.length; i++){
   var value = weightDataFromJSON[i].value;
   var tempArray = [Date.parse(time), value];
   aData.push(tempArray);
-//  aData.push(weightDataFromJSON[i].time, weightDataFromJSON[i].value);
-  $scope.aDataLocal = aData;
-  $scope.timeData = weightDataFromJSON[0].time;
-  $scope.valueData = weightDataFromJSON[0].value;
 }
 aData.sort();
 
 var weightChart = {};
 
-/*
-if(localStorage.weightData == undefined || localStorage.weightData == null || localStorage.weightData == ''){
-  var firstData = [
-    [getDateStringI(7), 56.5],
-    [getDateStringI(6), 55.9],
-    [getDateStringI(4), 56.8],
-    [getDateStringI(3), 57.4],
-    [getDateStringI(2), 57.1],
-    [getDateStringI(1), 56.7],
-  ];
-  localStorage.setItem("weightData", JSON.stringify(firstData));
-}
-*/
-
-//aData = JSON.parse(localStorage.getItem("weightData"));
-
-var weightChart = Highcharts.chart('container', {
+weightChart = Highcharts.chart('container', {
   chart:{
     type: 'spline'
   },
@@ -197,7 +177,7 @@ var weightChart = Highcharts.chart('container', {
     type: 'datetime',
   },
   yAxis: {
-
+    min: 0,
   },
 /*
   tooltip: {
@@ -226,11 +206,10 @@ var weightChart = Highcharts.chart('container', {
     name: 'Gewicht',
     data: aData,
     marker: {
-      //radius: 10
+      radius: 10
     },
   }]
 });
-
 /*function to add a value.
 after verification, that it's a numeric value, the value is added to value array
 */
@@ -239,9 +218,10 @@ $scope.removeWeightValue = function(){
 }
 $scope.addWValue = function (val) {
   if(val){
+    var date = new Date();
+    midataService.saveWeight(val, date);
     aData.push([getDateStringI(0), val]);
     weightChart.series[0].setData(aData);
-    localStorage.setItem("weightData", JSON.stringify(aData));
     this.weightValue = '';
   }
 };
@@ -249,7 +229,7 @@ $scope.addWValue = function (val) {
 	//returns the current date (TT.mm.YYYY)
   function getDateStringI(i) {
 		var d = new Date();
-		d.setTime(d.getTime()-(i*3600000*6));
+		d.setTime(d.getTime()-(i*3600000*12));
 		return d.getTime();
 	}
 })
@@ -385,27 +365,48 @@ $scope.Upper = limitUpper;
 	//***********************//
 	//all functions by schmk3//
 	//***********************//
-  if(localStorage.BPData == undefined || localStorage.BPData == null || localStorage.BPData == ''){
-    //Sample data for blood pressure
-  var firstData = [
-    	[getDateStringI(6), 125, 85],
-    	[getDateStringI(5),135, 90],
-    	[getDateStringI(4),132, 88],
-    	[getDateStringI(3),128, 82],
-    	[getDateStringI(2),138, 93],
-    	[getDateStringI(1),136, 92]
-    ];
-    //store in localStorage with tag "BPData"
-    localStorage.setItem("BPData", JSON.stringify(firstData));
-  }
 
-//load the data from the localStorage
-aData = JSON.parse(localStorage.getItem("BPData"));
-//Generate chart with blood pressure values
-var BPChart = Highcharts.chart('container', {
+  var bpDataFromJSON = JSON.parse(localStorage.getItem("bloodPressure"));
+  bpDataFromJSON.sort();
+  var pulseDataFromJSON = JSON.parse(localStorage.getItem("pulse"));
+  pulseDataFromJSON.sort();
+
+  var aData = [];
+  var bData = [];
+
+  for(i = 0; i < bpDataFromJSON.length; i++){
+    var time = bpDataFromJSON[i].time;
+    var valueSys = bpDataFromJSON[i].valueSys;
+    var valueDia = bpDataFromJSON[i].valueDia;
+    var tempArray = [Date.parse(time), valueSys, valueDia];
+    aData.push(tempArray);
+  }
+  for(i = 0; i < pulseDataFromJSON.length; i++){
+    var time = pulseDataFromJSON[i].time;
+    var valuePulse = pulseDataFromJSON[i].value;
+    var tempArray = [Date.parse(time), valuePulse];
+    bData.push(tempArray);
+  }
+  var firstData = [
+    [getDateStringI(6), 125, 85],
+    [getDateStringI(5),135, 90],
+    [getDateStringI(4),132, 88],
+    [getDateStringI(3),128, 82],
+    [getDateStringI(2),138, 93],
+    [getDateStringI(1),136, 92]
+  ];
+  aData = firstData;
+  aData.sort();
+  bData.sort();
+
+//Generate chart with blood pressure values7
+  var BPChart = {};
+  BPChart = Highcharts.chart('container', {
+/*
 		chart: {
 			type: 'columnrange',
 		},
+*/
 		exporting: {
 			enabled: false
 		},
@@ -413,7 +414,8 @@ var BPChart = Highcharts.chart('container', {
       type: 'datetime'
     },
 		yAxis:{
-		//		min: 0,
+				min: 0,
+        /*
 			plotBands: [
 				{
 					from: 60,
@@ -429,6 +431,7 @@ var BPChart = Highcharts.chart('container', {
 					color: '#90ff90'
 				},
 			],
+      */
 			title: {
 				text: 'Blutdruck',
 			}
@@ -436,11 +439,18 @@ var BPChart = Highcharts.chart('container', {
 		title:{
 			text: 'Blutdruck'
 		},
-		series: [{
-				name: 'Blutdruck',
-				data: aData
-			}
-		]
+		series: [
+      {
+        type: 'columnrange',
+        name: 'Blutdruck',
+        data: aData,
+      },
+      {
+        type: 'spline',
+        name: 'Puls',
+        data: bData,
+      }
+    ]
 
 	});
 
@@ -459,7 +469,7 @@ var BPChart = Highcharts.chart('container', {
 //returns a date (now subtract i * 6h)
 	function getDateStringI(i) {
 		var d = new Date();
-		d.setTime(d.getTime()-(i*3600000*6));
+		d.setTime(d.getTime()-(i*3600000*24));
 		return d.getTime();
 	}
 })
@@ -475,4 +485,33 @@ var BPChart = Highcharts.chart('container', {
 })
 
 .controller('SettingsCtrl', function($scope) {
+  if(localStorage.limitLow == undefined || localStorage.limitLow == null || localStorage.limitLow == ''){
+    var limitLower = 4.5;
+    localStorage.setItem("limitLow", JSON.stringify(limitLower));
+  }
+  if(localStorage.limitUp == undefined || localStorage.limitUp == null || localStorage.limitUp == ''){
+    var limitUpper = 7.2;
+    localStorage.setItem("limitUp", JSON.stringify(limitUpper));
+  }
+  limitLower = JSON.parse(localStorage.getItem("limitLow"));
+  $scope.Lower = limitLower;
+  limitUpper = JSON.parse(localStorage.getItem("limitUp"));
+  $scope.Upper = limitUpper;
+
+  $scope.changeLowerGlucoLevel = function(){
+    if(this.LowerGlucoValue){
+      limitLower = this.LowerGlucoValue;
+      localStorage.setItem("limitLow", JSON.stringify(limitLower));
+    }else{
+      this.Lower = limitLower;
+    }
+  }
+  $scope.changeUpperGlucoLevel = function(){
+    if(this.UpperGlucoValue){
+    limitUpper = this.UpperGlucoValue;
+    localStorage.setItem("limitUp", JSON.stringify(limitUpper));
+    }else{
+      this.Upper = limitUpper;
+    }
+  }
 });
