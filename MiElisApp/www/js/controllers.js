@@ -115,7 +115,8 @@ angular.module('starter.controllers', [])
       // --> only glucose
       for (var i = 0; i < observations.length; i++) {
         if(observations[i]._fhir == null) {
-          if(observations[i].code.coding["0"].display == "Glucose [Moles/volume] in blood") {
+          if(observations[i].code.coding["0"].display == "Glucose [Moles/volume] in blood" ||
+            observations[i].code.coding["0"].display == "Glucose in blood") {
             result.push({category: observations[i].category["0"].coding["0"].display,
                         ressource: "Glucose",
                         time: observations[i].effectiveDateTime,
