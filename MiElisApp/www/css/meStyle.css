@@ -75,7 +75,10 @@ Stylesheet for the Me view
 .ng-animate .scroll-bar {
   visibility: visible !important;
 }
+.meCard {
+  height: 20vh !important;
 
+}
 /*
 .row, .scroll {
   height: 100%;
@@ -95,7 +98,7 @@ Stylesheet for the Me view
   flex: 1.5;
 }
 .rowAddress{
-  flex: 4;
+  flex: 7;
 }
 .rowBirthdate{
   flex: 0.1;
