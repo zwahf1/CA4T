@@ -5,17 +5,12 @@ All controllers from the views in the app.
  *************************************************/
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, json, midataService) {
+.controller('AppCtrl', function($scope, $ionicModal, midataService) {
 
   // Login to MIDATA with username and password from localstorage
   $scope.loginMIDATA = function() {
     var user = JSON.parse(localStorage.getItem("login"));
-    try {
-      midataService.login(user);
-      return "Successful"
-    } catch (err){
-      return err
-    }
+    midataService.login(user);
   }
 
   //Logout from MIDATA
@@ -29,12 +24,13 @@ angular.module('starter.controllers', [])
     if(res == "w") {
       midataService.saveWeight(val, datetime);
     } else if(res == "p") {
-      midataService.savePulse(val, new Date());
+      midataService.savePulse(val, datetime);
     } else if(res == "bp") {
-      midataService.saveBloodPressure(val[0], val[1], new Date());
+      midataService.saveBloodPressure(val[0], val[1], datetime);
     } else if(res == "g") {
-      midataService.saveGlucose(json, val);
+      midataService.saveGlucose(val, datetime);
     }
+    console.log("saved: "+val+" to res: "+res+" at "+datetime);
   }
 
 // Function to get all observations from midata
@@ -113,6 +109,8 @@ angular.module('starter.controllers', [])
     params = {};
     result = [];
     midataService.search(res,params).then(function(persons) {
+      result = persons;
+      localStorage.setItem("persons",JSON.stringify(result));
       console.log(persons);
     });
 
@@ -156,17 +154,10 @@ angular.module('starter.controllers', [])
 
   // save the username and password from input fields
   $scope.saveUserdata = function() {
-    var user = JSON.parse(localStorage.getItem("login"));
+    var user = {};//JSON.parse(localStorage.getItem("login"));
     user.User = $scope.login.User;
     user.Password = $scope.login.Password;
     localStorage.setItem("login",JSON.stringify(user));
-  }
-
-  //return a message to the textfield
-  // - logged in
-  // - failed
-  $scope.setLoginMessage = function(err) {
-    $scope.msgHead = err;
   }
 })
 

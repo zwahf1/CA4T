@@ -2,10 +2,16 @@
   <ion-content class="padding">
     <div>
       <h1 ng-modal="msgHead">{{msgHead.message}}</h1>
-      <input type="email" ng-modal="login.User" placeholder="Username" value="{{login.User}}">
-      <input type="password" ng-modal="login.Password" placeholder="Password" value="{{login.Password}}">
+      <label class="item item-input">
+        <span class="input-label">Username</span>
+        <input type="text" ng-model="login.User">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Password</span>
+        <input type="password" ng-model="login.Password">
+      </label>
     <div>
-      <a class="button button-full" id="bLogin" ng-click="saveUserdata(); setLoginMessage(loginMIDATA())">Login to MIDATA</a>
+      <a class="button button-full" id="bLogin" ng-click="saveUserdata(); loginMIDATA()">Login to MIDATA</a>
     </div>
     <div>
       <a class="button button-full" id="bLogout" ng-click="logoutMIDATA()">Logout</a>
