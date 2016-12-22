@@ -25,37 +25,37 @@ Page contains basic information about the user and a toggle that prevents change
 
       <div class="row">
         <div class="col">
-          <ion-item>
+
             <ion-label color="primary">Vorname</ion-label>
             <input type="text" placeholder="Vorname"></input>
-          </ion-item>
+
         </div>
         <div class="col">
-          <ion-item>
+
             <ion-label color="primary">Nachname</ion-label>
             <input type="text" placeholder="Nachname"></input>
-          </ion-item>
+
         </div>
 
         <div class="col">
-          <ion-item>
+
             <ion-label color="primary">Adresse</ion-label>
             <input type="text" placeholder="Adresse"></input>
-          </ion-item>
+
         </div>
 
         <div class="col">
-          <ion-item>
+
             <ion-label color="primary">PLZ</ion-label>
             <input type="text" placeholder="PLZ"></input>
-          </ion-item>
+
         </div>
 
         <div class="col">
-          <ion-item>
+
             <ion-label color="primary">Ort</ion-label>
             <input type="text" placeholder="Ort"></input>
-          </ion-item>
+
         </div>
 
       </div>
@@ -63,20 +63,9 @@ Page contains basic information about the user and a toggle that prevents change
 
       <div class="row">
         <div class="col">
-          <ion-item>
+
             <ion-label>Geburtsdatum</ion-label>
-            <!--
-        <ion-datetime displayFormat="DD MM YYYY" [(ngModel)]="event.month"></ion-datetime>
-      -->
-          </ion-item>
-        </div>
-        <!--
-        <label class="item item-input">
-          <span class="input-label">Date</span>
-          <input type="date">
-        </label>
-        -->
-      </div>
+
 
       <div class="row">
         <button class="button button-light ng-binding" ng-click="openDatePicker()">
@@ -86,13 +75,11 @@ Page contains basic information about the user and a toggle that prevents change
 
       <div class="row">
         <div class="col">
-          <ion-item>
             <ion-label color="primary">Blutzucker</ion-label>
             <ion-label color="primary">Obergrenze</ion-label>
             <input type="number" ng-change="changeUpperGlucoLevel()" ng-model="UpperGlucoValue" value="7.2" placeholder="{{Upper}}"/>
             <ion-label color="primary">Untergrenze</ion-label>
             <input type="number" ng-change="changeLowerGlucoLevel()" ng-model="LowerGlucoValue" value="4.5" placeholder="{{Lower}}"/>
-          </ion-item>
         </div>
       </div>
 
@@ -105,10 +92,8 @@ Page contains basic information about the user and a toggle that prevents change
         <!--
           No changes can be made in the settings if the toggle is turned off
           -->
-        <div class="col">
-          <ion-item class="settingsToggle">
+        <div class="col settingsToggle">
             <ion-toggle disabled checked="false"></ion-toggle>
-          </ion-item>
         </div>
       </div>
 

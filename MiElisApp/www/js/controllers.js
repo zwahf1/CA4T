@@ -223,14 +223,18 @@ weightChart = Highcharts.chart('container', {
   },
   yAxis: {
     min: 0,
+    labels: {
+        formatter: function() {
+            return this.value + ' kg';
+        }
+    },
   },
-/*
   tooltip: {
-    formatter: function() {
-      return '<button on-click="removeWeightValue()">löschen</button>';
-    }
+    valueSuffix: ' kg'
   },
-  */
+  legend: {
+    enabled: false,
+  },
   exporting: {
     enabled: false,
   },
@@ -279,23 +283,27 @@ $scope.addWValue = function (val) {
 	}
 })
 
-.controller('SugarCtrl', function ($scope) {
+.controller('SugarCtrl', function ($scope, midataService) {
 	//***********************//
 	//all functions by schmk3//
 	//***********************//
 	//the chart for the sugar curve is from the google
 	//firstData are the example data to fill the sugarChart
-  var aData;
-	var sugarChart = {};
-  if(localStorage.sugarData == undefined || localStorage.sugarData == null || localStorage.sugarData == ''){
-  	var firstData = [
-  		[getDateStringI(5), 6.4],
-  		[getDateStringI(4), 4.2],
-  		[getDateStringI(2), 8.3],
-  		[getDateStringI(1), 5.1],
-  	];
-    localStorage.setItem("sugarData", JSON.stringify(firstData));
+
+  var glucoseDataFromJSON = JSON.parse(localStorage.getItem("glucose"));
+  glucoseDataFromJSON.sort();
+
+  var aData = [];
+
+  for(i = 0; i < glucoseDataFromJSON.length; i++){
+    var time = glucoseDataFromJSON[i].time;
+    var value = glucoseDataFromJSON[i].value;
+    var tempArray = [Date.parse(time), value];
+    aData.push(tempArray);
   }
+  aData.sort();
+
+
   if(localStorage.limitLow == undefined || localStorage.limitLow == null || localStorage.limitLow == ''){
     var limitLower = 4.5;
     localStorage.setItem("limitLow", JSON.stringify(limitLower));
@@ -306,13 +314,14 @@ $scope.addWValue = function (val) {
   }
   limitLower = JSON.parse(localStorage.getItem("limitLow"));
   limitUpper = JSON.parse(localStorage.getItem("limitUp"));
+
 	// the array with the value sugar is stored in the localStorage
 
 
-  aData = JSON.parse(localStorage.getItem("sugarData"));
+
 //  var limitLower = JSON.parse(localStorage.getItem("limitLow"));
 //  var limitUpper = JSON.parse(localStorage.getItem("limitUp"));
-
+  var sugarChart = {};
   var sugarChart = Highcharts.chart('container', {
     chart:{
       type: 'spline'
@@ -331,7 +340,15 @@ $scope.addWValue = function (val) {
           to: limitUpper,
           color: '#90ff90'
         }
-      ]
+      ],
+    },
+  /*
+    tooltip: {
+      valueSuffix: ' mmol/L'
+    },
+    */
+    legend: {
+      enabled: false,
     },
     exporting: {
       enabled: false,
@@ -351,14 +368,13 @@ $scope.addWValue = function (val) {
     }]
   });
 
-$scope.Lower = limitLower;
-$scope.Upper = limitUpper;
+
 	//function to add a inputed value
 	$scope.addGlucoValue = function (val) {
 		if(val){
+      midataService.saveGlucose(val, new Date());
 			aData.push([getDateStringI(0), val]);
       sugarChart.series[0].setData(aData);
-			localStorage.setItem("sugarData", JSON.stringify(aData));
 			this.glucoseValue = '';
 		}
 	};
@@ -445,6 +461,9 @@ $scope.Upper = limitUpper;
 			type: 'columnrange',
 		},
 */
+    legend: {
+      enabled: false,
+    },
 		exporting: {
 			enabled: false
 		},
@@ -453,23 +472,6 @@ $scope.Upper = limitUpper;
     },
 		yAxis:{
 				min: 0,
-        /*
-			plotBands: [
-				{
-					from: 60,
-					to: 80,
-					color: '#90ff90'
-				},{
-					from: 80,
-					to: 90,
-					color: ''
-				},{
-					from: 90,
-					to: 120,
-					color: '#90ff90'
-				},
-			],
-      */
 			title: {
 				text: 'Blutdruck',
 			}
