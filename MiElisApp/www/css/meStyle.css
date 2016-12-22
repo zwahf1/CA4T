@@ -38,7 +38,7 @@ Stylesheet for the Me view
   margin-top: 1%;
   margin-bottom: 5%;
   background-color: #829fff;
-  button-positive !important;
+  vertical-align: middle;
 }
 
 
