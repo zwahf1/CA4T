@@ -50,12 +50,16 @@ angular.module('starter.controllers', [])
           if(observations[i].code.coding["0"].display == "Herzschlag" ||
               observations[i].code.coding["0"].display == "Herzfrequenz")
           {
-            result.push({time: observations[i].effectiveDateTime,
-                        value: observations[i].valueQuantity.value});
+            result.push({category: observations[i].category["0"].coding["0"].display,
+                        ressource: "Pulse",
+                        time: observations[i].effectiveDateTime,
+                        value: observations[i].valueQuantity.value,
+                        unit: observations[i].valueQuantity.unit});
           }
         }
       }
       localStorage.setItem("pulse",JSON.stringify(result));
+      console.log(result);
       result = [];
     //--> only weights
       for (var i = 0; i < observations.length; i++) {
@@ -64,29 +68,39 @@ angular.module('starter.controllers', [])
               observations[i]._fhir.code.coding["0"].display == "Body weight Measured" ||
               observations[i]._fhir.code.coding["0"].display == "Gewicht")
           {
-            result.push({time: observations[i]._fhir.effectiveDateTime,
-                        value: observations[i]._fhir.valueQuantity.value});
+            result.push({category: observations[i]._fhir.category["0"].coding["0"].display,
+                        ressource: "Weight",
+                        time: observations[i]._fhir.effectiveDateTime,
+                        value: observations[i]._fhir.valueQuantity.value,
+                        unit: observations[i]._fhir.valueQuantity.unit});
           }
         }
       }
       localStorage.setItem("weight",JSON.stringify(result));
+      console.log(result);
       result = [];
     //--> only blood pressures
       for (var i = 0; i < observations.length; i++) {
         if(observations[i]._fhir == null) {
           if(observations[i].code.coding["0"].display == "Blood Pressure") {
-            result.push({time: observations[i].effectiveDateTime,
+            result.push({category: observations[i].category["0"].coding["0"].display,
+                        ressource: "Blood Pressure",
+                        time: observations[i].effectiveDateTime,
                         valueSys: observations[i].component["0"].valueQuantity.value,
-                        valueDia: observations[i].component["1"].valueQuantity.value});
+                        valueDia: observations[i].component["1"].valueQuantity.value,
+                        unit: observations[i].valueQuantity.unit});
           }
           else if (observations[i].code.coding["0"].display == "Diastolischer Blutdruck") {
             for (var j = 0; j < observations.length; j++) {
               if(observations[j]._fhir == null) {
                 if (observations[j].code.coding["0"].display == "Systolischer Blutdruck") {
                   if (observations[i].effectiveDateTime == observations[j].effectiveDateTime) {
-                    result.push({time: observations[i].effectiveDateTime,
+                    result.push({category: "Blood Pressure",
+                                ressource: observations[i].code.coding["0"].display,
+                                time: observations[i].effectiveDateTime,
                                 valueSys: observations[j].valueQuantity.value,
-                                valueDia: observations[i].valueQuantity.value});
+                                valueDia: observations[i].valueQuantity.value,
+                                unit: observations[i].valueQuantity.unit});
 
                   }
                 }
@@ -96,11 +110,24 @@ angular.module('starter.controllers', [])
         }
       }
       localStorage.setItem("bloodPressure",JSON.stringify(result));
+      console.log(result);
+      result = [];
+      // --> only glucose
+      for (var i = 0; i < observations.length; i++) {
+        if(observations[i]._fhir == null) {
+          if(observations[i].code.coding["0"].display == "Glucose [Moles/volume] in blood") {
+            result.push({category: observations[i].category["0"].coding["0"].display,
+                        ressource: "Glucose",
+                        time: observations[i].effectiveDateTime,
+                        value: observations[i].valueQuantity.value,
+                        unit: observations[i].valueQuantity.unit});
+          }
+        }
+      }
+      localStorage.setItem("glucose",JSON.stringify(result));
       localStorage.setItem("observations",JSON.stringify(observations));
-      console.log(JSON.parse(localStorage.getItem("weight")));
-      console.log(JSON.parse(localStorage.getItem("pulse")));
-      console.log(JSON.parse(localStorage.getItem("bloodPressure")));
-      console.log(JSON.parse(localStorage.getItem("observations")));
+      console.log(result);
+      console.log(observations);
     });
   }
 
