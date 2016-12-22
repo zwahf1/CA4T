@@ -5,21 +5,75 @@ Stylesheet for the Me view
 21.11.2016 nosec1
 *************************************************/
 
+/*sets the size of the outermost container, makes dhe design fill the page*/
+.meContainer {
+  width: auto;
+  height: 100%;
+}
+/*defines the dimensions of the two main rows*/
+.rowMe {
+    width:auto;
+    height:48%;
+    margin: 0;
+    padding: 0;
+}
+/*introduces the flex to distribute the content*/
+.rowMeInner {
+  display: flex;
+  flex-direction: column;
+}
+/*Sets the size of the pictire*/
+#pPicture{
+  height: 100%;
+  width: 100%;
+}
+
 .Button.btn_full{
   display: block;
   text-align: center;
   width: 100%;
   padding-top: 5%;
   padding-bottom: 5%;
-  margin-bottom: 10%;
-  font-size:25px
+  margin-right: 2%;
+  margin-top: 1%;
+  margin-bottom: 5%;
+  background-color: #829fff;
+  button-positive !important;
 }
-.meContainer {
-  width: auto;
-  height: 100%;
-}
+
+
 .meFont{
-  font-size:25px;
+  font-size:3vh;
+  line-height: 4vh;
+}
+/*Sets the font for the Anamnese and Diagnose lists*/
+.scrollFont{
+  font-size: 2vh;
+  line-height: 2vh;
+}
+/*.item.item-content {
+    padding-top: 5px;
+    padding-bottom: 12px;
+    margin-top: -4px;
+    margin-bottom: -4px;
+    height: 70px;
+*/
+
+/*Settings for the ion-scroll lists*/
+/*changes the distance between items in the ion-scroll list*/
+.myItem {
+  padding-bottom: 0 !important;
+}
+.listBorder{
+  border: 2px solid;
+}
+.meTitle{
+  font-size:5vh;
+  line-height: 5vh;
+}
+/*To always show the scroll-bars of ion-scroll*/
+.ng-animate .scroll-bar {
+  visibility: visible !important;
 }
 
 /*
@@ -27,19 +81,33 @@ Stylesheet for the Me view
   height: 100%;
 }
 */
+.rowTitle{
+  flex: 1;
+}
+.rowSubtitle{
+  flex: 0.5;
+}
+.rowList{
+  flex: 6;
+}
 
-.rowMe {
+.rowButton{
+  flex: 1.5;
+}
+.rowAddress{
+  flex: 4;
+}
+.rowBirthdate{
+  flex: 0.1;
+}
+
+.rowMePadding {
     width:auto;
-    height:50%;
+    height:2%;
     margin: 0;
     padding: 0;
 }
-.rowMeInner {
-    width:auto;
-    height:80%;
-    margin: 0;
-    padding: 0;
-}
+
 /*
 .iSContainer {
     width:auto;
@@ -48,10 +116,10 @@ Stylesheet for the Me view
     padding: 0;
 }
 */
-#pPicture{
-  height: 100%;
-  width: 100%;
-}
+
+
+
+
 /*
 #content-container {
   display: flex;

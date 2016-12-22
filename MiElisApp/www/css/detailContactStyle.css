@@ -6,29 +6,36 @@ Stylesheet for the Me view
 *************************************************/
 
 .home-container {
-     display: -webkit-flex;
-     -webkit-flex-direction: column;
-     height: 100%;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
 }
+/*
 .home-container > .row {
      -webkit-flex: 1;
+     flex-direction: column;
 }
+*/
+/*
 .icon-row {
      -webkit-align-items: center;
-}
+}*/
 .detailContactContainer {
-  width: auto;
-  height: 100%;
+/*  width: auto;
+  height: 100%;*/
+  flex: 5;
   padding-left: 10%;
   padding-right: 15%;
   padding-top: 10%;
   padding-bottom: 10%;
 }
+
 .rowContactsAddress {
-  width:auto;
-  height:42%;
-  margin: 0;
-  padding: 0;
+/*  width:auto;
+  height:42%; */
+  flex: 2;
+  margin-bottom: 5px;
+  padding: 2vh;
   min-height: 145px;
 }
 .rowContacts {
@@ -41,4 +48,12 @@ Stylesheet for the Me view
 .card {
   margin:0;
   margin-left: 5px;
+}
+.detailContFatFont{
+  font-size: 5vh;
+  line-height: 5vh;
+}
+.detailContFont{
+  font-size:5vh;
+  line-height: 5vh;
 }

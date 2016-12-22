@@ -5,57 +5,80 @@ contains information about the emergency contact.
 -->
 
 <ion-view view-title="Kontaktdetails">
+
   <div id="wrapper">
-    <ion-pane>
-      <ion-content scroll="false">
-        <section class = "home-container">
-          <div class="detailContactContainer">
-            <!--First row, for the address -->
-            <div class="row rowContactsAddress">
-              <div class="col text-center">
-                <h3>Adresse:</h3>
+  <!--  <ion-pane> -->
+    <ion-content scroll="false">
+      <!--  <section class = "home-container"> -->
+      <div class="detailContactContainer">
+        <!--First row, for the address -->
+        <div class="row card rowContactsAddress">
+        <!--  <div class="card detailContFont">-->
+          <div class="col col-25 detailContFatFont">
+            Adresse:
+          </div>
+          <div class="col col-75 detailContFont">
+            Herr<br>
+            Dr. Hanspeter Wenger<br>
+            Kreuzweg 10<br>
+            2502 Biel
+          </div>
+        <!--  </div>-->
+        </div>
+        <!--Second row, for the phonenumber -->
+        <div class="row card rowContactsAddress">
+        <!--  <div class="card detailContFont">-->
+          <div class="col col-25 detailContFatFont">
+            <h1>Telefon:</h1>
+          </div>
+          <div class="col col-75 detailContFont">
+            032 555 55 55
+          </div>
+        <!--  </div>-->
+        </div>
+        <!--Third row, for the email -->
+            <div class="row card rowContactsAddress">
+            <!--  <div class="card detailContFont">-->
+              <div class="col col-25 detailContFatFont">
+                <h1>E-Mail:</h1>
               </div>
-              <div class="col">
-                <div class="card">
-                  <div class="item item-text-wrap meFont" id="dCAddress">
-                    Herr<br>
-                    Dr. Hanspeter Wenger<br>
-                    Kreuzweg 10<br>
-                    2502 Biel
-                  </div>
-                </div>
+              <div class="col col-75 detailContFont">
+                hanspeter.wenger@hin.ch
               </div>
+            <!--  </div>-->
             </div>
-            <!--Second row, for the phonenumber -->
+
+            <!--
             <div class="row icon-row rowContacts">
               <div class = "col text-center">
-                <h3>Telefon:</h3>
+                <h1>Telefon:</h1>
               </div>
               <div class = "col">
                 <div class="card">
-                  <div class="item item-text-wrap meFont" id="dCPhone">
+                  <div class="item item-text-wrap detailContFont" id="dCPhone">
                     032 555 55 55
                   </div>
                 </div>
               </div>
             </div>
-            <!--Third row, for the email -->
+
             <div class="row icon-row rowContacts">
               <div class = "col text-center">
-                <h3>E-Mail:</h3>
+                <h1>E-Mail:</h1>
               </div>
               <div class = "col">
                 <div class="card">
-                  <div class="item item-text-wrap meFont" id="dCEmail">
+                  <div class="item item-text-wrap detailContFont" id="dCEmail">
                     hanspeter.wenger@hin.ch
                   </div>
                 </div>
               </div>
             </div>
+          -->
             <!--End of third row -->
           </div>
-        </section>
+      <!--  </section> -->
       </ion-content>
-    </ion-pane>
+  <!--  </ion-pane> -->
   </div>
 </ion-view>

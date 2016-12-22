@@ -20,104 +20,118 @@ The grid is built as
       <div class="row rowMe">
         <!--Cell for the picture, smaller than the other 2 in the row.-->
           <div class="col col-20 col-top" id="bild">
-            <img src="../img/Elisabeth.jpg" id="pPicture">
+            <img src="img/Elisabeth.jpg" id="pPicture">
           </div>
         <!--second column of the top row, for the anamnesis, divided into two rows-->
-          <div class="col col-40">
-            <div class="row">
+          <div class="col col-40 rowMeInner">
+            <div class="row rowTitle">
               <h2>Anamnese</h2>
             </div>
             <!--second row, cell for the list of anamneses.-->
-            <div class="row rowMeInner">
-              <ion-scroll class="meFont" direction="xy" id="anamnesisList">
-                <ion-item>St. n. Pneumonie 1942</ion-item>
-                <ion-item>St n. Appendektomie 1946</ion-item>
-                <ion-item>St n. Cholezystektomie 1986</ion-item>
-                <ion-item>St n. Nephrolithiasis links mit ESWL im Inselspital Bern 1998 oooooooooooooooooooooooooooooooooooooooooooooooooooooooo</ion-item>
-                <ion-item>St n. Cholezystektomie 1986</ion-item>
-                <ion-item>St n. Cholezystektomie 1986</ion-item>
-                <ion-item>St n. Cholezystektomie 1986</ion-item>
-                <ion-item>St n. Cholezystektomie 1986</ion-item>
-                <ion-item>St n. Cholezystektomie 1986</ion-item>
+            <div class="row rowList">
+              <ion-scroll class="listBorder" overflow:scroll="true" scrollbar-y="true" direction="y" id="anamnesisList">
+                <ion-item class="scrollFont myItem">2 St. n. Pneumonie 1942</ion-item>
+                <ion-item class="scrollFont myItem">St n. Appendektomie 1946</ion-item>
+                <ion-item class="scrollFont myItem">St n. Cholezystektomie 1986</ion-item>
+                <ion-item class="item-text-wrap scrollFont myItem">St n. Nephrolithiasis links mit ESWL im Inselspital Bern 1998 oooooooo ooooooooooooooooo ooo</ion-item>
+                <ion-item class="item-text-wrap scrollFont myItem">St n. Cholezystektomie 1986</ion-item>
+                <ion-item class="item-text-wrap scrollFont myItem">St n. Cholezystektomie 1986</ion-item>
+                <ion-item class="item-text-wrap scrollFont myItem">St n. Cholezystektomie 1986</ion-item>
+                <ion-item class="item-text-wrap scrollFont myItem">St n. Cholezystektomie 1986</ion-item>
+                <ion-item class="item-text-wrap scrollFont myItem">St n. Cholezystektomie 1986</ion-item>
+                <ion-item class="item-text-wrap scrollFont myItem">St n. Cholezystektomie 1986</ion-item>
+                <ion-item class="item-text-wrap scrollFont myItem">St n. Cholezystektomie 1986</ion-item>
+                <ion-item class="item-text-wrap scrollFont myItem">St n. Cholezystektomie 1986</ion-item>
               </ion-scroll>
             </div>
           </div>
           <!--third column of the top row, for the diagnosis, divided into two rows.-->
-          <div class="col col-40">
-            <div class="row">
+          <div class="col col-40 rowMeInner">
+            <div class="row rowTitle">
               <h2>Diagnose</h2>
             </div>
             <!--second row, cell for the list of diagnoses.-->
-            <div class="row rowMeInner">
-              <ion-scroll class="iSContainer" direction="xy" id="diagnosisList">
-                <ion-item>Diabetes mellitus</ion-item>
-                <ion-item>Diabetes mellitus</ion-item>
-                <ion-item>Diabetes mellitus oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo</ion-item>
-                <ion-item>Diabetes mellitus</ion-item>
-                <ion-item>Diabetes mellitus</ion-item>
-                <ion-item>Diabetes mellitus</ion-item>
-                <ion-item>Diabetes mellitus</ion-item>
+            <div class="row rowList">
+              <ion-scroll class="listBorder" style="width: full" direction="y" id="diagnosisList">
+                <ion-item class="scrollFont myItem">Diabetes mellitus</ion-item>
+                <ion-item class="scrollFont myItem">Diabetes mellitus</ion-item>
+                <ion-item class="item-text-wrap scrollFont myItem">Diabetes mellitus ooooooooooo oooooooooooooooooooo ooooooooooo</ion-item>
+                <ion-item class="item-text-wrap scrollFont myItem">Diabetes mellitus</ion-item>
+                <ion-item class="item-text-wrap scrollFont myItem">Diabetes mellitus</ion-item>
+                <ion-item class="item-text-wrap scrollFont myItem">Diabetes mellitus</ion-item>
+                <ion-item class="item-text-wrap scrollFont myItem">Diabetes mellitus</ion-item>
               </ion-scroll>
             </div>
           </div>
       </div>
-      <!--The lower row-->
+      <!--Middle row to put distance between the top and bottom ones.-->
+      <div class="row rowMePadding">
+      </div>
+
+      <!--The bottom row-->
       <div class="row rowMe">
-        <!--The first column of the lower row, for the address, divided into 3 rows.-->
-        <div class="col">
-          <div class="row">
+        <!--The first column of the bottom row, for the address, divided into 3 rows.-->
+        <div class="col rowMeInner">
+          <div class="row rowTitle">
             <h2>Adresse</h2>
           </div>
           <!--Middle row-->
-          <div class="row meFont">
-            <p id="pAddress">
-              Frau<br>
-              Elisabeth Brönnimann<br>
-              Kreuzweg 11<br>
-              2500 Biel
-            </p>
+          <div class="row meFont rowAddress">
+            <div class="card">
+              <div class="item item-text-wrap" id="dCAddress">
+                <!--<div>
+                  <h2>Adresse</h2>
+                </div>-->
+                <div class="meFont">
+                  Frau<br>
+                  Elisabeth Brönnimann<br>
+                  Kreuzweg 11<br>
+                  2500 Biel<br>
+                </div>
+              </div>
+            </div>
           </div>
           <!--bottom row-->
-          <div class="col meFont">
-            <div class="col">
-              <h2>Geburtsdatum:</h2>
-            </div>
-            <div class="col">
-              <p id="pBirthdate">03. Mai 1937</p>
-            </div>
+          <!--<div class="col meFont">-->
+          <div class="col meFont rowTitle">
+            <h2>Geburtsdatum:</h2>
           </div>
+          <div class="col meFont rowBirthdate">
+            <p id="pBirthdate">03. Mai 1937</p>
+          </div>
+        <!--  </div> -->
         </div>
-        <!--The second column of the lower row, for emergency contacts.-->
-        <div class="col">
-          <div class="row">
+        <!--The second column of the bottom row, for emergency contacts.-->
+        <div class="col rowMeInner">
+          <div class="row rowTitle">
             <h2>Notfallkontakte</h2>
           </div>
-          <div class="row">
-            <h4>Hausarzt:</h4>
+          <div class="row rowSubtitle">
+            <h3>Hausarzt:</h3>
           </div>
-          <div class="row">
-            <a class="Button btn_full" id="bHausarzt" href="#/app/DetailContact">Dr. Hanspeter Wenger</a>
+          <div class="row rowButton">
+            <a class="Button btn_full meFont" id="bHausarzt" href="#/app/DetailContact">Dr. Hanspeter Wenger</a>
           </div>
-          <div class="row">
-            <h4>Kontaktperson:</h4>
+          <div class="row rowSubtitle">
+            <h3>Kontaktperson:</h3>
           </div>
-          <div class="row">
-            <a class="Button btn_full" id="bKontaktperson">Kurt Brönnimann</a>
+          <div class="row rowButton">
+            <a class="Button btn_full meFont" id="bKontaktperson">Kurt Brönnimann</a>
           </div>
         </div>
-        <!--The third column of the lower row, for more contacts.-->
-        <div class="col">
-          <div class="row">
+        <!--The third column of the bottom row, for more contacts.-->
+        <div class="col rowMeInner">
+          <div class="row rowTitle">
             <h2>Weitere Kontakte</h2>
           </div>
-          <div class="row">
-            <a class="Button btn_full" id="bWeitereKontakte1">Markus Brönnimann</a>
+          <div class="row rowButton">
+            <a class="Button btn_full meFont" id="bWeitereKontakte1">Markus Brönnimann</a>
           </div>
-          <div class="row">
-            <a class="Button btn_full" id="bWeitereKontakte2">Margrith Brönnimann</a>
+          <div class="row rowButton">
+            <a class="Button btn_full meFont" id="bWeitereKontakte2">Margrith Brönnimann</a>
           </div>
-          <div class="row">
-            <a class="Button btn_full" id="bWeitereKontakte3">Miriam Brönnimann</a>
+          <div class="row rowButton">
+            <a class="Button btn_full meFont" id="bWeitereKontakte3">Miriam Brönnimann</a>
           </div>
       </div>
     </div>
