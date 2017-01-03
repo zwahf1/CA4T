@@ -33,7 +33,13 @@
   font-size: 16px;
 }
 
-
+/*defines the dimensions of the two main rows*/
+.rowSettings {
+    width:auto;
+    height: 350px;
+    margin: 0;
+    padding: 0;
+}
 
 /*Correction of toggle positions*/
 .settingsToggle .toggle {
@@ -42,9 +48,6 @@
   position: relative;
 }
 
-.item {
-  border: none;
-}
 
 /*Style changes of the radio buttons for the gender selection*/
 .item-radio .item-content {
@@ -57,4 +60,7 @@
 .item-radio .radio-icon {
   font-size: 20px;
   top: -7px;
+}
+.scroll-view.scroll-y {
+    min-width: 100%;
 }

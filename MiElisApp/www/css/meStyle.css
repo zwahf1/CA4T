@@ -61,9 +61,6 @@ Stylesheet for the Me view
 
 /*Settings for the ion-scroll lists*/
 /*changes the distance between items in the ion-scroll list*/
-.myItem {
-  padding-bottom: 0 !important;
-}
 .listBorder{
   border: 2px solid;
 }

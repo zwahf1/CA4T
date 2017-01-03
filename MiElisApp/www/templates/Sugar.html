@@ -1,25 +1,23 @@
-
 <ion-view view-title="Sugar">
-    <ion-content>
-      <h1>Sugar</h1>
-      <!-- google chart,
+  <ion-content>
+    <h1>Sugar</h1>
+    <!-- google chart,
       <div class="ChartSugar" google-chart chart="mySugrChart"> </div>
     -->
-      <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+    <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 
-      <!-- input fields for adding a value -->
-      <div class="row">
-        <div class="col col-50">
-            <input type="number" ng-model="glucoseValue" placeholder="Blutzucker">
-
-        </div>
-        <div class="col col-50">
-          <button class="button" ng-click="addGlucoValue(glucoseValue)">
+    <!-- input fields for adding a value -->
+    <div class="row">
+      <div class="col col-50">
+        <input type="number" ng-model="glucoseValue" placeholder="Blutzucker">
+      </div>
+      <div class="col col-50">
+        <button class="button" ng-click="addGlucoValue(glucoseValue)">
             eintragen
           </button>
-        </div>
       </div>
-      <!--
+    </div>
+    <!--
       <div class="row">
         <div class="col col-50">
             <input type="number" ng-change="changeLowerGlucoLevel()" ng-model="LowerGlucoValue" value="4.5" placeholder="{{Lower}}">
@@ -33,5 +31,5 @@
         </div>
       </div>
     -->
-    </ion-content>
+  </ion-content>
 </ion-view>
