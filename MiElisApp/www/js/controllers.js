@@ -201,13 +201,14 @@ angular.module('starter.controllers', [])
     //***********************//
     //all functions by schmk3//
     //***********************//
-    //test itmes, used by development
 
+    //loads the weight data of MIDATA from localStorage to local variable
     var weightDataFromJSON = JSON.parse(localStorage.getItem("weight"));
+    //sorts the data, if unsorted no chart can be generated
     weightDataFromJSON.sort();
-    $scope.wDataJSON = weightDataFromJSON;
     var aData = [];
 
+    //parsing the data from the localStorage to a usable array
     for (i = 0; i < weightDataFromJSON.length; i++) {
       var time = weightDataFromJSON[i].time;
       var value = weightDataFromJSON[i].value;
@@ -216,8 +217,9 @@ angular.module('starter.controllers', [])
     }
     aData.sort();
 
+    //Generate the weightChart in the div tag named 'container'
+    //more information in technical documentation or on the website of Highcharts
     var weightChart = {};
-
     weightChart = Highcharts.chart('container', {
       chart: {
         type: 'spline'
@@ -245,19 +247,6 @@ angular.module('starter.controllers', [])
       exporting: {
         enabled: false,
       },
-      plotOptions: {
-        series: {
-          point: {
-            events: {
-              /*
-                click: function () {
-                    alert('Category: ' + this.category + ', value: ' + this.y);
-                }
-              */
-            }
-          }
-        }
-      },
       series: [{
         name: 'Gewicht',
         data: aData,
@@ -267,14 +256,10 @@ angular.module('starter.controllers', [])
       }]
     });
     /*function to add a value.
-    after verification, that it's a numeric value, the value is added to value array
+    after verification, that it's not empty, the value is added to array with actual time
     */
-    $scope.removeWeightValue = function() {
-      alert('Category: ' + this.category + ', value: ' + this.y);
-    }
     $scope.addWValue = function(val) {
       if (val) {
-
         midataService.saveWeight(val, new Date());
         aData.push([getDateStringI(0), val]);
         weightChart.series[0].setData(aData);
@@ -282,7 +267,7 @@ angular.module('starter.controllers', [])
       }
     };
 
-    //returns the current date (TT.mm.YYYY)
+    //returns the current date (TT.mm.YYYY), called by addWValue function
     function getDateStringI(i) {
       var d = new Date();
       d.setTime(d.getTime() - (i * 3600000 * 12));
@@ -294,14 +279,15 @@ angular.module('starter.controllers', [])
     //***********************//
     //all functions by schmk3//
     //***********************//
-    //the chart for the sugar curve is from the google
-    //firstData are the example data to fill the sugarChart
 
+    //loads the glucose data of MIDATA from localStorage to local variable
     var glucoseDataFromJSON = JSON.parse(localStorage.getItem("glucose"));
+    //sorts the data, if unsorted the chart can not be generated
     glucoseDataFromJSON.sort();
 
     var aData = [];
 
+    //parsing the data from the localStorage to a usable array
     for (i = 0; i < glucoseDataFromJSON.length; i++) {
       var time = glucoseDataFromJSON[i].time;
       var value = glucoseDataFromJSON[i].value;
@@ -310,24 +296,22 @@ angular.module('starter.controllers', [])
     }
     aData.sort();
 
-
+    //if no lower limit stored, it takes the default value, 4.5
     if (localStorage.limitLow == undefined || localStorage.limitLow == null || localStorage.limitLow == '') {
       var limitLower = 4.5;
       localStorage.setItem("limitLow", JSON.stringify(limitLower));
     }
+    //if no upper limit stored, it takes the default value, 7.2
     if (localStorage.limitUp == undefined || localStorage.limitUp == null || localStorage.limitUp == '') {
       var limitUpper = 7.2;
       localStorage.setItem("limitUp", JSON.stringify(limitUpper));
     }
+    //call the lower and upper limit from localStorage
     limitLower = JSON.parse(localStorage.getItem("limitLow"));
     limitUpper = JSON.parse(localStorage.getItem("limitUp"));
 
-    // the array with the value sugar is stored in the localStorage
-
-
-
-    //  var limitLower = JSON.parse(localStorage.getItem("limitLow"));
-    //  var limitUpper = JSON.parse(localStorage.getItem("limitUp"));
+    //Generate the sugarChart in the div tag named 'container'
+    //more information in technical documentation or on the website of Highcharts
     var sugarChart = {};
     var sugarChart = Highcharts.chart('container', {
       chart: {
@@ -346,12 +330,15 @@ angular.module('starter.controllers', [])
           to: limitUpper,
           color: '#90ff90'
         }],
-      },
-      /*
-        tooltip: {
-          valueSuffix: ' mmol/L'
+        labels: {
+          formatter: function() {
+            return this.value + ' mmol/L';
+          }
         },
-        */
+      },
+      tooltip: {
+        valueSuffix: ' mmol/L'
+      },
       legend: {
         enabled: false,
       },
@@ -373,8 +360,9 @@ angular.module('starter.controllers', [])
       }]
     });
 
-
-    //function to add a inputed value
+    /*function to add a value.
+    after verification, that it's not empty, the value is added to array with actual time
+    */
     $scope.addGlucoValue = function(val) {
       if (val) {
         midataService.saveGlucose(val, new Date());
@@ -383,45 +371,7 @@ angular.module('starter.controllers', [])
         this.glucoseValue = '';
       }
     };
-    $scope.changeLowerGlucoLevel = function() {
-      if (this.LowerGlucoValue) {
-        limitLower = this.LowerGlucoValue;
-        localStorage.setItem("limitLow", JSON.stringify(limitLower));
-        sugarChart.yAxis[0].removePlotBand();
-        sugarChart.yAxis[0].addPlotBand({
-          color: '#90ff90',
-          from: limitLower,
-          to: limitUpper
-        });
-      } else {
-        this.Lower = limitLower;
-      }
-    }
-    $scope.changeUpperGlucoLevel = function() {
-      if (this.UpperGlucoValue) {
-        limitUpper = this.UpperGlucoValue;
-        localStorage.setItem("limitUp", JSON.stringify(limitUpper));
-        sugarChart.yAxis[0].removePlotBand();
-        sugarChart.yAxis[0].addPlotBand({
-          color: '#90ff90',
-          from: limitLower,
-          to: limitUpper
-        });
-      } else {
-        this.Upper = limitUpper;
-      }
-    }
-
-    //parses a new date from a string
-    function parseJsonDate(jsonDateString) {
-      var y = jsonDateString.substr(0, 4);
-      var m = jsonDateString.substr(5, 2) - 1;
-      var d = jsonDateString.substr(8, 2);
-      var h = jsonDateString.substr(11, 2);
-      var min = jsonDateString.substr(14, 2);
-      return new Date(y, m, d, h, min);
-    }
-
+    //returns the current date (TT.mm.YYYY), called by addWValue function
     function getDateStringI(i) {
       var d = new Date();
       d.setTime(d.getTime() - (i * 3600000 * 6));
@@ -434,14 +384,18 @@ angular.module('starter.controllers', [])
     //all functions by schmk3//
     //***********************//
 
+    //loads the blood pressure data of MIDATA from localStorage to local variable
     var bpDataFromJSON = JSON.parse(localStorage.getItem("bloodPressure"));
     bpDataFromJSON.sort();
+    //loads the pulse data of MIDATA from localStorage to local variable
     var pulseDataFromJSON = JSON.parse(localStorage.getItem("pulse"));
+    //sorts the data, if unsorted the chart can not be generated
     pulseDataFromJSON.sort();
 
     var aData = [];
     var bData = [];
 
+    //parsing the data from the localStorage to a usable array
     for (i = 0; i < bpDataFromJSON.length; i++) {
       var time = bpDataFromJSON[i].time;
       var valueSys = bpDataFromJSON[i].valueSys;
@@ -459,14 +413,10 @@ angular.module('starter.controllers', [])
     aData.sort();
     bData.sort();
 
-    //Generate chart with blood pressure values7
+    //Generate the bloodpressure and pulse Chart in the div-tag named 'container'
+    //more information in technical documentation or on the website of Highcharts
     var BPChart = {};
     BPChart = Highcharts.chart('container', {
-      /*
-      		chart: {
-      			type: 'columnrange',
-      		},
-      */
       legend: {
         enabled: false,
       },
@@ -479,8 +429,8 @@ angular.module('starter.controllers', [])
       yAxis: {
         min: 0,
         title: {
-          text: 'Blutdruck',
-        }
+          text: 'Blutdruck<br/>Puls',
+        },
       },
       title: {
         text: 'Blutdruck'
@@ -488,11 +438,17 @@ angular.module('starter.controllers', [])
       series: [{
           type: 'columnrange',
           name: 'Blutdruck',
+          tooltip: {
+            valueSuffix: ' mmHg'
+          },
           data: aData,
         },
         {
           type: 'spline',
           name: 'Puls',
+          tooltip: {
+            valueSuffix: ' /min'
+          },
           data: bData,
           lineWidth: 0,
         }
@@ -501,7 +457,7 @@ angular.module('starter.controllers', [])
     });
 
     //function is called by the button to add some values.
-    //add a systolic and diastolic value to the chart
+    //add a systolic and diastolic value to the chart, if they're not empty
     $scope.addBPValue = function(sysVal, diaVal) {
       if (sysVal & diaVal) {
         midataService.saveBloodPressure(sysVal, diaVal, new Date());
@@ -521,6 +477,8 @@ angular.module('starter.controllers', [])
   })
 
   .controller('MeCtrl', function($scope) {
+
+    //if no anamnese and diagnose information available, it will filled with default data from E. Brönnimann
     if (localStorage.anamnese == undefined || localStorage.anamnese == null || localStorage.anamnese == '') {
       var anamneseArray = [{
           desc: 'St.n.Pneumonie 1942',
@@ -557,6 +515,7 @@ angular.module('starter.controllers', [])
     $scope.diagnoseItems = JSON.parse(localStorage.getItem("diagnose"));
   })
 
+  //if no anamnese and diagnose information available, it will filled with default data from E. Brönnimann
   .controller('SettingsCtrl', function($scope) {
     if (localStorage.anamnese == undefined || localStorage.anamnese == null || localStorage.anamnese == '') {
       var anamneseArray = [{
@@ -593,6 +552,7 @@ angular.module('starter.controllers', [])
     $scope.anamneseItems = JSON.parse(localStorage.getItem("anamnese"));
     $scope.diagnoseItems = JSON.parse(localStorage.getItem("diagnose"));
 
+    //function to move the items in diagnose and anamnese list
     $scope.moveItem = function(items, item, fromIndex, toIndex) {
       items.splice(fromIndex, 1);
       items.splice(toIndex, 0, item);
@@ -600,6 +560,7 @@ angular.module('starter.controllers', [])
       localStorage.setItem("diagnose", JSON.stringify($scope.diagnoseItems));
     };
 
+    //function to remove items in diagnose and anamnese list
     $scope.onItemDelete = function(items, item) {
       items.splice(items.indexOf(item), 1);
       localStorage.setItem("anamnese", JSON.stringify($scope.anamneseItems));
@@ -607,6 +568,7 @@ angular.module('starter.controllers', [])
 
     };
 
+    //function to add a new anamnese
     $scope.addAnamnese = function(text) {
       if (text) {
         var newItem = {};
@@ -617,6 +579,7 @@ angular.module('starter.controllers', [])
       }
     }
 
+    //function to add a new diagnose
     $scope.addDiagnose = function(text) {
       if (text) {
         var newItem = {};
@@ -626,20 +589,23 @@ angular.module('starter.controllers', [])
         localStorage.setItem("diagnose", JSON.stringify($scope.diagnoseItems));
       }
     }
-
+    //if no lower limit stored, it takes the default value, 4.5
     if (localStorage.limitLow == undefined || localStorage.limitLow == null || localStorage.limitLow == '') {
       var limitLower = 4.5;
       localStorage.setItem("limitLow", JSON.stringify(limitLower));
     }
+    //if no upper limit stored, it takes the default value, 7.2
     if (localStorage.limitUp == undefined || localStorage.limitUp == null || localStorage.limitUp == '') {
       var limitUpper = 7.2;
       localStorage.setItem("limitUp", JSON.stringify(limitUpper));
     }
+    //call the lower and upper limit from localStorage
     limitLower = JSON.parse(localStorage.getItem("limitLow"));
     $scope.Lower = limitLower;
     limitUpper = JSON.parse(localStorage.getItem("limitUp"));
     $scope.Upper = limitUpper;
 
+    //functions to configure the targetrange of blood sugar
     $scope.changeLowerGlucoLevel = function() {
       if (this.LowerGlucoValue) {
         limitLower = this.LowerGlucoValue;

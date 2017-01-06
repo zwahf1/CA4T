@@ -1,18 +1,15 @@
 <ion-view view-title="Weight">
   <ion-content class="padding">
-<!--Weight-view with a chart o the current week-->
 
     <h1>Weight</h1>
-    <!--Chart with a filled area
-    <div class="ct-chartLine ct-perfect-fourth"></div>
--->
+    <!-- weight chart from Highcharts library. Generated in the controller -->
     <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
     <!--Form with a text input for the measured value and a submit
-    button to refresh add the value into the chart.
+    button to add the value into the chart.
     If the value isn't a numeric value, it won't add-->
     <div class="row">
       <div class="col col-50">
-          <input type="number" ng-model="weightValue" placeholder="Gewicht">
+        <input type="number" ng-model="weightValue" placeholder="Gewicht">
       </div>
       <div class="col col-50">
         <button class="button" ng-click="addWValue(weightValue)">

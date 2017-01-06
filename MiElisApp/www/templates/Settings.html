@@ -10,9 +10,9 @@ Page contains basic information about the user and a toggle that prevents change
   <div id="wrapper">
     <ion-content class="padding">
 
-      <!--The upper row-->
+
       <div class="row rowSettings">
-        <!--Cell for the picture, smaller than the other 2 in the row.-->
+        <!--Form to configure the target range of bloodsugar-->
         <div class="col col-20">
           <div class="row rowTitle">
             <h2>Blutzucker</h2>
@@ -43,6 +43,7 @@ Page contains basic information about the user and a toggle that prevents change
               </ion-list>
             </ion-scroll>
           </div>
+          <!-- form to add a new anamnesis to the list -->
           <div class="item-input">
             <input type="text" ng-model="newAnamnese" placeholder="Anamnese hinzufügen">
             <button class="button" ng-click="addAnamnese(newAnamnese)">
@@ -67,6 +68,7 @@ Page contains basic information about the user and a toggle that prevents change
               </ion-list>
             </ion-scroll>
           </div>
+          <!-- form to add a new diagnosis to the list -->
           <div class="item-input">
             <input type="text" ng-model="newDiagnose" placeholder="Diagnose hinzufügen">
             <button class="button" ng-click="addDiagnose(newDiagnose)">
