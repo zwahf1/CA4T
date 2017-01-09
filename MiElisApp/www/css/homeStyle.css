@@ -15,7 +15,7 @@
 
 /*weight-button*/
 #bWeight {
-  background: url("../img/weight.bmp");
+  background: url("../img/weight.png");
   background-position: 50% 50%;
   -webkit-background-origin: padding-box;
   background-origin: padding-box;
@@ -27,7 +27,7 @@
 
 /*pulse-button*/
 #bPulse {
-  background: url("../img/blood.bmp");
+  background: url("../img/blood.png");
   background-position: 50% 50%;
   -webkit-background-origin: padding-box;
   background-origin: padding-box;
@@ -39,7 +39,7 @@
 
 /*sugar-button*/
 #bSugar {
-  background: url("../img/diabetes.bmp");
+  background: url("../img/diabetes.png");
   background-position: 50% 50%;
   -webkit-background-origin: padding-box;
   background-origin: padding-box;
