@@ -433,7 +433,7 @@ angular.module('starter.controllers', [])
         },
       },
       title: {
-        text: 'Blutdruck'
+        text: ''
       },
       series: [{
           type: 'columnrange',
@@ -453,7 +453,6 @@ angular.module('starter.controllers', [])
           lineWidth: 0,
         }
       ]
-
     });
 
     //function is called by the button to add some values.
