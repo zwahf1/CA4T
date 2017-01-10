@@ -8,7 +8,7 @@ Page contains basic information about the user and a toggle that prevents change
 -->
 <ion-view view-title="Settings">
   <div id="wrapper">
-    <ion-content class="padding">
+    <ion-content class="padding" scroll="false">
 
 
       <div class="row rowSettings">
@@ -33,7 +33,7 @@ Page contains basic information about the user and a toggle that prevents change
           </div>
           <!--second row, cell for the list of anamneses.-->
           <div class="row rowList">
-            <ion-scroll class="listBorder" overflow:scroll="true" scrollbar-y="true" direction="y" id="anamnesisList">
+            <ion-scroll class="listBorder item-text-wrap" overflow:scroll="true" scrollbar-y="true" direction="y" id="anamnesisList">
               <ion-list show-delete="true" show-reorder="true">
                 <ion-item ng-repeat="item in anamneseItems" class="scrollFont myItem">
                   {{item.desc}}
