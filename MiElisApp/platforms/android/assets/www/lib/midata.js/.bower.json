@@ -1,0 +1,14 @@
+{
+  "name": "midata.js",
+  "homepage": "https://github.com/i4mi/midata.js",
+  "_release": "41bd270159",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "41bd270159a2502d944a4b9a74f6376ab56db6d4"
+  },
+  "_source": "https://github.com/i4mi/midata.js.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/i4mi/midata.js.git",
+  "_direct": true
+}

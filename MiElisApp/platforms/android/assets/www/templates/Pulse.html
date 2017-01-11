@@ -1,5 +1,25 @@
 <ion-view view-title="Pulse">
-  <ion-content>
-    <h1>Puls</h1>
+  <ion-content  scroll="true">
+    <h1>Puls und Blutdruck</h1>
+
+    <!-- weight chart from Highcharts library. Generated in the controller -->
+    <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+    <!--Form with a text input for the measured value and a submit
+    button to add the value into the chart.
+    If the value isn't a numeric value, it won't add-->
+    <div class="row">
+      <div class="col col-25">
+        <input type="number" ng-model="BPSysValue" placeholder="Systolischer">
+      </div>
+      <div class="col col-25">
+        <input type="number" ng-model="BPDiaValue" placeholder="Diastolischer">
+      </div>
+      <div class="col col-50">
+        <button class="button" ng-click="addBPValue(BPSysValue, BPDiaValue)">
+          <br>eintragen<br><br>
+        </button>
+      </div>
+    </div>
   </ion-content>
 </ion-view>

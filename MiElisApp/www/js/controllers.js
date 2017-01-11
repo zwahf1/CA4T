@@ -154,6 +154,13 @@ angular.module('starter.controllers', [])
 
   .controller('HomeCtrl', function($scope, $state, midataService) {
 
+    $scope.checkImg = function(){
+      $scope.localStorageImg = localStorage.getItem("Picture");
+      if($scope.localStorageImg != undefined){
+        document.getElementById("bMe").src = $scope.localStorageImg;
+      }
+    }
+
     var dumiData = {
       firstName: 'Elisabeth',
       lastName: 'Brönnimann'
@@ -515,7 +522,31 @@ angular.module('starter.controllers', [])
   })
 
   //if no anamnese and diagnose information available, it will filled with default data from E. Brönnimann
-  .controller('SettingsCtrl', function($scope) {
+  .controller('SettingsCtrl', function($scope, $cordovaCamera) {
+
+    //Start the Camera, Take a Photo, Show the Picture
+  $scope.takePicture = function() {
+          var options = {
+              quality : 75,
+              destinationType : Camera.DestinationType.DATA_URL,
+              sourceType : Camera.PictureSourceType.CAMERA,
+              allowEdit : true,
+              encodingType: Camera.EncodingType.JPEG,
+              targetWidth: 250,
+              targetHeight: 250,
+              popoverOptions: CameraPopoverOptions,
+              saveToPhotoAlbum: false
+          };
+
+  $cordovaCamera.getPicture(options).then(function(imageData) {
+      $scope.imgURI = "data:image/jpeg;base64," + imageData;
+      localStorage.setItem("Picture", $scope.imgURI)
+      }, function(err) {
+          // An error occured. Show a message to the user
+      })
+    };
+
+
     if (localStorage.anamnese == undefined || localStorage.anamnese == null || localStorage.anamnese == '') {
       var anamneseArray = [{
           desc: 'St.n.Pneumonie 1942',

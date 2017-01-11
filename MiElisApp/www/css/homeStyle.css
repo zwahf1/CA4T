@@ -51,7 +51,6 @@
 
 /*about me-button*/
 #bMe {
-  background: url("../img/Elisabeth.jpg"); /*should be loaded by DB*/
   background-position: 50% 50%;
   -webkit-background-origin: padding-box;
   background-origin: padding-box;

@@ -1,12 +1,19 @@
-// Ionic Starter App
+/*************************************************
+Ionic starter app
+
+Statehandling for the diffrent views and loading the html files and controllers
+
+10.11.2016 zwahf1
+*************************************************/
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'ionic-datepicker', 'ionic-timepicker', 'formlyIonic', 'nvd3', 'i4mi', 'jsonFormatter'])
-.constant('APPNAME', 'MiElisApp')
-.constant('APPSECRET', 'MEA2016HSCA4T')
+angular.module('starter', ['ionic', 'starter.controllers', 'ionic-datepicker', 'ionic-timepicker', 'formlyIonic', 'nvd3', 'i4mi', 'jsonFormatter', 'googlechart', 'ngStorage', 'services'])
+// 'chart.service',
+.constant('APPNAME','MiElisApp')
+.constant('APPSECRET','MEA2016HSCA4T')
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -34,14 +41,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-datepicker', '
     controller: 'AppCtrl'
   })
 
-  .state('app.login', {
-    url: '/login',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/login.html',
-        controller: 'LoginCtrl'
-      }
-    }
+  .state('LoggedOut', {
+    url: '/LoggedOut',
+    templateUrl: 'templates/LoggedOut.html',
+    controller: 'LoggedOutCtrl'
   })
 
   .state('app.Home', {
@@ -50,6 +53,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-datepicker', '
       'menuContent': {
         templateUrl: 'templates/Home.html',
         controller: 'HomeCtrl'
+      }
+    }
+  })
+
+  .state('app.login', {
+    url: '/login',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/login.html',
+        controller: 'LoginCtrl'
       }
     }
   })
@@ -80,6 +93,35 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-datepicker', '
       'menuContent': {
         templateUrl: 'templates/Pulse.html',
         controller: 'PulseCtrl'
+      }
+    }
+  })
+
+  .state('app.Me', {
+    url: '/Me',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/Me.html',
+        controller: 'MeCtrl'
+      }
+    }
+  })
+
+  .state('app.Settings', {
+    url: '/Settings',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/Settings.html',
+        controller: 'SettingsCtrl'
+      }
+    }
+  })
+
+  .state('app.DetailContact', {
+    url: '/DetailContact',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/DetailContact.html',
       }
     }
   });

@@ -1,5 +1,20 @@
 <ion-view view-title="Sugar">
   <ion-content>
     <h1>Sugar</h1>
+    
+    <!-- weight chart from Highcharts library. Generated in the controller -->
+    <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+    <!-- input fields for adding a value -->
+    <div class="row">
+      <div class="col col-50">
+        <input type="number" ng-model="glucoseValue" placeholder="Blutzucker">
+      </div>
+      <div class="col col-50">
+        <button class="button" ng-click="addGlucoValue(glucoseValue)">
+            eintragen
+          </button>
+      </div>
+    </div>
   </ion-content>
 </ion-view>

@@ -24,7 +24,14 @@
         },
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.ionicframework.mielisapp697840"
+        },
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "com.ionicframework.mielisapp697840"
         }
     },
-    "dependent_plugins": {}
+    "dependent_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.ionicframework.mielisapp697840"
+        }
+    }
 }

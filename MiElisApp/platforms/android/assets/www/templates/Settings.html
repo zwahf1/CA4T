@@ -1,5 +1,87 @@
+<!--
+HTML File of the settings page
+Page contains basic information about the user and a toggle that prevents changes in the settings
+- Name/Firstname
+- Address/ZIP/City
+- Birthdate
+- enable settings toggle
+-->
 <ion-view view-title="Settings">
-    <ion-content>
-      <h1>Einstellungen</h1>
+  <div id="wrapper">
+    <ion-content class="padding">
+
+
+      <div class="row rowSettings">
+        <!--Form to configure the target range of bloodsugar-->
+        <div class="col col-20">
+          <div class="row rowTitle">
+            <h2>Blutzucker</h2>
+          </div>
+              <div class="row">
+                <div class="col">
+                  <ion-label color="primary">Obergrenze</ion-label>
+                  <input type="number" ng-change="changeUpperGlucoLevel()" ng-model="UpperGlucoValue" value="7.2" placeholder="{{Upper}}" />
+                  <ion-label color="primary">Untergrenze</ion-label>
+                  <input type="number" ng-change="changeLowerGlucoLevel()" ng-model="LowerGlucoValue" value="4.5" placeholder="{{Lower}}" />
+                </div>
+              </div>
+        </div>
+        <!--second column of the top row, for the anamnesis, divided into two rows-->
+        <div class="col col-40 rowMeInner">
+          <div class="row">
+            <h2>Anamnese</h2>
+          </div>
+          <!--second row, cell for the list of anamneses.-->
+          <div class="row rowList">
+            <ion-scroll class="listBorder" overflow:scroll="true" scrollbar-y="true" direction="y" id="anamnesisList">
+              <ion-list show-delete="true" show-reorder="true">
+                <ion-item ng-repeat="item in anamneseItems" class="scrollFont myItem">
+                  {{item.desc}}
+                  <ion-reorder-button class="ion-navicon" on-reorder="moveItem(anamneseItems, item, $fromIndex, $toIndex)"></ion-reorder-button>
+                  <ion-delete-button class="ion-minus-circled" ng-click="onItemDelete(anamneseItems, item)"></ion-delete-button>
+                </ion-item>
+              </ion-list>
+            </ion-scroll>
+          </div>
+          <!-- form to add a new anamnesis to the list -->
+          <div class="item-input">
+            <input type="text" ng-model="newAnamnese" placeholder="Anamnese hinzufügen">
+            <button class="button" ng-click="addAnamnese(newAnamnese)">
+              eintragen
+            </button>
+          </div>
+        </div>
+        <!--third column of the top row, for the diagnosis, divided into two rows.-->
+        <div class="col col-40 rowMeInner">
+          <div class="row">
+            <h2>Diagnose</h2>
+          </div>
+          <!--second row, cell for the list of diagnoses.-->
+          <div class="row rowList">
+            <ion-scroll class="listBorder" overflow:scroll="true" scrollbar-y="true" direction="y" id="diagnosisList">
+              <ion-list show-delete="true" show-reorder="true">
+                <ion-item ng-repeat="item in diagnoseItems" class="scrollFont myItem">
+                  {{item.desc}}
+                  <ion-reorder-button class="ion-navicon" on-reorder="moveItem(diagnoseItems, item, $fromIndex, $toIndex)"></ion-reorder-button>
+                  <ion-delete-button class="ion-minus-circled" ng-click="onItemDelete(diagnoseItems, item)"></ion-delete-button>
+                </ion-item>
+              </ion-list>
+            </ion-scroll>
+          </div>
+          <!-- form to add a new diagnosis to the list -->
+          <div class="item-input">
+            <input type="text" ng-model="newDiagnose" placeholder="Diagnose hinzufügen">
+            <button class="button" ng-click="addDiagnose(newDiagnose)">
+              eintragen
+            </button>
+          </div>
+        </div>
+        <div class='row rowList'>
+          <button class="button" ng-click="takePicture()">
+            Foto
+          </button>
+        </div>
+      </div>
     </ion-content>
+  </div>
 </ion-view>

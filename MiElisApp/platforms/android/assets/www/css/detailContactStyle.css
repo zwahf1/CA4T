@@ -1,0 +1,61 @@
+/*************************************************
+Stylesheet for the Me view
+<Me.html>
+
+21.11.2016 nosec1
+*************************************************/
+
+.home-container {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+/*
+.home-container > .row {
+     -webkit-flex: 1;
+     flex-direction: column;
+}
+*/
+/*
+.icon-row {
+     -webkit-align-items: center;
+}*/
+.detailContactContainer {
+/*  width: auto;
+  height: 100%;
+  flex: 5;*/
+  height: auto;
+  width: 100%;
+  padding-left: 10%;
+  padding-right: 15%;
+  padding-top: 10%;
+  padding-bottom: 10%;
+}
+
+.rowContactsAddress {
+/*  width:auto;
+  height:42%; */
+  flex: 2;
+  /*margin-bottom: 5px; */
+  padding: 2vh;
+
+}
+.rowContacts {
+  width:auto;
+  height:29%;
+  margin: 0;
+  padding: 0;
+  min-height: 5px;
+}
+.cardStyle {
+  margin-bottom: 5vh !important;
+  vertical-align: middle;
+}
+.detailContFatFont{
+  font-size: 5vh;
+  line-height: 5vh;
+}
+.detailContFont{
+  font-size:5vh;
+  line-height: 5vh;
+}
