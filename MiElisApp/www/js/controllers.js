@@ -163,7 +163,10 @@ angular.module('starter.controllers', [])
 
     var dumiData = {
       firstName: 'Elisabeth',
-      lastName: 'Brönnimann'
+      lastName: 'Brönnimann',
+      adress: 'Kreuzweg 11',
+      zip: '2500',
+      city: 'Biel'
     };
     localStorage.setItem("data", JSON.stringify(dumiData));
     var data = JSON.parse(localStorage.getItem("data"));
@@ -483,6 +486,11 @@ angular.module('starter.controllers', [])
   })
 
   .controller('MeCtrl', function($scope) {
+    $scope.fname = JSON.parse(localStorage.getItem("data"))['firstName'];
+  $scope.lname = JSON.parse(localStorage.getItem("data"))['lastName'];
+  $scope.adress = JSON.parse(localStorage.getItem("data"))['adress'];
+  $scope.zip = JSON.parse(localStorage.getItem("data"))['zip'];
+  $scope.city = JSON.parse(localStorage.getItem("data"))['city'];
 
     //if no anamnese and diagnose information available, it will filled with default data from E. Brönnimann
     if (localStorage.anamnese == undefined || localStorage.anamnese == null || localStorage.anamnese == '') {
@@ -522,7 +530,7 @@ angular.module('starter.controllers', [])
   })
 
   //if no anamnese and diagnose information available, it will filled with default data from E. Brönnimann
-  
+
   .controller('SettingsCtrl', function($scope, $cordovaCamera, $ionicPopup) {
 
     //Start the Camera, Take a Photo, Show the Picture
