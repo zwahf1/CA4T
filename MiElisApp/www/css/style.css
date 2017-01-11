@@ -38,16 +38,6 @@ transform-origin: 50% 50% 0;
 text-align: justify;
 }
 
-<<<<<<< .mine
-||||||| .r46
-
-
-=======
-ion-content {
-  height: 95%;
-}
-
->>>>>>> .r48
 .Home-Button {
   width: 256px;
   height: 256px;
@@ -57,52 +47,4 @@ ion-content {
 .Home-Label {
   font: normal normal bold 35px/normal "Times New Roman", Times, serif;
   text-align: center;
-}
-
-/*weight-button*/
-#bWeight {
-  background: url("../img/balance-icon.png");
-  background-position: 50% 50%;
-  -webkit-background-origin: padding-box;
-  background-origin: padding-box;
-  -webkit-background-clip: border-box;
-  background-clip: border-box;
-  -webkit-background-size: cover;
-  background-size: cover;
-}
-
-/*pulse-button*/
-#bPulse {
-  background: url("../img/heart-icon.png");
-  background-position: 50% 50%;
-  -webkit-background-origin: padding-box;
-  background-origin: padding-box;
-  -webkit-background-clip: border-box;
-  background-clip: border-box;
-  -webkit-background-size: cover;
-  background-size: cover;
-}
-
-/*sugar-button*/
-#bSugar {
-  background: url("../img/Diabetes-icon.png");
-  background-position: 50% 50%;
-  -webkit-background-origin: padding-box;
-  background-origin: padding-box;
-  -webkit-background-clip: border-box;
-  background-clip: border-box;
-  -webkit-background-size: cover;
-  background-size: cover;
-}
-
-/*about me-button*/
-#bMe {
-  background: url("../img/Elisabeth.jpg"); /*should be loaded by DB*/
-  background-position: 50% 50%;
-  -webkit-background-origin: padding-box;
-  background-origin: padding-box;
-  -webkit-background-clip: border-box;
-  background-clip: border-box;
-  -webkit-background-size: cover;
-  background-size: cover;
 }
