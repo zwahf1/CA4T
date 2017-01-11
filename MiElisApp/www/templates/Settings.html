@@ -17,14 +17,14 @@ Page contains basic information about the user and a toggle that prevents change
           <div class="row rowTitle">
             <h2>Blutzucker</h2>
           </div>
-              <div class="row">
-                <div class="col">
-                  <ion-label color="primary">Obergrenze</ion-label>
-                  <input type="number" ng-change="changeUpperGlucoLevel()" ng-model="UpperGlucoValue" value="7.2" placeholder="{{Upper}}" />
-                  <ion-label color="primary">Untergrenze</ion-label>
-                  <input type="number" ng-change="changeLowerGlucoLevel()" ng-model="LowerGlucoValue" value="4.5" placeholder="{{Lower}}" />
-                </div>
-              </div>
+          <div class="row">
+            <div class="col">
+              <ion-label color="primary">Obergrenze</ion-label>
+              <input type="number" ng-change="changeUpperGlucoLevel()" ng-model="UpperGlucoValue" value="7.2" placeholder="{{Upper}}" />
+              <ion-label color="primary">Untergrenze</ion-label>
+              <input type="number" ng-change="changeLowerGlucoLevel()" ng-model="LowerGlucoValue" value="4.5" placeholder="{{Lower}}" />
+            </div>
+          </div>
         </div>
         <!--second column of the top row, for the anamnesis, divided into two rows-->
         <div class="col col-40 rowMeInner">
@@ -81,6 +81,49 @@ Page contains basic information about the user and a toggle that prevents change
             Foto
           </button>
         </div>
+      </div>
+      <div class="contactWrapper">
+        <div class="row">
+          <div class="col">
+            <ion-item>
+              <ion-label color="primary">Vorname</ion-label>
+              <input type="text" ng-change="changeFName()" ng-model="fNameField" placeholder="{{fname}}"></input>
+            </ion-item>
+          </div>
+          <div class="col">
+            <ion-item>
+              <ion-label color="primary">Nachname</ion-label>
+              <input type="text" ng-change="changeLName()" ng-model="lNameField" placeholder="{{lname}}"></input>
+            </ion-item>
+          </div>
+          <div class="col">
+            <ion-item>
+              <ion-label color="primary">Adresse</ion-label>
+              <input type="text" ng-change="changeAdress()" ng-model="adressField" placeholder="{{adress}}"></input>
+            </ion-item>
+          </div>
+
+          <div class="col">
+            <ion-item>
+              <ion-label color="primary">PLZ</ion-label>
+              <input type="number" ng-change="changeZIP()" ng-model="zipField" placeholder="{{zip}}"></input>
+            </ion-item>
+          </div>
+          <div class="col">
+            <ion-item>
+              <ion-label color="primary">Ort</ion-label>
+              <input type="text" ng-change="changeCity()" ng-model="cityField" placeholder="{{city}}"></input>
+            </ion-item>
+          </div>
+        </div>
+      </div>
+      <div class="item-input">
+        <button class="button" ng-click="newPic()">
+          Foto aufnehmen
+        </button>
+        <button class="button button-positive" ng-click="showAlert()">
+          Alert
+      </button>
       </div>
     </ion-content>
   </div>

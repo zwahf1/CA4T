@@ -64,3 +64,11 @@
 .scroll-view.scroll-y {
     min-width: 100%;
 }
+.popupStyle{
+   .popup{
+     width: 600px;
+   }
+   .popup-title{
+     //styling for title
+   }
+ }
