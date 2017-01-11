@@ -156,12 +156,11 @@ angular.module('starter.controllers', [])
 
 
     $scope.checkImg = function() {
-      $scope.localStorageImg = JSON.parse(localStorage.getItem("Picture"));
+      $scope.localStorageImg = localStorage.getItem("Picture");
       if ($scope.localStorageImg != null) {
-        document.getElementById("bMe").removeAttribute("ng-src");
-        document.getElementById("bMe").setAttribute("ng-src", $scope.localStorageImg.picture);
+        document.getElementById("bMe").removeAttribute("src");
+        document.getElementById("bMe").setAttribute("src", $scope.localStorageImg);
       } else if ($scope.localStorageImg == null || $scope.localStorageImg == undefined ) {
-
         document.getElementById("bMe").setAttribute("src", "img/Elisabeth.jpg");
       }
     }
