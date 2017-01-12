@@ -11,7 +11,7 @@ The buttons are in a grid with the labels for the description of the buttons
 
 
 <ion-view view-title="{{ firstName + ' ' + lastName }}">
-    <ion-content scroll="false" class="padding" ng-init="checkImg()">
+    <ion-content scroll="false" class="padding" >
       <div class="row row-center">
         <div class="col col-center">
           <a class="Button Home-Button" id="bWeight" href="#/app/Weight" ng-click="getObservation()"></a>
@@ -36,7 +36,7 @@ The buttons are in a grid with the labels for the description of the buttons
           <a class="Button Home-Button" id="bSugar" href="#/app/Sugar" ng-click="getObservation()"></a>
         </div>
         <div class="col col-center">
-          <a class="Button Home-Button" src="img/Elisabeth.jpg" id="bMe" href="#/app/Me" ng-click="getPerson()"></a>
+          <img class="Button Home-Button" src="img/Elisabeth.jpg" id="bMe" href="#/app/Me" ng-click="changeView(); getObservation()"></img>
         </div>
       </div>
       <div class="row row-top">

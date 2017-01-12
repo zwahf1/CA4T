@@ -28,11 +28,14 @@ Stylesheet for the Me view
   width: 100%;
 }
 
+#bHausarzt {
+  padding-top: 10%;
+}
+
 .Button.btn_full{
   display: block;
   text-align: center;
   width: 100%;
-  padding-top: 5%;
   padding-bottom: 5%;
   margin-right: 2%;
   margin-top: 1%;

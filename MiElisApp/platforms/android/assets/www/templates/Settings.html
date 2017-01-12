@@ -8,7 +8,7 @@ Page contains basic information about the user and a toggle that prevents change
 -->
 <ion-view view-title="Settings">
   <div id="wrapper">
-    <ion-content class="padding">
+    <ion-content class="padding" scroll="true">
 
 
       <div class="row rowSettings">
@@ -17,14 +17,14 @@ Page contains basic information about the user and a toggle that prevents change
           <div class="row rowTitle">
             <h2>Blutzucker</h2>
           </div>
-              <div class="row">
-                <div class="col">
-                  <ion-label color="primary">Obergrenze</ion-label>
-                  <input type="number" ng-change="changeUpperGlucoLevel()" ng-model="UpperGlucoValue" value="7.2" placeholder="{{Upper}}" />
-                  <ion-label color="primary">Untergrenze</ion-label>
-                  <input type="number" ng-change="changeLowerGlucoLevel()" ng-model="LowerGlucoValue" value="4.5" placeholder="{{Lower}}" />
-                </div>
-              </div>
+          <div class="row">
+            <div class="col">
+              <ion-label color="primary">Obergrenze</ion-label>
+              <input type="number" ng-change="changeUpperGlucoLevel()" ng-model="UpperGlucoValue" value="7.2" placeholder="{{Upper}}" />
+              <ion-label color="primary">Untergrenze</ion-label>
+              <input type="number" ng-change="changeLowerGlucoLevel()" ng-model="LowerGlucoValue" value="4.5" placeholder="{{Lower}}" />
+            </div>
+          </div>
         </div>
         <!--second column of the top row, for the anamnesis, divided into two rows-->
         <div class="col col-40 rowMeInner">
@@ -33,7 +33,7 @@ Page contains basic information about the user and a toggle that prevents change
           </div>
           <!--second row, cell for the list of anamneses.-->
           <div class="row rowList">
-            <ion-scroll class="listBorder" overflow:scroll="true" scrollbar-y="true" direction="y" id="anamnesisList">
+            <ion-scroll class="listBorder item-text-wrap" overflow:scroll="true" scrollbar-y="true" direction="y" id="anamnesisList">
               <ion-list show-delete="true" show-reorder="true">
                 <ion-item ng-repeat="item in anamneseItems" class="scrollFont myItem">
                   {{item.desc}}
@@ -82,6 +82,92 @@ Page contains basic information about the user and a toggle that prevents change
           </button>
         </div>
       </div>
+      <div class="contactWrapper">
+        <div class="row">
+          <div class="col">
+            <ion-item>
+              <ion-label color="primary">Vorname</ion-label>
+              <input type="text" ng-change="changeFName()" ng-model="fNameField" placeholder="{{fname}}"></input>
+            </ion-item>
+          </div>
+          <div class="col">
+            <ion-item>
+              <ion-label color="primary">Nachname</ion-label>
+              <input type="text" ng-change="changeLName()" ng-model="lNameField" placeholder="{{lname}}"></input>
+            </ion-item>
+          </div>
+          <div class="col">
+            <ion-item>
+              <ion-label color="primary">Adresse</ion-label>
+              <input type="text" ng-change="changeAdress()" ng-model="adressField" placeholder="{{adress}}"></input>
+            </ion-item>
+          </div>
+
+          <div class="col">
+            <ion-item>
+              <ion-label color="primary">PLZ</ion-label>
+              <input type="number" ng-change="changeZIP()" ng-model="zipField" placeholder="{{zip}}"></input>
+            </ion-item>
+          </div>
+          <div class="col">
+            <ion-item>
+              <ion-label color="primary">Ort</ion-label>
+              <input type="text" ng-change="changeCity()" ng-model="cityField" placeholder="{{city}}"></input>
+            </ion-item>
+          </div>
+        </div>
+      </div>
+      <div class="item-input">
+        <button class="button" ng-click="takePicture()">
+          Foto aufnehmen
+        </button>
+        <button class="button button-positive" ng-click="showAlert()">
+          Datenschutzerklärung
+      </button>
+      </div>
+      <h2>Kontakdaten bearbeiten</h2>
+      <table>
+        <tbody>
+          <tr>
+            <th colspan="2">Kontaktpersonen</th>
+          </tr>
+          <tr>
+            <td>
+              <table>
+                <tbody>
+                  <tr>
+                    <td>Name:</td>
+                    <td><input type="text" ng-change="changedName1()" ng-model="name1" ng-value="n1"></input>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Tel:</td>
+                    <td><input type="tel" ng-change="changedTel1()" ng-model="tel1" ng-value="t1"></input>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+
+            <td>
+              <table>
+                <tbody>
+                  <tr>
+                    <td>Name:</td>
+                    <td><input type="text" ng-change="changedName2()" ng-model="name2" ng-value="n2"></input>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Tel:</td>
+                    <td><input type="tel" ng-change="changedTel2()" ng-model="tel2" ng-value="t2"></input>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </ion-content>
   </div>
 </ion-view>

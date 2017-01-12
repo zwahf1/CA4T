@@ -64,3 +64,21 @@
 .scroll-view.scroll-y {
     min-width: 100%;
 }
+.popupStyle{
+   .popup{
+     width: 600px;
+   }
+   .popup-title{
+     //styling for title
+   }
+ }
+
+ tr th {
+   font-weight: bold;
+ }
+
+ td {
+   min-width: 70px;
+   vertical-align: middle;
+   padding: 2px 0px 0px 5px;
+ }
