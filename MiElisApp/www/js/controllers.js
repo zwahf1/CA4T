@@ -11,6 +11,7 @@ angular.module('starter.controllers', [])
     $scope.loginMIDATA = function() {
       var user = JSON.parse(localStorage.getItem("login"));
       midataService.login(user);
+
     }
 
     //Logout from MIDATA
@@ -165,6 +166,10 @@ angular.module('starter.controllers', [])
       }
     }
 
+    $scope.changeView = function() {
+      $state.go("app.Me");
+    }
+
     var dumiData = {
       firstName: 'Elisabeth',
       lastName: 'Brönnimann',
@@ -185,7 +190,7 @@ angular.module('starter.controllers', [])
     // Check if already logged in
     // if not and no login is defined  --> change to view LoggedOut
     // if not but login data is in the localstorage (not the first usage) --> autologin
-    if (midataService.loggedIn != true) {
+    if (midataService.loggedIn() != true) {
       if (localStorage.login == undefined || localStorage.login == null || localStorage.login == '') {
         // create localStorage variable login (empty)
         localStorage.setItem("login", "{}");
@@ -212,6 +217,14 @@ angular.module('starter.controllers', [])
       user.User = $scope.login.User;
       user.Password = $scope.login.Password;
       localStorage.setItem("login", JSON.stringify(user));
+    }
+
+    $scope.checkLogin = function() {
+      if(midataService.loggedIn() == true) {
+        document.getElementById("labelUser").setAttribute("style","background: lightgreen");
+      } else {
+        document.getElementById("labelUser").setAttribute("style","background: red");
+      }
     }
   })
 
