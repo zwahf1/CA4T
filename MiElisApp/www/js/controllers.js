@@ -160,7 +160,7 @@ angular.module('starter.controllers', [])
       if ($scope.localStorageImg != null) {
         document.getElementById("bMe").removeAttribute("src");
         document.getElementById("bMe").setAttribute("src", $scope.localStorageImg);
-      } else if ($scope.localStorageImg == null || $scope.localStorageImg == undefined ) {
+      } else if ($scope.localStorageImg == null || $scope.localStorageImg == undefined) {
         document.getElementById("bMe").setAttribute("src", "img/Elisabeth.jpg");
       }
     }
@@ -170,7 +170,12 @@ angular.module('starter.controllers', [])
       lastName: 'Brönnimann',
       adress: 'Kreuzweg 11',
       zip: '2500',
-      city: 'Biel'
+      city: 'Biel',
+      city: 'Biel',
+      nkp1: 'Kurt Brönnimann',
+      tkp1: '032 456 12 78',
+      nkp2: 'Markus Brönnimann',
+      tkp2: '079 123 45 67',
     };
     localStorage.setItem("data", JSON.stringify(dumiData));
     var data = JSON.parse(localStorage.getItem("data"));
@@ -495,6 +500,10 @@ angular.module('starter.controllers', [])
     $scope.adress = JSON.parse(localStorage.getItem("data"))['adress'];
     $scope.zip = JSON.parse(localStorage.getItem("data"))['zip'];
     $scope.city = JSON.parse(localStorage.getItem("data"))['city'];
+    $scope.n1 = JSON.parse(localStorage.getItem("data"))['nkp1'];
+    $scope.t1 = JSON.parse(localStorage.getItem("data"))['tkp1'];
+    $scope.n2 = JSON.parse(localStorage.getItem("data"))['nkp2'];
+    $scope.t2 = JSON.parse(localStorage.getItem("data"))['tkp2'];
 
     //if no anamnese and diagnose information available, it will filled with default data from E. Brönnimann
     if (localStorage.anamnese == undefined || localStorage.anamnese == null || localStorage.anamnese == '') {
@@ -565,6 +574,10 @@ angular.module('starter.controllers', [])
     $scope.adress = JSON.parse(localStorage.getItem("data"))['adress'];
     $scope.zip = JSON.parse(localStorage.getItem("data"))['zip'];
     $scope.city = JSON.parse(localStorage.getItem("data"))['city'];
+    $scope.n1 = JSON.parse(localStorage.getItem("data"))['nkp1'];
+    $scope.t1 = JSON.parse(localStorage.getItem("data"))['tkp1'];
+    $scope.n2 = JSON.parse(localStorage.getItem("data"))['nkp2'];
+    $scope.t2 = JSON.parse(localStorage.getItem("data"))['tkp2'];
 
     $scope.changeFName = function() {
       if (this.fNameField) {
@@ -609,6 +622,42 @@ angular.module('starter.controllers', [])
         localStorage.setItem("data", JSON.stringify(persData));
       } else {
         this.city = persData.city;
+      }
+    }
+    $scope.changedName1 = function() {
+      if (this.name1) {
+        persData = JSON.parse(localStorage.getItem("data"));
+        persData.nkp1= this.name1;
+        localStorage.setItem("data", JSON.stringify(persData));
+      } else {
+        this.name1 = persData.nkp1;
+      }
+    }
+    $scope.changedName2 = function() {
+      if (this.name2) {
+        persData = JSON.parse(localStorage.getItem("data"));
+        persData.nkp2= this.name2;
+        localStorage.setItem("data", JSON.stringify(persData));
+      } else {
+        this.name2 = persData.nkp2;
+      }
+    }
+    $scope.changedTel1 = function() {
+      if (this.tel1) {
+        persData = JSON.parse(localStorage.getItem("data"));
+        persData.tkp1= this.tel1;
+        localStorage.setItem("data", JSON.stringify(persData));
+      } else {
+        this.name1 = persData.tkp1;
+      }
+    }
+    $scope.changedTel2 = function() {
+      if (this.tel2) {
+        persData = JSON.parse(localStorage.getItem("data"));
+        persData.tkp2= this.tel2;
+        localStorage.setItem("data", JSON.stringify(persData));
+      } else {
+        this.name2 = persData.tkp2;
       }
     }
 
@@ -720,7 +769,7 @@ angular.module('starter.controllers', [])
     // An alert dialog
     $scope.showAlert = function() {
       var alertPopup = $ionicPopup.alert({
-        title: 'Datenschutzerklärung',
+        title: '<h2>Datenschutzerklärung</h2>',
         template: "<div><h3>Haftungsausschluss</h3>Der Autor übernimmt keinerlei Gewähr hinsichtlich der inhaltlichen Richtigkeit, Genauigkeit, Aktualität, Zuverlässigkeit und Vollständigkeit der Informationen. Haftungsansprüche gegen den Autor wegen Schäden materieller oder immaterieller Art, welche aus dem Zugriff oder der Nutzung bzw. Nichtnutzung der veröffentlichten Informationen, durch Missbrauch der Verbindung oder durch technische Störungen entstanden sind, werden ausgeschlossen. Alle Angebote sind unverbindlich. Der Autor behält es sich ausdrücklich vor, Teile der Seiten oder das gesamte Angebot ohne gesonderte Ankündigung zu verändern, zu ergänzen, zu löschen oder die Veröffentlichung zeitweise oder endgültig einzustellen.</div> <br/> <div><h3>Urheberrechte</h3> Die Urheber- und alle anderen Rechte an Inhalten, Bildern, Fotos oder anderen Dateien auf der Website gehören ausschliesslich muk mikmiu oder den speziell genannten Rechtsinhabern. Für die Reproduktion jeglicher Elemente ist die schriftliche Zustimmung der Urheberrechtsträger im Voraus einzuholen.</div> <br/> <div><h3>Datenschutz</h3> Gestützt auf Artikel 13 der schweizerischen Bundesverfassung und die datenschutzrechtlichen Bestimmungen des Bundes (Datenschutzgesetz, DSG) hat jede Person Anspruch auf Schutz ihrer Privatsphäre sowie auf Schutz vor Missbrauch ihrer persönlichen Daten. Wir halten diese  Bestimmungen ein. Persönliche Daten werden streng vertraulich behandelt und weder an Dritte verkauft noch weiter gegeben. In enger Zusammenarbeit mit unseren Hosting-Providern bemühen wir uns, die Datenbanken so gut wie möglich vor fremden Zugriffen, Verlusten, Missbrauch oder vor Fälschung zu schützen. Beim Zugriff auf unsere Webseiten werden folgende Daten in Logfiles gespeichert: IP-Adresse, Datum, Uhrzeit, Browser-Anfrage und allg. übertragene Informationen zum Betriebssystem resp. Browser. Diese Nutzungsdaten bilden die Basis für statistische, anonyme Auswertungen, so dass Trends erkennbar sind, anhand derer wir unsere Angebote entsprechend verbessern können.</div>",
         okText: 'Schliessen',
       });
