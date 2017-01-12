@@ -8,7 +8,7 @@ Page contains basic information about the user and a toggle that prevents change
 -->
 <ion-view view-title="Settings">
   <div id="wrapper">
-    <ion-content class="padding" scroll="false">
+    <ion-content class="padding" scroll="true">
 
 
       <div class="row rowSettings">
@@ -125,6 +125,75 @@ Page contains basic information about the user and a toggle that prevents change
           Datenschutzerklärung
       </button>
       </div>
+      <h2>Kontakdaten bearbeiten</h2>
+      <table>
+      <tbody>
+      <tr><th>Kontaktpersonen</th></tr>
+      <tr>
+      <td>
+      <table>
+      <tbody>
+      <tr>
+      <td>Name:</td>
+      <td><input type="text" ng-change="changedName1()" ng-model="name1" ng-value="n1"></input> </td>
+      </tr>
+      <tr>
+      <td>Tel:</td>
+      <td><input type="tel" ng-change="changedTel1()" ng-model="tel1" ng-value="t1"></input></td>
+      </tr>
+      </tbody>
+      </table>
+      </td>
+      </tr>
+      <tr>
+      <td>
+      <table>
+      <tbody>
+        <tr>
+        <td>Name:</td>
+        <td><input type="text" ng-change="changedName1()" ng-model="name2" value="{{nkp2}}"></input> </td>
+        </tr>
+        <tr>
+        <td>Tel:</td>
+        <td><input type="tel" ng-change="changedTel1()" ng-model="tel2" value="{{tkp2}}"></input></td>
+        </tr>      </tbody>
+      </table>
+      </td>
+      </tr>
+      <tr>
+      <td>
+      <table>
+      <tbody>
+      <tr>
+      <td>Name:</td>
+      <td>Margrith Br&ouml;nnimann</td>
+      </tr>
+      <tr>
+      <td>Tel:</td>
+      <td>032 112 35 81</td>
+      </tr>
+      </tbody>
+      </table>
+      </td>
+      </tr>
+      <tr>
+      <td>
+      <table>
+      <tbody>
+      <tr>
+      <td>Name:</td>
+      <td>Miriam&nbsp;Br&ouml;nnimann</td>
+      </tr>
+      <tr>
+      <td>Tel:</td>
+      <td>032 112 35 81</td>
+      </tr>
+      </tbody>
+      </table>
+      </td>
+      </tr>
+      </tbody>
+      </table>
     </ion-content>
   </div>
 </ion-view>

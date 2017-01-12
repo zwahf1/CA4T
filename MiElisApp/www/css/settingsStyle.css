@@ -72,3 +72,12 @@
      //styling for title
    }
  }
+
+ tr th {
+   font-weight: bold;
+ }
+
+ td {
+   min-width: 70px;
+   vertical-align: middle;
+ }
