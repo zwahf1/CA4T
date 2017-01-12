@@ -34,6 +34,17 @@ angular.module('starter.controllers', [])
       console.log("saved: " + val + " to res: " + res + " at " + datetime);
     }
 
+    $scope.checkImg = function() {
+      $scope.localStorageImg = localStorage.getItem("Picture");
+      if ($scope.localStorageImg != null) {
+        document.getElementById("bMe").removeAttribute("src");
+        document.getElementById("bMe").setAttribute("src", $scope.localStorageImg);
+      } else if ($scope.localStorageImg == null || $scope.localStorageImg == undefined) {
+        document.getElementById("bMe").setAttribute("src", "img/Elisabeth.jpg");
+      }
+    }
+
+
     // Function to get all observations from midata
     // parameter: resource -> define for specific observations
     // w: all Weights
@@ -155,17 +166,6 @@ angular.module('starter.controllers', [])
 
   .controller('HomeCtrl', function($scope, $state, midataService) {
 
-
-    $scope.checkImg = function() {
-      $scope.localStorageImg = localStorage.getItem("Picture");
-      if ($scope.localStorageImg != null) {
-        document.getElementById("bMe").removeAttribute("src");
-        document.getElementById("bMe").setAttribute("src", $scope.localStorageImg);
-      } else if ($scope.localStorageImg == null || $scope.localStorageImg == undefined) {
-        document.getElementById("bMe").setAttribute("src", "img/Elisabeth.jpg");
-      }
-    }
-
     $scope.changeView = function() {
       $state.go("app.Me");
     }
@@ -237,7 +237,7 @@ angular.module('starter.controllers', [])
     //loads the weight data of MIDATA from localStorage to local variable
     var weightDataFromJSON = JSON.parse(localStorage.getItem("weight"));
     //sorts the data, if unsorted no chart can be generated
-    weightDataFromJSON.sort();
+
     var aData = [];
 
     //parsing the data from the localStorage to a usable array
