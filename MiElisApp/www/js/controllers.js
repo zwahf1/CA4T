@@ -5,18 +5,18 @@ All controllers from the views in the app.
  *************************************************/
 angular.module('starter.controllers', [])
 
-  .controller('AppCtrl', function($scope, $ionicModal, midataService) {
+  .controller('AppCtrl', function($scope, $state, $ionicModal, midataService, $timeout) {
 
-    // Login to MIDATA with username and password from localstorage
-    $scope.loginMIDATA = function() {
-      var user = JSON.parse(localStorage.getItem("login"));
-      midataService.login(user);
-
-    }
-
-    //Logout from MIDATA
-    $scope.logoutMIDATA = function() {
-      midataService.logout();
+    // Check if selfmade picture is saved and load it
+    // otherwise load defaultpicture
+    $scope.checkImg = function() {
+      $scope.localStorageImg = localStorage.getItem("Picture");
+      if ($scope.localStorageImg != null) {
+        document.getElementById("bMe").removeAttribute("src");
+        document.getElementById("bMe").setAttribute("src", $scope.localStorageImg);
+      } else if ($scope.localStorageImg == null || $scope.localStorageImg == undefined) {
+        document.getElementById("bMe").setAttribute("src", "img/Elisabeth.jpg");
+      }
     }
 
     //Save a given value to the given observation resource in MIDATA
@@ -34,16 +34,6 @@ angular.module('starter.controllers', [])
       console.log("saved: " + val + " to res: " + res + " at " + datetime);
     }
 
-    $scope.checkImg = function() {
-      $scope.localStorageImg = localStorage.getItem("Picture");
-      if ($scope.localStorageImg != null) {
-        document.getElementById("bMe").removeAttribute("src");
-        document.getElementById("bMe").setAttribute("src", $scope.localStorageImg);
-      } else if ($scope.localStorageImg == null || $scope.localStorageImg == undefined) {
-        document.getElementById("bMe").setAttribute("src", "img/Elisabeth.jpg");
-      }
-    }
-
 
     // Function to get all observations from midata
     // parameter: resource -> define for specific observations
@@ -54,6 +44,7 @@ angular.module('starter.controllers', [])
     $scope.getObservation = function() {
       res = "Observation";
       params = {};
+      finish = false;
       midataService.search(res, params).then(function(observations) {
         result = [];
         //--> only pulses
@@ -72,7 +63,6 @@ angular.module('starter.controllers', [])
           }
         }
         localStorage.setItem("pulse", JSON.stringify(result));
-        console.log(result);
         result = [];
         //--> only weights
         for (var i = 0; i < observations.length; i++) {
@@ -91,7 +81,6 @@ angular.module('starter.controllers', [])
           }
         }
         localStorage.setItem("weight", JSON.stringify(result));
-        console.log(result);
         result = [];
         //--> only blood pressures
         for (var i = 0; i < observations.length; i++) {
@@ -127,7 +116,6 @@ angular.module('starter.controllers', [])
           }
         }
         localStorage.setItem("bloodPressure", JSON.stringify(result));
-        console.log(result);
         result = [];
         // --> only glucose
         for (var i = 0; i < observations.length; i++) {
@@ -146,9 +134,14 @@ angular.module('starter.controllers', [])
         }
         localStorage.setItem("glucose", JSON.stringify(result));
         localStorage.setItem("observations", JSON.stringify(observations));
-        console.log(result);
-        console.log(observations);
+        finish = true;
       });
+      var timer = $timeout(function refresh() {
+        if (finish) {
+        } else {
+          timer = $timeout(refresh, 1000);
+        }
+     }, 1000);
     }
 
     $scope.getPerson = function() {
@@ -158,13 +151,11 @@ angular.module('starter.controllers', [])
       midataService.search(res, params).then(function(persons) {
         result = persons;
         localStorage.setItem("persons", JSON.stringify(result));
-        console.log(persons);
       });
-
     }
   })
 
-  .controller('HomeCtrl', function($scope, $state, midataService) {
+  .controller('HomeCtrl', function($scope, $state, midataService, $timeout) {
 
     $scope.changeView = function() {
       $state.go("app.Me");
@@ -199,11 +190,19 @@ angular.module('starter.controllers', [])
       } else {
         // login to MIDATA with the login data from localStorage (as JSON)
         midataService.login(JSON.parse(localStorage.getItem("login")));
+        var timer = $timeout(function refresh() {
+          if (midataService.loggedIn()) {
+            $scope.getObservation();
+            $scope.checkImg();
+          } else {
+            timer = $timeout(refresh, 1000);
+          }
+       }, 1000);
       }
     }
   })
 
-  .controller('LoginCtrl', function($scope, $state, midataService) {
+  .controller('LoginCtrl', function($scope, $state, midataService, $timeout) {
     $scope.login = {};
     // Perform the login action when the user submits the login form
     // Use for testing the development environment
@@ -219,13 +218,26 @@ angular.module('starter.controllers', [])
       localStorage.setItem("login", JSON.stringify(user));
     }
 
-    $scope.checkLogin = function() {
-      if(midataService.loggedIn() == true) {
-        document.getElementById("labelUser").setAttribute("style","background: lightgreen");
-      } else {
-        document.getElementById("labelUser").setAttribute("style","background: red");
-      }
+    // Login to MIDATA with username and password from localstorage
+    $scope.loginMIDATA = function() {
+      var user = JSON.parse(localStorage.getItem("login"));
+      midataService.login(user);
+      var timer = $timeout(function refresh() {
+        if (midataService.loggedIn()) {
+          $scope.getObservation();
+          document.getElementById("bLogin").setAttribute("style","background: lightgreen");
+        } else {
+          document.getElementById("bLogin").setAttribute("style","background: red");
+          timer = $timeout(refresh, 1000);
+        }
+      }, 1000);
     }
+
+    //Logout from MIDATA
+    $scope.logoutMIDATA = function() {
+      midataService.logout();
+    }
+
   })
 
   .controller('WeightCtrl', function($scope, midataService) {
