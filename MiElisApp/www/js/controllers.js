@@ -7,9 +7,9 @@ angular.module('starter.controllers', [])
 
   .controller('AppCtrl', function($scope, $state, $ionicModal, midataService, $timeout) {
 
-    // Check if selfmade picture is saved and load it
+    // if selfmade picture is saved load it to the Home-Button
     // otherwise load defaultpicture
-    $scope.checkImg = function() {
+    $scope.checkImgHome = function() {
       $scope.localStorageImg = localStorage.getItem("Picture");
       if ($scope.localStorageImg != null) {
         document.getElementById("bMe").removeAttribute("src");
@@ -159,6 +159,22 @@ angular.module('starter.controllers', [])
 
     $scope.changeView = function() {
       $state.go("app.Me");
+      var timer = $timeout(function refresh() {
+        if ($state.current.name == "app.Me") {
+          // if selfmade picture is saved load it to the Me-Page
+          // otherwise load defaultpicture
+          $scope.localStorageImg = localStorage.getItem("Picture");
+          if ($scope.localStorageImg != null) {
+            document.getElementById("pPicture").removeAttribute("src");
+            document.getElementById("pPicture").setAttribute("src", $scope.localStorageImg);
+          } else if ($scope.localStorageImg == null || $scope.localStorageImg == undefined) {
+            document.getElementById("pPicture").setAttribute("src", "img/Elisabeth.jpg");
+          }
+        } else {
+          timer = $timeout(refresh, 1000);
+        }
+     }, 1000);
+
     }
 
     var dumiData = {
@@ -193,7 +209,7 @@ angular.module('starter.controllers', [])
         var timer = $timeout(function refresh() {
           if (midataService.loggedIn()) {
             $scope.getObservation();
-            $scope.checkImg();
+            $scope.checkImgHome();
           } else {
             timer = $timeout(refresh, 1000);
           }
