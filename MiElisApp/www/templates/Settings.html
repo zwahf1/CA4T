@@ -86,75 +86,115 @@ Page contains basic information about the user and a toggle that prevents change
       </button>
       </div>
       <h2>Kontakdaten bearbeiten</h2>
+      <h3>Benutzer</h3>
+      <div class="contactWrapper">
+        <div class="row">
+          <div class="col colSettings">
+            <ion-item>
+              <ion-label color="primary">Vorname</ion-label>
+              <input type="text" ng-change="changeFName()" ng-model="fNameField" placeholder={{fname}}></input>
+            </ion-item>
+          </div>
+          <div class="col colSettings">
+            <ion-item>
+              <ion-label color="primary">Nachname</ion-label>
+              <input type="text" ng-change="changeLName()" ng-model="lNameField" placeholder={{lname}}></input>
+            </ion-item>
+          </div>
+          <div class="col colSettings">
+            <ion-item>
+              <ion-label color="primary">Adresse</ion-label>
+              <input type="text" ng-change="changeAdress()" ng-model="adressField" placeholder={{adress}}></input>
+            </ion-item>
+          </div>
+
+          <div class="col colSettings">
+            <ion-item>
+              <ion-label color="primary">PLZ</ion-label>
+              <input type="number" ng-change="changeZIP()" ng-model="zipField" placeholder={{zip}}></input>
+            </ion-item>
+          </div>
+          <div class="col colSettings">
+            <ion-item>
+              <ion-label color="primary">Ort</ion-label>
+              <input type="text" ng-change="changeCity()" ng-model="cityField" placeholder={{city}}></input>
+            </ion-item>
+          </div>
+          <div class="col colSettings">
+            <ion-item>
+              <ion-label color="primary">Geburtsdatum</ion-label>
+              <input type="date" ng-change="changeDate()" ng-model="dateField" value={{date}}></input>
+            </ion-item>
+          </div>
+        </div>
+      </div>
+      <h3>Hausarzt</h3>
       <div class="contactWrapper">
         <div class="row">
           <div class="col">
             <ion-item>
-              <ion-label color="primary">Vorname</ion-label>
-              <input type="text" ng-change="changeFName()" ng-model="fNameField" placeholder="{{fname}}"></input>
-            </ion-item>
-          </div>
-          <div class="col">
-            <ion-item>
-              <ion-label color="primary">Nachname</ion-label>
-              <input type="text" ng-change="changeLName()" ng-model="lNameField" placeholder="{{lname}}"></input>
+              <ion-label color="primary">Name</ion-label>
+              <input type="text" ng-change="changedNameDoc()" ng-model="nameDocField" placeholder={{nDoc}}></input>
             </ion-item>
           </div>
           <div class="col">
             <ion-item>
               <ion-label color="primary">Adresse</ion-label>
-              <input type="text" ng-change="changeAdress()" ng-model="adressField" placeholder="{{adress}}"></input>
-            </ion-item>
-          </div>
-
-          <div class="col">
-            <ion-item>
-              <ion-label color="primary">PLZ</ion-label>
-              <input type="number" ng-change="changeZIP()" ng-model="zipField" placeholder="{{zip}}"></input>
+              <input type="text" ng-change="changedAdressDoc()" ng-model="adressDocField" placeholder={{aDoc}}></input>
             </ion-item>
           </div>
           <div class="col">
             <ion-item>
-              <ion-label color="primary">Ort</ion-label>
-              <input type="text" ng-change="changeCity()" ng-model="cityField" placeholder="{{city}}"></input>
+              <ion-label color="primary">PLZ / Ort</ion-label>
+              <input type="text" ng-change="changedZipCityDoc()" ng-model="zipCityDocField" placeholder={{zDoc}}></input>
+            </ion-item>
+          </div>
+          <div class="col">
+            <ion-item>
+              <ion-label color="primary">Telefon</ion-label>
+              <input type="tel" ng-change="changedTelDoc()" ng-model="telDocField" placeholder={{tDoc}}></input>
+            </ion-item>
+          </div>
+          <div class="col">
+            <ion-item>
+              <ion-label color="primary">E-Mail</ion-label>
+              <input type="email" ng-change="changedMailDoc()" ng-model="mailDocField" placeholder={{mDoc}}></input>
             </ion-item>
           </div>
         </div>
       </div>
-      <table>
+      <h3>Kontaktpersonen</h3>
+      <table class="contactTable">
         <tbody>
-          <tr>
-            <th colspan="2">Kontaktpersonen</th>
-          </tr>
           <tr>
             <td>
               <table>
                 <tbody>
                   <tr>
                     <td>Name:</td>
-                    <td><input type="text" ng-change="changedName1()" ng-model="name1" ng-value="n1"></input>
+                    <td>
+                      <input type="text" ng-change="changedName1()" ng-model="name1" placeholder={{n1}}></input>
                     </td>
                   </tr>
                   <tr>
                     <td>Tel:</td>
-                    <td><input type="tel" ng-change="changedTel1()" ng-model="tel1" ng-value="t1"></input>
+                    <td><input type="tel" ng-change="changedTel1()" ng-model="tel1" placeholder={{t1}}></input>
                     </td>
                   </tr>
                 </tbody>
               </table>
             </td>
-
             <td>
               <table>
                 <tbody>
                   <tr>
                     <td>Name:</td>
-                    <td><input type="text" ng-change="changedName2()" ng-model="name2" ng-value="n2"></input>
+                    <td><input type="text" ng-change="changedName2()" ng-model="name2" placeholder={{n2}}></input>
                     </td>
                   </tr>
                   <tr>
                     <td>Tel:</td>
-                    <td><input type="tel" ng-change="changedTel2()" ng-model="tel2" ng-value="t2"></input>
+                    <td><input type="tel" ng-change="changedTel2()" ng-model="tel2" placeholder={{t2}}></input>
                     </td>
                   </tr>
                 </tbody>

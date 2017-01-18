@@ -73,6 +73,10 @@
    }
  }
 
+ .colSettings {
+   padding: 0px !important;
+ }
+
  tr th {
    font-weight: bold;
  }

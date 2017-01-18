@@ -122,6 +122,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-datepicker', '
     views: {
       'menuContent': {
         templateUrl: 'templates/DetailContact.html',
+        controller: 'DetailContactCtrl'
       }
     }
   });

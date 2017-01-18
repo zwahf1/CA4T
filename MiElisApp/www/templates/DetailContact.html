@@ -7,48 +7,52 @@ contains information about the emergency contact.
 <ion-view view-title="Kontaktdetails">
 
   <div id="wrapper">
-  <!--  <ion-pane> -->
+    <!--  <ion-pane> -->
     <ion-content scroll="false">
       <!--  <section class = "home-container"> -->
       <div class="detailContactContainer">
         <!--First row, for the address -->
         <div class="row card cardStyle rowContactsAddress">
-        <!--  <div class="card detailContFont">-->
+          <!--  <div class="card detailContFont">-->
           <div class="col col-25 detailContFatFont">
             Adresse:
           </div>
-          <div class="col col-75 detailContFont">
-            Herr<br>
-            Dr. Hanspeter Wenger<br>
-            Kreuzweg 10<br>
-            2502 Biel
+          <div class="col  detailContFont">
+
+            {{nDoc}}<br> {{aDoc}}
+            <br> {{zDoc}}
           </div>
-        <!--  </div>-->
+
+          <!--  </div>-->
         </div>
         <!--Second row, for the phonenumber -->
         <div class="row card cardStyle rowContactsAddress">
-        <!--  <div class="card detailContFont">-->
+          <!--  <div class="card detailContFont">-->
           <div class="col col-25 detailContFatFont">
             <h1>Telefon:</h1>
           </div>
-          <div class="col col-75 detailContFont">
-            032 555 55 55
+
+          <div class="col  detailContFont">
+            {{tDoc}}
           </div>
-        <!--  </div>-->
+
+          <!--  </div>-->
         </div>
         <!--Third row, for the email -->
-            <div class="row card cardStyle rowContactsAddress">
-            <!--  <div class="card detailContFont">-->
-              <div class="col col-25 detailContFatFont">
-                <h1>E-Mail:</h1>
-              </div>
-              <div class="col col-75 detailContFont">
-                hanspeter.wenger@hin.ch
-              </div>
-            <!--  </div>-->
-            </div>
+        <div class="row card cardStyle rowContactsAddress">
+          <!--  <div class="card detailContFont">-->
+          <div class="col col-25 detailContFatFont">
+            <h1>E-Mail:</h1>
+          </div>
 
-            <!--
+          <div class="col  detailContFont">
+            {{mDoc}}
+          </div>
+
+          <!--  </div>-->
+        </div>
+
+        <!--
             <div class="row icon-row rowContacts">
               <div class = "col text-center">
                 <h1>Telefon:</h1>
@@ -75,10 +79,10 @@ contains information about the emergency contact.
               </div>
             </div>
           -->
-            <!--End of third row -->
-          </div>
+        <!--End of third row -->
+      </div>
       <!--  </section> -->
-      </ion-content>
-  <!--  </ion-pane> -->
+    </ion-content>
+    <!--  </ion-pane> -->
   </div>
 </ion-view>
