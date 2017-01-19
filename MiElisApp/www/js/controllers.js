@@ -137,11 +137,10 @@ angular.module('starter.controllers', [])
         finish = true;
       });
       var timer = $timeout(function refresh() {
-        if (finish) {
-        } else {
+        if (finish) {} else {
           timer = $timeout(refresh, 500);
         }
-     }, 500);
+      }, 500);
     }
 
     $scope.getPerson = function() {
@@ -173,28 +172,31 @@ angular.module('starter.controllers', [])
         } else {
           timer = $timeout(refresh, 500);
         }
-     }, 500);
+      }, 500);
 
     }
-
-    var dumiData = {
-      firstName: 'Elisabeth',
-      lastName: 'Brönnimann',
-      adress: 'Höhe 11',
-      zip: '2500',
-      city: 'Biel',
-      date: '1973-05-03',
-      nkp1: 'Kurt Brönnimann',
-      tkp1: '032 456 12 78',
-      nkp2: 'Markus Brönnimann',
-      tkp2: '079 123 45 67',
-      ndoc: 'Dr. Hanspeter Wenger',
-      adoc: 'Höheweg 10',
-      zdoc: '2502 Biel',
-      tdoc: '032 555 55 55',
-      mdoc: 'hanspeter.wenger@hin.ch'
-    };
-    localStorage.setItem("data", JSON.stringify(dumiData));
+    //if no other data exist, there are some default values, because it looks not nice if it's empty.
+    //n= name, t= telefon, m= mail, kp= contact person,
+    if (localStorage.data == undefined || localStorage.data == null || localStorage.data == '') {
+      var dumiData = {
+        firstName: 'Elisabeth',
+        lastName: 'Brönnimann',
+        adress: 'Höhe 11',
+        zip: '2500',
+        city: 'Biel',
+        birthday: '1973-05-03',
+        nkp1: 'Kurt Brönnimann',
+        tkp1: '032 456 12 78',
+        nkp2: 'Markus Brönnimann',
+        tkp2: '079 123 45 67',
+        ndoc: 'Dr. Hanspeter Wenger',
+        adoc: 'Höheweg 10',
+        zdoc: '2502 Biel',
+        tdoc: '032 555 55 55',
+        mdoc: 'hanspeter.wenger@hin.ch'
+      };
+      localStorage.setItem("data", JSON.stringify(dumiData));
+    }
     var data = JSON.parse(localStorage.getItem("data"));
     firstName = data.firstName;
     lastName = data.lastName;
@@ -218,7 +220,7 @@ angular.module('starter.controllers', [])
           } else {
             timer = $timeout(refresh, 500);
           }
-       }, 500);
+        }, 500);
       }
     }
   })
@@ -246,9 +248,9 @@ angular.module('starter.controllers', [])
       var timer = $timeout(function refresh() {
         if (midataService.loggedIn()) {
           $scope.getObservation();
-          document.getElementById("bLogin").setAttribute("style","background: lightgreen");
+          document.getElementById("bLogin").setAttribute("style", "background: lightgreen");
         } else {
-          document.getElementById("bLogin").setAttribute("style","background: red");
+          document.getElementById("bLogin").setAttribute("style", "background: red");
           timer = $timeout(refresh, 1000);
         }
       }, 1000);
@@ -553,7 +555,7 @@ angular.module('starter.controllers', [])
     $scope.t2 = JSON.parse(localStorage.getItem("data"))['tkp2'];
     $scope.nDoc = JSON.parse(localStorage.getItem("data"))['ndoc'];
 
-    $scope.date = dateFull.substr(8,2)+'.'+dateFull.substr(5,2)+'.'+dateFull.substr(0,4);
+    $scope.date = dateFull.substr(8, 2) + '.' + dateFull.substr(5, 2) + '.' + dateFull.substr(0, 4);
 
     //if no anamnese and diagnose information available, it will filled with default data from E. Brönnimann
     if (localStorage.anamnese == undefined || localStorage.anamnese == null || localStorage.anamnese == '') {
@@ -641,7 +643,7 @@ angular.module('starter.controllers', [])
         persData.ndoc = this.nameDocField;
         localStorage.setItem("data", JSON.stringify(persData));
       } else {
-      //  this.ndoc = persData.nDoc;
+        //  this.ndoc = persData.nDoc;
       }
     }
     $scope.changedAdressDoc = function() {
@@ -650,7 +652,7 @@ angular.module('starter.controllers', [])
         persData.adoc = this.adressDocField;
         localStorage.setItem("data", JSON.stringify(persData));
       } else {
-      //  this.adoc = persData.aDoc;
+        //  this.adoc = persData.aDoc;
       }
     }
     $scope.changedZipCityDoc = function() {
@@ -669,7 +671,7 @@ angular.module('starter.controllers', [])
         persData.tdoc = this.telDocField;
         localStorage.setItem("data", JSON.stringify(persData));
       } else {
-      //  this.tdoc = persData.tDoc;
+        //  this.tdoc = persData.tDoc;
       }
     }
     $scope.changedMailDoc = function() {
@@ -678,7 +680,7 @@ angular.module('starter.controllers', [])
         persData.mdoc = this.mailDocField;
         localStorage.setItem("data", JSON.stringify(persData));
       } else {
-      //  this.tdoc = persData.tDoc;
+        //  this.tdoc = persData.tDoc;
       }
     }
     $scope.changeFName = function() {
@@ -697,7 +699,7 @@ angular.module('starter.controllers', [])
         persData.lastName = this.lNameField;
         localStorage.setItem("data", JSON.stringify(persData));
       } else {
-      //  this.lastName = persData.lname;
+        //  this.lastName = persData.lname;
       }
     }
     $scope.changeAdress = function() {
@@ -706,7 +708,7 @@ angular.module('starter.controllers', [])
         persData.adress = this.adressField;
         localStorage.setItem("data", JSON.stringify(persData));
       } else {
-      //  this.adress = persData.adress;
+        //  this.adress = persData.adress;
       }
     }
     $scope.changeZIP = function() {
@@ -715,7 +717,7 @@ angular.module('starter.controllers', [])
         persData.zip = this.zipField;
         localStorage.setItem("data", JSON.stringify(persData));
       } else {
-      //  this.zip = persData.zip;
+        //  this.zip = persData.zip;
       }
     }
     $scope.changeCity = function() {
@@ -724,7 +726,7 @@ angular.module('starter.controllers', [])
         persData.city = this.cityField;
         localStorage.setItem("data", JSON.stringify(persData));
       } else {
-      //  this.city = persData.city;
+        //  this.city = persData.city;
       }
     }
     $scope.changeDate = function() {
@@ -733,13 +735,13 @@ angular.module('starter.controllers', [])
         persData.date = this.dateField;
         localStorage.setItem("data", JSON.stringify(persData));
       } else {
-      //  this.city = persData.city;
+        //  this.city = persData.city;
       }
     }
     $scope.changedName1 = function() {
       if (this.name1) {
         persData = JSON.parse(localStorage.getItem("data"));
-        persData.nkp1= this.name1;
+        persData.nkp1 = this.name1;
         localStorage.setItem("data", JSON.stringify(persData));
       } else {
         //this.name1 = persData.nkp1;
@@ -748,7 +750,7 @@ angular.module('starter.controllers', [])
     $scope.changedName2 = function() {
       if (this.name2) {
         persData = JSON.parse(localStorage.getItem("data"));
-        persData.nkp2= this.name2;
+        persData.nkp2 = this.name2;
         localStorage.setItem("data", JSON.stringify(persData));
       } else {
         //this.name2 = persData.nkp2;
@@ -761,7 +763,7 @@ angular.module('starter.controllers', [])
         persData.tkp1 = this.tel1;
         localStorage.setItem("data", JSON.stringify(persData));
       } else {
-      //  this.firstName = persData.fname;
+        //  this.firstName = persData.fname;
       }
     }
 
@@ -771,7 +773,7 @@ angular.module('starter.controllers', [])
         persData.tkp2 = this.tel2;
         localStorage.setItem("data", JSON.stringify(persData));
       } else {
-      //  this.firstName = persData.fname;
+        //  this.firstName = persData.fname;
       }
     }
 

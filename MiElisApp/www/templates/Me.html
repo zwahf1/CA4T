@@ -11,18 +11,17 @@ The grid is built as
 15.11.2016 nosec1
 -->
 
-
 <ion-view view-title="Me">
   <div id="wrapper">
     <ion-content class="padding" scroll="false">
       <div class="meContainer">
-<!--The upper row-->
-      <div class="row rowMe">
-        <!--Cell for the picture, smaller than the other 2 in the row.-->
+        <!--The upper row-->
+        <div class="row rowMe">
+          <!--Cell for the picture, smaller than the other 2 in the row.-->
           <div class="col col-20 col-center" id="bild">
             <img id="pPicture">
           </div>
-        <!--second column of the top row, for the anamnesis, divided into two rows-->
+          <!--second column of the top row, for the anamnesis, divided into two rows-->
           <div class="col col-40 rowMeInner">
             <div class="row rowTitle">
               <h2>Anamnese</h2>
@@ -50,69 +49,64 @@ The grid is built as
               </ion-scroll>
             </div>
           </div>
-      </div>
-      <!--Middle row to put distance between the top and bottom ones.-->
-      <div class="row rowMePadding">
-      </div>
+        </div>
+        <!--Middle row to put distance between the top and bottom ones.-->
+        <div class="row rowMePadding">
+        </div>
 
-      <!--The bottom row-->
-      <div class="row rowMe">
-        <!--The first column of the bottom row, for the address, divided into 3 rows.-->
-        <div class="col rowMeInner">
-          <div class="row rowTitle">
-            <h2>Adresse</h2>
-          </div>
-          <!--Middle row-->
-          <div class="row meFont rowAddress">
-            <div class="card meCard">
-              <div class="item item-text-wrap" id="dCAddress">
-                <!--<div>
-                  <h2>Adresse</h2>
-                </div>-->
-                <div class="meFont">
-                  {{fname}} {{lname}}<br>
-                  {{adress}}<br>
-                  {{zip}} {{city}}<br>
+        <!--The bottom row-->
+        <div class="row rowMe">
+          <!--The first column of the bottom row, for the address, divided into 3 rows.-->
+          <div class="col rowMeInner">
+            <div class="row rowTitle">
+              <h2>Adresse</h2>
+            </div>
+            <!--Middle row-->
+            <div class="row meFont rowAddress">
+              <div class="card meCard">
+                <div class="item item-text-wrap" id="dCAddress">
+
+                  <div class="meFont">
+                    {{fname}} {{lname}}<br> {{adress}}
+                    <br> {{zip}} {{city}}<br>
+                  </div>
                 </div>
               </div>
             </div>
+
+            <div class="col meFont rowTitle">
+              <h2>Geburtsdatum:</h2>
+            </div>
+            <div class="col meFont rowBirthdate">
+              <p id="pBirthdate">{{date}}</p>
+            </div>
           </div>
-          <!--bottom row-->
-          <!--<div class="col meFont">-->
-          <div class="col meFont rowTitle">
-            <h2>Geburtsdatum:</h2>
+          <!--The second column of the bottom row, for emergency contacts.-->
+          <div class="col rowMeInner">
+            <div class="row rowTitle">
+              <h2>Notfallkontakte</h2>
+            </div>
+            <div class="row rowSubtitle">
+              <h3>Hausarzt:</h3>
+            </div>
+            <div class="row rowButton">
+              <a class="Button btn_full meFont" id="bHausarzt" href="#/app/DetailContact">{{nDoc}}</a>
+            </div>
           </div>
-          <div class="col meFont rowBirthdate">
-            <p id="pBirthdate">{{date}}</p>
+          <!--The third column of the bottom row, for more contacts.-->
+          <div class="col rowMeInner">
+            <div class="row rowTitle">
+              <h2>Weitere Kontakte</h2>
+            </div>
+            <div class="row rowButton">
+              <a class="Button btn_full meFont" id="bKontaktperson" href="tel:{{t1}}">{{n1}}<br/>{{t1}}</a>
+            </div>
+            <div class="row rowButton">
+              <a class="Button btn_full meFont" id="bWeitereKontakte1" href="tel:{{t2}}">{{n2}}<br/>{{t2}}</a>
+            </div>
           </div>
-        <!--  </div> -->
         </div>
-        <!--The second column of the bottom row, for emergency contacts.-->
-        <div class="col rowMeInner">
-          <div class="row rowTitle">
-            <h2>Notfallkontakte</h2>
-          </div>
-          <div class="row rowSubtitle">
-            <h3>Hausarzt:</h3>
-          </div>
-          <div class="row rowButton">
-            <a class="Button btn_full meFont" id="bHausarzt" href="#/app/DetailContact">{{nDoc}}</a>
-          </div>
-        </div>
-        <!--The third column of the bottom row, for more contacts.-->
-        <div class="col rowMeInner">
-          <div class="row rowTitle">
-            <h2>Weitere Kontakte</h2>
-          </div>
-          <div class="row rowButton">
-            <a class="Button btn_full meFont" id="bKontaktperson" href="tel:{{t1}}">{{n1}}<br/>{{t1}}</a>
-          </div>
-          <div class="row rowButton">
-            <a class="Button btn_full meFont" id="bWeitereKontakte1" href="tel:{{t2}}">{{n2}}<br/>{{t2}}</a>
-          </div>
       </div>
-    </div>
-    </div>
     </ion-content>
   </div>
 </ion-view>
